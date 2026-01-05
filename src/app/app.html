@@ -1,16 +1,24 @@
 <!-- Navbar -->
+
 <header class="navbar">
   <div class="container navbar-content">
-    <img src="CST_LOGO.png" alt="CleanStacky Technologies" class="logo">
+    <img src="CST_LOGO.png" alt="CleanStacky Technologies" class="logo" />
     <span class="brand-text">CleanStacky Technologies</span>
-    <nav class="nav-links">
-      <a href="#services">Services</a>
-      <a href="#why-us">Why Us</a>
-      <a href="#testimonials">Clients</a>
-      <a href="#contact">Contact</a>
+
+    <!-- Hamburger for mobile -->
+    <button class="hamburger" aria-label="Toggle menu" (click)="toggleMenu()">
+      ☰
+    </button>
+
+    <nav [class.active]="menuOpen" class="nav-links">
+      <a href="#services" (click)="closeMenu()">Services</a>
+      <a href="#why-us" (click)="closeMenu()">Why Us</a>
+      <a href="#testimonials" (click)="closeMenu()">Clients</a>
+      <a href="#contact" (click)="closeMenu()">Contact</a>
     </nav>
   </div>
 </header>
+
 
 <!-- Hero Section -->
 <section class="hero">
