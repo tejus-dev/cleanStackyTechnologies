@@ -2,22 +2,27 @@
 
 <header class="navbar">
   <div class="container navbar-content">
-    <img src="CST_LOGO.png" alt="CleanStacky Technologies" class="logo" />
-    <span class="brand-text">CleanStacky Technologies</span>
+    <div class="nav-left">
+      <img src="CST_LOGO.png" alt="CleanStacky Technologies" class="logo" />
+      <span class="brand-text">CleanStacky Technologies</span>
+    </div>
 
-    <!-- Hamburger for mobile -->
-    <button class="hamburger" aria-label="Toggle menu" (click)="toggleMenu()">
+    <button class="hamburger" type="button" aria-label="Toggle menu" [attr.aria-expanded]="menuOpen"
+      aria-controls="primary-nav" (click)="toggleMenu()">
       ☰
     </button>
 
-    <nav [class.active]="menuOpen" class="nav-links">
+    <nav id="primary-nav" class="nav-links" [class.active]="menuOpen">
       <a href="#services" (click)="closeMenu()">Services</a>
+      <a href="#projects" (click)="closeMenu()">Projects</a>
+      <a href="#tech-solutions" (click)="closeMenu()">Tech Solutions</a>
       <a href="#why-us" (click)="closeMenu()">Why Us</a>
       <a href="#testimonials" (click)="closeMenu()">Clients</a>
       <a href="#contact" (click)="closeMenu()">Contact</a>
     </nav>
   </div>
 </header>
+
 
 
 <!-- Hero Section -->
@@ -60,6 +65,58 @@
     </div>
   </div>
 </section>
+
+<section id="projects" class="projects">
+  <div class="container">
+    <h2>Selected Work</h2>
+    <p class="section-intro">Products and platforms we’ve built with our clients.</p>
+
+    <div class="project-list">
+
+      <div class="project-card">
+        <h3>NatureFreshFarm</h3>
+        <p>B2B web application to support business interactions and product discovery for farm produce partners.</p>
+        <div class="tags">
+          <span>Angular</span><span>Firebase</span><span>B2B App</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <h3>AstraBuild International</h3>
+        <p>Modern construction company website to showcase services, projects, and brand presence.</p>
+        <div class="tags">
+          <span>Angular</span><span>SEO</span><span>Modern UI</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <h3>Ambika Textile Pvt Ltd</h3>
+        <p>Full-scale e-commerce platform currently under development for a growing textile business.</p>
+        <div class="tags">
+          <span>Angular</span><span>E-commerce</span><span>Scalable</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <h3>CFA Andrew’s School, Bengaluru</h3>
+        <p>School website and ERP-lite system to support administration and communication.</p>
+        <div class="tags">
+          <span>Angular</span><span>Dashboard</span><span>ERP Lite</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <h3>Infinity Mobile App</h3>
+        <p>Full-fledged mobile application currently under development with scalable architecture.</p>
+        <div class="tags">
+          <span>Mobile App</span><span>Scalable</span><span>Ongoing</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- Tech Business Solutions Section -->
 <section id="tech-solutions" class="tech-solutions">
   <div class="container">
@@ -89,6 +146,9 @@
     </div>
   </div>
 </section>
+
+
+
 
 <!-- Feature Highlights -->
 <section class="features">
@@ -174,3 +234,7 @@
     <p>&copy; 2026 CleanStacky Technologies. All rights reserved.</p>
   </div>
 </footer>
+
+@if (menuOpen) {
+<div class="menu-backdrop" (click)="closeMenu()"></div>
+}
