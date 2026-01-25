@@ -1,12 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { CardModule } from 'primeng/card';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.html',
-  imports: [CardModule, CommonModule],
+  imports: [CommonModule],
   styleUrls: ['./app.scss'],
 })
 export class App {
