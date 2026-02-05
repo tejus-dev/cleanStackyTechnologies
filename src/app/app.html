@@ -1,386 +1,316 @@
-<!-- Navbar -->
-
-<header class="navbar">
-  <div class="container navbar-content">
-    <div class="nav-left">
-      <img src="CST_LOGO.png" alt="CleanStacky Technologies" class="logo" />
-      <span class="brand-text" href="#">CleanStacky Technologies</span>
-    </div>
-
-    <button class="hamburger" type="button" aria-label="Toggle menu" [attr.aria-expanded]="menuOpen"
-      aria-controls="primary-nav" (click)="toggleMenu()">
-      ☰
-    </button>
-
-    <nav id="primary-nav" class="nav-links" [class.active]="menuOpen">
-      <a href="#services" (click)="closeMenu()">Services</a>
-      <a href="#projects" (click)="closeMenu()">Projects</a>
-      <a href="#tech-solutions" (click)="closeMenu()">Tech Solutions</a>
-      <a href="#why-us" (click)="closeMenu()">Why Us</a>
-      <a href="#testimonials" (click)="closeMenu()">Clients</a>
-      <a href="#contact" (click)="closeMenu()">Contact</a>
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="#top" class="brand">
+      <img src="CST_LOGO.png" alt="CleanStacky Technologies" class="logo">
+      <div class="brand-text">
+        <span class="brand-name">CleanStacky</span>
+        <span class="brand-tagline">Business Solutions & Engineering</span>
+      </div>
+    </a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <label for="nav-toggle" class="nav-toggle-label">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+    <nav class="nav-links">
+      <a href="#solutions">Solutions</a>
+      <a href="#capabilities">Capabilities</a>
+      <a href="#outcomes">Outcomes</a>
+      <a href="#process">Process</a>
+      <a href="#contact">Contact</a>
+      <a href="#contact" class="nav-cta nav-cta-mobile">Start a Project</a>
     </nav>
+    <a href="#contact" class="nav-cta">Start a Project</a>
   </div>
 </header>
 
-
-
-<!-- Hero Section -->
-<section class="hero">
-  <div class="container hero-content">
-    <h1>Your Technology Partner for Business Growth</h1>
-    <p>
-      We design and deliver reliable software solutions that support operations, improve efficiency, and scale with your
-      business.
-    </p>
-    <div class="hero-cta">
-      <a href="#contact" class="cta-button">Start a Conversation</a>
-      <a href="#projects" class="cta-button secondary">View Our Work</a>
+<main id="top">
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy reveal">
+        <span class="eyebrow">Business-first technology partner</span>
+        <h1>Solutions that solve business problems, not just build products.</h1>
+        <p>We align strategy, design, and engineering to modernize operations, elevate customer experience, and deliver platforms that scale.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn-primary">Start a Project</a>
+          <a href="#solutions" class="btn-secondary">Explore Solutions</a>
+        </div>
+        <div class="hero-badges">
+          <span>Strategy-led delivery</span>
+          <span>Senior engineering</span>
+          <span>Executive reporting</span>
+        </div>
+      </div>
+      <aside class="hero-panel reveal">
+        <div class="panel-top">
+          <span class="panel-kicker">Executive Snapshot</span>
+          <h3>Impact you can track.</h3>
+          <p>We provide clear milestones, KPI reporting, and continuous optimization.</p>
+        </div>
+        <div class="panel-metrics">
+          <div>
+            <span class="metric-value">+42%</span>
+            <span class="metric-label">Avg. performance uplift</span>
+          </div>
+          <div>
+            <span class="metric-value">6-8w</span>
+            <span class="metric-label">Delivery cycles</span>
+          </div>
+          <div>
+            <span class="metric-value">24h</span>
+            <span class="metric-label">Response SLA</span>
+          </div>
+        </div>
+      </aside>
     </div>
-  </div>
-</section>
+    <div class="hero-wave"></div>
+  </section>
 
-
-
-<!-- Services Section -->
-<section id="services" class="services">
-  <div class="container">
-    <h2>Our Services</h2>
-    <div class="service-list">
-
-      <div class="service-item">
-        <div class="icon">🖥️</div>
-        <h3>Frontend Development</h3>
-        <p>
-          We build modern, scalable frontends using Angular and proven frameworks, with a focus on performance,
-          maintainability, and clean architecture.
-        </p>
-      </div>
-
-      <div class="service-item">
-        <div class="icon">🎨</div>
-        <h3>UI Modernization</h3>
-        <p>
-          We help improve user experience through consistent design systems, responsive layouts, and thoughtfully
-          crafted interfaces.
-        </p>
-      </div>
-
-      <div class="service-item">
-        <div class="icon">⚡</div>
-        <h3>Web & Application Development</h3>
-        <p>
-          We design and deliver reliable digital platforms, from business websites to full-scale applications, tailored
-          to operational needs.
-        </p>
-      </div>
-
-      <div class="service-item">
-        <div class="icon">🧪</div>
-        <h3>Automation & Testing</h3>
-        <p>
-          We implement automated testing and delivery pipelines to ensure quality, stability, and predictable releases.
-        </p>
+  <section class="trusted">
+    <div class="container trusted-inner reveal">
+      <span class="trusted-label">Trusted by growth-focused teams</span>
+      <div class="trusted-logos">
+        <span>NatureFreshFarm</span>
+        <span>BlueRiver Logistics</span>
+        <span>Helix Finance</span>
+        <span>BrightMart Retail</span>
+        <span>NextGrid Energy</span>
       </div>
 
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Projects Section -->
-<section id="projects" class="projects">
-  <div class="container">
-    <h2>Selected Work</h2>
-    <p class="section-intro">A selection of products and platforms delivered in partnership with our clients.</p>
-
-    <div class="project-list">
-
-      <div class="project-card">
-        <h3>NatureFreshFarm</h3>
-        <p>
-          A B2B web application designed to support business operations and product discovery for farm produce partners.
-        </p>
-        <div class="tags">
-          <span>Angular</span><span>Firebase</span><span>B2B Platform</span>
-        </div>
+  <section id="solutions" class="solutions">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>Business Solutions</h2>
+        <p>Focused on outcomes your leadership team cares about most.</p>
       </div>
-
-      <div class="project-card">
-        <h3>AstraBuild International</h3>
-        <p>
-          A professional website developed to present services, projects, and brand presence for a construction company.
-        </p>
-        <div class="tags">
-          <span>Angular</span><span>SEO</span><span>Modern UI</span>
-        </div>
+      <div class="solution-grid">
+        <article class="solution-card reveal">
+          <h3>Operational Efficiency</h3>
+          <p>Automations and internal platforms that reduce manual work and improve throughput.</p>
+          <span class="tag">Process automation</span>
+        </article>
+        <article class="solution-card reveal">
+          <h3>Customer Experience</h3>
+          <p>High-performance digital journeys that improve conversion and retention.</p>
+          <span class="tag">UX modernization</span>
+        </article>
+        <article class="solution-card reveal">
+          <h3>Data & Insights</h3>
+          <p>Analytics, reporting, and visibility layers that drive smarter decisions.</p>
+          <span class="tag">Decision intelligence</span>
+        </article>
+        <article class="solution-card reveal">
+          <h3>Modernization</h3>
+          <p>Legacy upgrades that improve stability, security, and maintainability.</p>
+          <span class="tag">Platform renewal</span>
+        </article>
       </div>
+    </div>
+  </section>
 
-      <div class="project-card">
-        <h3>Ambika Textile Pvt Ltd</h3>
-        <p>
-          A full-scale e-commerce platform currently under development for a growing textile business.
-        </p>
-        <div class="tags">
-          <span>Angular</span><span>E-commerce</span><span>Scalable Platform</span>
+  <section id="capabilities" class="capabilities">
+    <div class="container">
+      <div class="section-head split reveal">
+        <div>
+          <h2>Capabilities</h2>
+          <p>Full-service engineering with the polish of a premium consultancy.</p>
         </div>
+        <a href="#contact" class="text-link">Request a capability deck</a>
       </div>
-
-      <div class="project-card">
-        <h3>CF Andrew’s School, Bengaluru</h3>
-        <p>
-          A combined website and ERP-lite system designed to support school administration and communication.
-        </p>
-        <div class="tags">
-          <span>Angular</span><span>Dashboard</span><span>ERP Lite</span>
+      <div class="cap-grid">
+        <div class="cap-card reveal">
+          <span class="cap-title">Experience Engineering</span>
+          <p>Modern web experiences designed for clarity and conversion.</p>
         </div>
-      </div>
-
-      <div class="project-card">
-        <h3>Infinity Mobile App</h3>
-        <p>
-          A full-featured mobile application currently under development with a focus on scalability and reliability.
-        </p>
-        <div class="tags">
-          <span>Mobile App</span><span>Scalable</span><span>In Progress</span>
+        <div class="cap-card reveal">
+          <span class="cap-title">Design Systems</span>
+          <p>Reusable UI libraries with governance for consistent delivery.</p>
+        </div>
+        <div class="cap-card reveal">
+          <span class="cap-title">Platform Delivery</span>
+          <p>Full-stack platforms with analytics, security, and scale.</p>
+        </div>
+        <div class="cap-card reveal">
+          <span class="cap-title">Automation & QA</span>
+          <p>Quality gates and CI/CD to keep releases stable and fast.</p>
+        </div>
+        <div class="cap-card reveal">
+          <span class="cap-title">Cloud & DevOps</span>
+          <p>Reliable infrastructure and observability for high availability.</p>
+        </div>
+        <div class="cap-card reveal">
+          <span class="cap-title">Ongoing Support</span>
+          <p>Long-term partnership for continuous optimization.</p>
         </div>
       </div>
 
     </div>
-  </div>
-</section>
+  </section>
 
-
-<!-- Tech Business Solutions Section -->
-<section id="tech-solutions" class="tech-solutions">
-  <div class="container">
-    <h2>Technology & Business Solutions</h2>
-    <p class="section-intro">
-      We work with organizations to plan, build, and evolve digital systems that support real-world operations and
-      long-term growth.
-    </p>
-
-    <div class="solution-list">
-
-      <div class="solution-item">
-        <div class="icon">💡</div>
-        <h3>Product Strategy & Consulting</h3>
-        <p>
-          We help shape ideas into practical, well-defined products with clear scope, structure, and delivery plans.
-        </p>
+  <section id="outcomes" class="outcomes">
+    <div class="container outcomes-grid">
+      <div class="outcomes-copy reveal">
+        <h2>Outcomes That Move the Business</h2>
+        <p>We measure success in performance, conversion, and operational clarity.</p>
+        <a href="#contact" class="text-link">Discuss your KPIs</a>
       </div>
-
-      <div class="solution-item">
-        <div class="icon">⚙️</div>
-        <h3>Workflow Automation</h3>
-        <p>
-          We design and implement systems that streamline internal processes and reduce manual operational effort.
-        </p>
-      </div>
-
-      <div class="solution-item">
-        <div class="icon">📊</div>
-        <h3>Business Intelligence & Reporting</h3>
-        <p>
-          We build clear, reliable reporting and dashboards to support informed business decisions.
-        </p>
-      </div>
-
-      <div class="solution-item">
-        <div class="icon">💻</div>
-        <h3>Custom Software Platforms</h3>
-        <p>
-          We design and deliver secure, scalable software systems tailored to specific business workflows.
-        </p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-<!-- Feature Highlights -->
-<section class="features">
-  <div class="container">
-    <h2>What Sets Us Apart</h2>
-    <div class="feature-list">
-      <div class="feature-item">
-        <h3>Scalable Architecture</h3>
-        <p>We design systems that can grow seamlessly with your business needs.</p>
-      </div>
-      <div class="feature-item">
-        <h3>Clean Code</h3>
-        <p>Readable, maintainable, and modular code for long-term maintainability.</p>
-      </div>
-      <div class="feature-item">
-        <h3>Performance Focused</h3>
-        <p>Fast loading, optimized web applications to maximize user satisfaction.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
-
-<!-- Testimonials Section -->
-<section id="testimonials" class="testimonials">
-  <div class="container">
-    <h2>What Our Clients Say</h2>
-    <div class="testimonial-list">
-
-      <div class="testimonial-item">
-        <p>
-          “CleanStacky delivered a reliable and well-structured solution that met our requirements and continues to
-          scale with our business.”
-        </p>
-        <span>— Founder, NatureFreshFarm</span>
-      </div>
-
-      <div class="testimonial-item">
-        <p>
-          “The team was professional, detail-oriented, and dependable. Their work on our frontend and UI modernization
-          has been consistently solid.”
-        </p>
-        <span>— Founder, Astra Build International</span>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- How We Work Section -->
-<section class="journey" id="how-we-work">
-  <div class="container">
-    <h2>How We Work</h2>
-    <p class="section-intro">
-      A clear, structured approach focused on predictable delivery and long-term business value.
-    </p>
-
-    <div class="journey-timeline">
-
-      <div class="journey-row left">
-        <div class="journey-card">
-          <span class="step-badge">1</span>
-          <h3>Discover</h3>
-          <p>
-            We understand your business, goals, users, and constraints to define the right direction.
-          </p>
+      <div class="outcomes-cards">
+        <div class="outcome-card reveal">
+          <span class="outcome-value">40%</span>
+          <span class="outcome-label">Average performance lift</span>
         </div>
-        <span class="node"></span>
-      </div>
-
-      <div class="journey-row right">
-        <div class="journey-card">
-          <span class="step-badge">2</span>
-          <h3>Plan & Design</h3>
-          <p>
-            We design the solution, architecture, and execution roadmap with a scalable foundation.
-          </p>
+        <div class="outcome-card reveal">
+          <span class="outcome-value">30%</span>
+          <span class="outcome-label">Faster decision cycles</span>
         </div>
-        <span class="node"></span>
-      </div>
-
-      <div class="journey-row left">
-        <div class="journey-card">
-          <span class="step-badge">3</span>
-          <h3>Build & Iterate</h3>
-          <p>
-            We implement in clean, reliable milestones with continuous feedback and improvements.
-          </p>
+        <div class="outcome-card reveal">
+          <span class="outcome-value">25%</span>
+          <span class="outcome-label">Lower support volume</span>
         </div>
-        <span class="node"></span>
-      </div>
-
-      <div class="journey-row right last">
-        <div class="journey-card">
-          <span class="step-badge">4</span>
-          <h3>Launch & Scale</h3>
-          <p>
-            We launch, monitor, and evolve the product as your business grows.
-          </p>
-        </div>
-        <span class="node"></span>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-
-
-
-
-
-
-<!-- Why Us Section -->
-<section id="why-us" class="why-us animate-on-scroll">
-  <div class="container">
-    <h2>Why Work With CleanStacky</h2>
-
-    <div class="why-list">
-      <div class="why-item">
-        <div class="icon">💡</div>
-        <h3>Engineering-First Approach</h3>
-        <p>
-          We follow structured architecture and modern engineering practices to ensure systems remain maintainable and
-          scalable over time.
-        </p>
-      </div>
-
-      <div class="why-item">
-        <div class="icon">🔧</div>
-        <h3>Reliable Long-Term Support</h3>
-        <p>
-          We provide ongoing maintenance and improvements so your applications stay stable, secure, and up to date.
-        </p>
-      </div>
-
-      <div class="why-item">
-        <div class="icon">📈</div>
-        <h3>Clear, Predictable Delivery</h3>
-        <p>
-          We work with clear communication, realistic timelines, and regular updates so progress is always visible.
-        </p>
-      </div>
-
-      <div class="why-item">
-        <div class="icon">⚡</div>
-        <h3>Performance & Discoverability</h3>
-        <p>
-          We build for speed, usability, and search visibility to support both user experience and business outcomes.
-        </p>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
+  <section id="industries" class="industries">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>Industries We Serve</h2>
+        <p>Tailored solutions across diverse sectors and operational models.</p>
+      </div>
+      <div class="industry-grid">
+        <span class="industry-pill reveal">Food & Restaurants</span>
+        <span class="industry-pill reveal">Travel & Hospitality</span>
+        <span class="industry-pill reveal">Automobile</span>
+        <span class="industry-pill reveal">Real Estate</span>
+        <span class="industry-pill reveal">E-Commerce</span>
+        <span class="industry-pill reveal">Events</span>
+        <span class="industry-pill reveal">Banking & Finance</span>
+        <span class="industry-pill reveal">Health & Fitness</span>
+        <span class="industry-pill reveal">Education & LMS</span>
+        <span class="industry-pill reveal">Logistics</span>
+      </div>
+    </div>
+  </section>
 
-<!-- Contact Section -->
-<section id="contact" class="contact">
-  <div class="container">
-    <h2>Get in Touch</h2>
-    <p>Share a brief overview of what you’re building — we’ll respond with next steps.</p>
+  <section id="process" class="process">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>How We Deliver</h2>
+        <p>Structured, transparent delivery built for executive visibility and team alignment.</p>
+      </div>
+      <div class="process-grid">
+        <div class="process-card reveal">
+          <span class="step">01</span>
+          <h3>Discovery & Strategy</h3>
+          <p>We align on goals, scope, and success metrics with stakeholders and product teams.</p>
+        </div>
+        <div class="process-card reveal">
+          <span class="step">02</span>
+          <h3>Experience & Architecture</h3>
+          <p>We craft the solution blueprint, design system, and technical foundation.</p>
+        </div>
+        <div class="process-card reveal">
+          <span class="step">03</span>
+          <h3>Build & Optimize</h3>
+          <p>We execute with weekly demos, QA gates, and performance monitoring.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <p>Email: <a href="mailto:ask@cleanstacky.com">ask@cleanstacky.com</a></p>
-    <p>
-      WhatsApp:
-      <a href="https://wa.me/916362569793" target="_blank" rel="noopener noreferrer">
-        +91 6362569793
-      </a>
-    </p>
-  </div>
-</section>
+  <section class="case-studies">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>Selected Case Studies</h2>
+        <p>Clear outcomes, refined delivery, and measurable impact.</p>
+      </div>
+      <div class="case-grid">
+        <article class="case-card reveal">
+          <span class="case-label">Retail</span>
+          <h3>Retail Platform Revamp</h3>
+          <p>Rebuilt the buyer journey and optimized performance to lift conversion and reduce support load.</p>
+          <div class="case-metrics">
+            <span>+38% conversion</span>
+            <span>-25% support</span>
+          </div>
+        </article>
+        <article class="case-card reveal">
+          <span class="case-label">Logistics</span>
+          <h3>Operations Command Center</h3>
+          <p>Unified analytics and workflows into a single control center for faster decisions.</p>
+          <div class="case-metrics">
+            <span>4x faster reporting</span>
+            <span>30% fewer delays</span>
+          </div>
+        </article>
+        <article class="case-card reveal">
+          <span class="case-label">Fintech</span>
+          <h3>Compliant Growth Platform</h3>
+          <p>Delivered a compliant web app with secure onboarding and real-time insights.</p>
+          <div class="case-metrics">
+            <span>99.95% uptime</span>
+            <span>2x onboarding speed</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
 
+  <section class="testimonials">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>Client Feedback</h2>
+        <p>Partners choose us for clarity, speed, and trusted engineering leadership.</p>
+      </div>
+      <div class="testimonial-grid">
+        <div class="testimonial-card reveal">
+          <p>"CleanStacky delivered exactly what we needed — scalable, professional, and fast."</p>
+          <span class="testimonial-meta">NatureFreshFarm, Founder</span>
+        </div>
+        <div class="testimonial-card reveal">
+          <p>"Highly recommend their team for frontend and UI modernization projects."</p>
+          <span class="testimonial-meta">Product Manager, BrightMart Retail</span>
+        </div>
+        <div class="testimonial-card reveal">
+          <p>"They operated like an extension of our leadership team and shipped with precision."</p>
+          <span class="testimonial-meta">COO, Helix Finance</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<!-- Footer -->
-<footer>
-  <div class="container">
-    <p>&copy; 2026 CleanStacky Technologies. All rights reserved.</p>
+  <section id="contact" class="contact">
+    <div class="container contact-card reveal">
+      <div>
+        <h2>Let’s Solve a Business Challenge</h2>
+        <p>Tell us about your goals, constraints, and timeline. We’ll respond within 24 hours.</p>
+      </div>
+      <div class="contact-actions">
+        <a class="btn-primary" href="mailto:info@cleanstacky.com">info@cleanstacky.com</a>
+        <a class="btn-secondary" href="https://wa.me/916362569793" target="_blank">+91 6362569793</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>
+      <h3>CleanStacky</h3>
+      <p>Business solutions and engineering for companies that demand clarity, performance, and growth.</p>
+    </div>
+    <div class="footer-links">
+      <a href="#solutions">Solutions</a>
+      <a href="#capabilities">Capabilities</a>
+      <a href="#outcomes">Outcomes</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="footer-meta">
+      <span>&copy; 2026 CleanStacky Technologies. All rights reserved.</span>
+    </div>
   </div>
 </footer>
-
-
-@if (menuOpen) {
-<div class="menu-backdrop" (click)="closeMenu()"></div>
-}
