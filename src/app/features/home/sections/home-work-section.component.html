@@ -1,0 +1,18 @@
+<section id="work" class="case-studies">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2>{{ section.title }}</h2>
+      <p>{{ section.description }}</p>
+    </div>
+    <div class="case-grid">
+      <article class="case-card reveal" *ngFor="let study of section.studies">
+        <span class="case-label">{{ study.label }}</span>
+        <h3>{{ study.title }}</h3>
+        <p>{{ study.description }}</p>
+        <div class="case-metrics">
+          <span *ngFor="let metric of study.metrics">{{ metric }}</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,21 @@
+<section id="contact" class="contact">
+  <div class="container contact-card reveal">
+    <div class="contact-copy">
+      <h2>{{ section.title }}</h2>
+      <p>{{ section.description }}</p>
+      <p class="contact-sla">{{ section.responseSla }}</p>
+      <div class="contact-actions">
+        <a class="btn-primary" [href]="section.email.href">{{ section.email.label }}</a>
+        <a class="btn-secondary" [href]="section.whatsapp.href" target="_blank" rel="noreferrer">{{ section.whatsapp.label }}</a>
+      </div>
+    </div>
+    <form class="contact-form" [formGroup]="inquiryForm" (ngSubmit)="onSubmit()">
+      <label *ngFor="let field of section.formFields" class="form-row">
+        <span>{{ field.label }}</span>
+        <textarea *ngIf="field.type === 'textarea'" [formControlName]="field.id" [placeholder]="field.placeholder"></textarea>
+        <input *ngIf="field.type !== 'textarea'" type="text" [formControlName]="field.id" [placeholder]="field.placeholder">
+      </label>
+      <button type="submit" class="btn-primary form-submit">Send project brief</button>
+    </form>
+  </div>
+</section>

@@ -38,10 +38,12 @@
   --shadow-xs: 0 2px 6px rgba(15, 31, 24, 0.06);
   --shadow-sm: 0 10px 22px rgba(15, 31, 24, 0.08);
   --shadow-md: 0 18px 36px rgba(15, 31, 24, 0.12);
+  --shadow-lg: 0 26px 56px rgba(15, 31, 24, 0.14);
   --brand: var(--mint-600);
   --brand-600: var(--mint-700);
   --border: var(--line);
   --muted: var(--ink-500);
+  --glass-bg: rgba(255, 255, 255, 0.74);
 }
 
 * {
@@ -56,7 +58,10 @@ body {
   font-family: 'Manrope', sans-serif;
   color: var(--ink-900);
 
-  background: linear-gradient(180deg, #f4fbf7 0%, #edf6f1 40%, #f9fbf9 100%);
+  background:
+    radial-gradient(circle at 12% -6%, rgba(76, 155, 120, 0.17), transparent 38%),
+    radial-gradient(circle at 90% 8%, rgba(164, 214, 190, 0.22), transparent 32%),
+    linear-gradient(180deg, #f5fcf8 0%, #edf6f1 44%, #fbfdfb 100%);
   scroll-behavior: smooth;
   scroll-padding-top: var(--header-offset);
 }
@@ -104,12 +109,16 @@ button:focus-visible,
 
   h2 {
     font-size: clamp(2.1rem, 3vw, 2.8rem);
+    letter-spacing: -0.03em;
+    line-height: 1.08;
     margin-bottom: 12px;
   }
 
   p {
     font-size: 1.05rem;
     color: var(--ink-500);
+    max-width: 720px;
+    margin: 0 auto;
   }
 }
 
@@ -205,9 +214,10 @@ button:focus-visible,
   position: sticky;
   top: 0;
   z-index: 1000;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.82);
   border-bottom: 1px solid rgba(15, 31, 24, 0.06);
-  backdrop-filter: blur(18px) saturate(140%);
+  box-shadow: 0 8px 28px rgba(15, 31, 24, 0.06);
+  backdrop-filter: blur(18px) saturate(155%);
 }
 
 .header-inner {
@@ -355,7 +365,8 @@ button:focus-visible,
    Hero
    ========================================================= */
 .hero {
-  padding: 110px 0 90px;
+  padding: 122px 0 102px;
+  min-height: 76vh;
   position: relative;
   overflow: hidden;
 }
@@ -367,8 +378,9 @@ button:focus-visible,
   width: 520px;
   height: 520px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(76, 155, 120, 0.16), transparent 70%);
+  background: radial-gradient(circle, rgba(76, 155, 120, 0.2), transparent 72%);
   z-index: 0;
+  animation: orbFloat 11s var(--ease-in-out) infinite;
 }
 
 .hero::before {
@@ -379,7 +391,8 @@ button:focus-visible,
 .hero::after {
   bottom: -260px;
   left: -200px;
-  background: radial-gradient(circle, rgba(76, 155, 120, 0.12), transparent 70%);
+  background: radial-gradient(circle, rgba(76, 155, 120, 0.13), transparent 70%);
+  animation-delay: 1.4s;
 }
 
 .hero-grid {
@@ -406,12 +419,16 @@ button:focus-visible,
 
 .hero-copy h1 {
   font-size: clamp(2.6rem, 4vw, 3.8rem);
+  letter-spacing: -0.03em;
+  line-height: 1.03;
+  max-width: 12.8ch;
   margin-bottom: 18px;
 }
 
 .hero-copy p {
   font-size: 1.1rem;
   color: var(--ink-500);
+  max-width: 60ch;
   margin-bottom: 28px;
 }
 
@@ -429,7 +446,8 @@ button:focus-visible,
 }
 
 .hero-badges span {
-  background-color: var(--surface);
+  background-color: rgba(255, 255, 255, 0.76);
+  backdrop-filter: blur(10px);
   border: 1px solid var(--line);
   padding: 8px 14px;
   border-radius: 999px;
@@ -439,11 +457,12 @@ button:focus-visible,
 }
 
 .hero-panel {
-  background: linear-gradient(160deg, #ffffff 0%, #f1fbf4 100%);
+  background: linear-gradient(160deg, var(--glass-bg) 0%, rgba(241, 251, 244, 0.9) 100%);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  padding: 28px;
-  box-shadow: var(--shadow-sm);
+  padding: 30px;
+  box-shadow: var(--shadow-lg);
+  backdrop-filter: blur(14px) saturate(132%);
   position: relative;
   will-change: transform;
   transform: translateZ(0);
@@ -454,14 +473,15 @@ button:focus-visible,
   position: absolute;
   inset: -1px;
   border-radius: var(--radius-lg);
-  background: radial-gradient(circle at 20% 10%, rgba(76, 155, 120, 0.16), transparent 55%);
+  background: radial-gradient(circle at 20% 10%, rgba(76, 155, 120, 0.18), transparent 55%);
   opacity: 0;
-  transition: opacity 500ms var(--ease-out);
+  transition: opacity 500ms var(--ease-out), transform 500ms var(--ease-out);
   pointer-events: none;
 }
 
 .hero-panel:hover::before {
   opacity: 1;
+  transform: scale(1.02);
 }
 
 .panel-kicker {
@@ -533,7 +553,8 @@ button:focus-visible,
   border: 1px solid var(--line);
   padding: 20px 28px;
   border-radius: var(--radius-sm);
-  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.84);
+  backdrop-filter: blur(10px);
   box-shadow: var(--shadow-xs);
 }
 
@@ -600,7 +621,7 @@ button:focus-visible,
 }
 
 .solution-card {
-  background-color: var(--surface);
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.96) 0%, rgba(243, 251, 246, 0.9) 100%);
   padding: 26px;
   border-radius: var(--radius-md);
   border: 1px solid var(--line);
@@ -624,7 +645,7 @@ button:focus-visible,
 }
 
 .cap-card {
-  background-color: var(--surface);
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.96) 0%, rgba(243, 251, 246, 0.9) 100%);
   padding: 24px;
   border-radius: var(--radius-md);
   border: 1px solid var(--line);
@@ -661,7 +682,7 @@ button:focus-visible,
 }
 
 .outcome-card {
-  background-color: var(--surface);
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.96) 0%, rgba(243, 251, 246, 0.9) 100%);
   border: 1px solid var(--line);
   border-radius: var(--radius-sm);
   padding: 18px 20px;
@@ -723,7 +744,7 @@ button:focus-visible,
 }
 
 .process-card {
-  background-color: var(--surface);
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.96) 0%, rgba(243, 251, 246, 0.9) 100%);
   padding: 26px;
   border-radius: var(--radius-md);
   border: 1px solid var(--line);
@@ -754,7 +775,7 @@ button:focus-visible,
 }
 
 .case-card {
-  background-color: var(--surface);
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.96) 0%, rgba(243, 251, 246, 0.9) 100%);
   padding: 26px;
   border-radius: var(--radius-md);
   border: 1px solid var(--line);
@@ -798,7 +819,7 @@ button:focus-visible,
 }
 
 .testimonial-card {
-  background-color: var(--surface);
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.96) 0%, rgba(243, 251, 246, 0.9) 100%);
   padding: 26px;
   border-radius: var(--radius-md);
   border: 1px solid var(--line);
@@ -823,7 +844,9 @@ button:focus-visible,
 }
 
 .contact-card {
-  background-color: var(--surface);
+  background:
+    radial-gradient(circle at 85% 8%, rgba(76, 155, 120, 0.12), transparent 35%),
+    linear-gradient(170deg, rgba(255, 255, 255, 0.98) 0%, rgba(240, 250, 244, 0.92) 100%);
   border-radius: var(--radius-lg);
   border: 1px solid var(--line);
   padding: 36px;
@@ -831,7 +854,7 @@ button:focus-visible,
   justify-content: space-between;
   gap: 24px;
   align-items: center;
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-lg);
   flex-wrap: wrap;
 }
 
@@ -905,10 +928,20 @@ button:focus-visible,
   }
 }
 
+@keyframes orbFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, 20px, 0);
+  }
+}
+
 /* Reveal on scroll (no flash; requires adding .is-visible via JS) */
 .reveal {
   opacity: 0;
-  transform: translateY(18px);
+  transform: translateY(22px) scale(0.985);
   transition:
     opacity 700ms var(--ease-out),
     transform 700ms var(--ease-out);
@@ -916,7 +949,7 @@ button:focus-visible,
 
 .reveal.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
 }
 
 /* Card hover uniformity */
@@ -928,8 +961,8 @@ button:focus-visible,
 .process-card:hover,
 .case-card:hover,
 .testimonial-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-md);
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
 }
 
 /* =========================================================
@@ -1053,7 +1086,8 @@ button:focus-visible,
   }
 
   .hero {
-    padding: 90px 0 70px;
+    padding: 92px 0 72px;
+    min-height: auto;
   }
 
   .header-inner {

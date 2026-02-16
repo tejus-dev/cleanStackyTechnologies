@@ -1,0 +1,17 @@
+<section id="capabilities" class="capabilities">
+  <div class="container">
+    <div class="section-head split reveal">
+      <div>
+        <h2>{{ section.title }}</h2>
+        <p>{{ section.description }}</p>
+      </div>
+      <a [href]="section.link.href" class="text-link">{{ section.link.label }}</a>
+    </div>
+    <div class="cap-grid">
+      <div class="cap-card reveal" *ngFor="let card of section.cards">
+        <span class="cap-title">{{ card.title }}</span>
+        <p>{{ card.description }}</p>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,26 @@
+<app-home-header-section
+  [brand]="content.brand"
+  [navItems]="content.navItems"
+  [cta]="content.navCta"
+></app-home-header-section>
+
+<main id="top">
+  <app-home-hero-section [hero]="content.hero"></app-home-hero-section>
+  <app-home-trusted-section
+    [label]="content.trustedLabel"
+    [items]="content.trustedLogos"
+  ></app-home-trusted-section>
+  <app-home-end-to-end-section [section]="content.endToEnd"></app-home-end-to-end-section>
+  <app-home-systems-section [section]="content.systems"></app-home-systems-section>
+  <app-home-capabilities-section [section]="content.capabilities"></app-home-capabilities-section>
+  <app-home-outcomes-section [section]="content.outcomes"></app-home-outcomes-section>
+  <app-home-industries-section [section]="content.industries"></app-home-industries-section>
+  <app-home-process-section [section]="content.process"></app-home-process-section>
+  <app-home-work-section [section]="content.work"></app-home-work-section>
+  <app-home-testimonials-section [section]="content.testimonials"></app-home-testimonials-section>
+  <app-home-contact-section [section]="content.contact"></app-home-contact-section>
+</main>
+
+<a href="#contact" class="sticky-mobile-cta">Book a system call</a>
+
+<app-home-footer-section [brand]="content.brand" [footer]="content.footer"></app-home-footer-section>

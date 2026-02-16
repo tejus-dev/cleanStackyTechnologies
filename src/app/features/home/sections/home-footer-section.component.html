@@ -1,0 +1,15 @@
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>
+      <h3>{{ brand.name }}</h3>
+      <p>{{ footer.description }}</p>
+    </div>
+    <div class="footer-links">
+      <a *ngFor="let link of footer.links" [href]="link.href">{{ link.label }}</a>
+    </div>
+    <br>
+    <div class="footer-meta">
+      <span>{{ footer.copyright }}</span>
+    </div>
+  </div>
+</footer>

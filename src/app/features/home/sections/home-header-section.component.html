@@ -1,0 +1,31 @@
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="#top" class="brand">
+      <img
+        [src]="brand.logoSrc"
+        [alt]="brand.logoAlt"
+        class="logo"
+        width="52"
+        height="52"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+      >
+      <div class="brand-text">
+        <span class="brand-name">{{ brand.name }}</span>
+        <span class="brand-tagline">{{ brand.tagline }}</span>
+      </div>
+    </a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <label for="nav-toggle" class="nav-toggle-label">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+    <nav class="nav-links">
+      <a *ngFor="let item of navItems" [href]="item.href">{{ item.label }}</a>
+      <a [href]="cta.href" class="nav-cta nav-cta-mobile">{{ cta.label }}</a>
+    </nav>
+    <a [href]="cta.href" class="nav-cta">{{ cta.label }}</a>
+  </div>
+</header>

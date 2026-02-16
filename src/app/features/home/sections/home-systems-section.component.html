@@ -1,0 +1,15 @@
+<section id="solutions" class="solutions">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2>{{ section.title }}</h2>
+      <p>{{ section.description }}</p>
+    </div>
+    <div class="solution-grid">
+      <article class="solution-card reveal" *ngFor="let card of section.cards">
+        <h3>{{ card.title }}</h3>
+        <p>{{ card.description }}</p>
+        <span class="tag" *ngIf="card.tag">{{ card.tag }}</span>
+      </article>
+    </div>
+  </div>
+</section>
