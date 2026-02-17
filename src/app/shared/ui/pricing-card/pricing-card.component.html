@@ -1,0 +1,8 @@
+<article class="pricing-card" [class.pricing-card--highlighted]="highlighted">
+  <h3>{{ name }}</h3>
+  <p class="pricing-card__line"><strong>Setup:</strong> {{ setup }}</p>
+  <p class="pricing-card__line"><strong>Monthly:</strong> {{ monthly }}</p>
+  <ul>
+    <li *ngFor="let feature of features">{{ feature }}</li>
+  </ul>
+</article>

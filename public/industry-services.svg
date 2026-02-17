@@ -1,0 +1,22 @@
+<svg width="1200" height="520" viewBox="0 0 1200 520" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Service business operations dashboard">
+  <rect width="1200" height="520" rx="24" fill="#F6F7FC"/>
+  <rect x="28" y="28" width="1144" height="464" rx="18" fill="#FFFFFF" stroke="#DEE2F1"/>
+  <text x="64" y="80" fill="#25324A" font-size="26" font-weight="700" font-family="Inter, Arial">Service Operations Hub</text>
+
+  <rect x="64" y="118" width="520" height="160" rx="12" fill="#F8F9FF" stroke="#E4E8F4"/>
+  <text x="84" y="150" fill="#66728A" font-size="12" font-family="Inter, Arial">LEAD TO PROPOSAL METRICS</text>
+  <rect x="84" y="166" width="150" height="90" rx="10" fill="#EDEFFC"/>
+  <rect x="248" y="166" width="150" height="90" rx="10" fill="#EDEFFC"/>
+  <rect x="412" y="166" width="150" height="90" rx="10" fill="#EDEFFC"/>
+
+  <rect x="604" y="118" width="532" height="160" rx="12" fill="#F8F9FF" stroke="#E4E8F4"/>
+  <text x="624" y="150" fill="#66728A" font-size="12" font-family="Inter, Arial">SLA BREACH RISK</text>
+  <line x1="624" y1="248" x2="1114" y2="248" stroke="#E0E5F2"/>
+  <polyline points="636,236 690,226 744,216 798,206 852,188 906,172 960,168 1014,156 1088,142" fill="none" stroke="#5C6AC4" stroke-width="4" stroke-linecap="round"/>
+
+  <rect x="64" y="296" width="1072" height="164" rx="12" fill="#F8F9FF" stroke="#E4E8F4"/>
+  <text x="84" y="328" fill="#66728A" font-size="12" font-family="Inter, Arial">SUPPORT TICKET STREAM</text>
+  <rect x="84" y="344" width="1032" height="30" rx="8" fill="#ECEFFC"/>
+  <rect x="84" y="382" width="1032" height="30" rx="8" fill="#ECEFFC"/>
+  <rect x="84" y="420" width="1032" height="30" rx="8" fill="#ECEFFC"/>
+</svg>

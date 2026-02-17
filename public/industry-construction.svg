@@ -1,0 +1,26 @@
+<svg width="1200" height="520" viewBox="0 0 1200 520" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Construction PM dashboard">
+  <rect width="1200" height="520" rx="24" fill="#FBF8F3"/>
+  <rect x="28" y="28" width="1144" height="464" rx="18" fill="#FFFFFF" stroke="#E8DFD1"/>
+  <text x="64" y="80" fill="#3E2F1E" font-size="26" font-weight="700" font-family="Inter, Arial">Construction Program Board</text>
+
+  <rect x="64" y="118" width="730" height="342" rx="12" fill="#FEFBF7" stroke="#EEE4D7"/>
+  <text x="84" y="150" fill="#856B4D" font-size="12" font-family="Inter, Arial">SITE MILESTONE GANTT</text>
+  <line x1="84" y1="178" x2="774" y2="178" stroke="#F0E7DB"/>
+  <rect x="140" y="196" width="244" height="24" rx="6" fill="#E9C99A"/>
+  <rect x="226" y="230" width="318" height="24" rx="6" fill="#DFAE70"/>
+  <rect x="300" y="264" width="196" height="24" rx="6" fill="#C7873C"/>
+  <rect x="460" y="298" width="244" height="24" rx="6" fill="#B96C1F"/>
+  <rect x="530" y="332" width="172" height="24" rx="6" fill="#8F541A"/>
+
+  <rect x="814" y="118" width="322" height="160" rx="12" fill="#FEFBF7" stroke="#EEE4D7"/>
+  <text x="834" y="150" fill="#856B4D" font-size="12" font-family="Inter, Arial">LEAD QUALIFICATION</text>
+  <rect x="834" y="166" width="282" height="24" rx="12" fill="#F3E2C8"/>
+  <rect x="852" y="198" width="246" height="24" rx="12" fill="#E8CC9F"/>
+  <rect x="872" y="230" width="206" height="24" rx="12" fill="#DCAA68"/>
+
+  <rect x="814" y="300" width="322" height="160" rx="12" fill="#FEFBF7" stroke="#EEE4D7"/>
+  <text x="834" y="332" fill="#856B4D" font-size="12" font-family="Inter, Arial">APPROVAL CYCLE</text>
+  <circle cx="912" cy="384" r="14" fill="#B96C1F"/><circle cx="978" cy="384" r="14" fill="#C7873C"/><circle cx="1044" cy="384" r="14" fill="#DCAA68"/>
+  <line x1="926" y1="384" x2="964" y2="384" stroke="#CBA778" stroke-width="4"/>
+  <line x1="992" y1="384" x2="1030" y2="384" stroke="#CBA778" stroke-width="4"/>
+</svg>

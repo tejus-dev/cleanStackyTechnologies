@@ -1,0 +1,47 @@
+<header class="site-nav">
+  <div class="container site-nav__inner">
+    <a routerLink="/" class="site-nav__brand" aria-label="CleanStacky Technologies Home">
+      <span class="site-nav__logo-wrap">
+        <img
+          class="site-nav__logo"
+          src="CST_LOGO.png"
+          alt="CleanStacky Technologies logo"
+          width="36"
+          height="36"
+          loading="eager"
+          decoding="async"
+        >
+      </span>
+      <span class="site-nav__brand-text">CleanStacky Technologies</span>
+    </a>
+
+    <nav class="site-nav__links" aria-label="Primary navigation">
+      <a *ngFor="let link of navLinks" [routerLink]="link.href" routerLinkActive="is-active" (click)="closeMenu()">{{ link.label }}</a>
+    </nav>
+
+    <div class="site-nav__actions site-nav__actions--desktop">
+      <app-ui-button variant="primary" icon="arrow" (pressed)="openDemo()">Book a Demo</app-ui-button>
+    </div>
+
+    <button
+      class="site-nav__menu-toggle"
+      type="button"
+      [attr.aria-expanded]="menuOpen"
+      aria-label="Toggle navigation menu"
+      (click)="toggleMenu()"
+    >
+      Menu
+    </button>
+  </div>
+
+  <div class="site-nav__mobile" [class.site-nav__mobile--open]="menuOpen">
+    <div class="site-nav__mobile-inner">
+      <nav class="site-nav__mobile-links" aria-label="Mobile navigation">
+        <a *ngFor="let link of navLinks" [routerLink]="link.href" routerLinkActive="is-active" (click)="closeMenu()">{{ link.label }}</a>
+      </nav>
+      <div class="site-nav__actions site-nav__actions--mobile">
+        <app-ui-button variant="primary" icon="arrow" (pressed)="openDemo()">Book a Demo</app-ui-button>
+      </div>
+    </div>
+  </div>
+</header>

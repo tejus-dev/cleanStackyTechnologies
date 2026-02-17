@@ -1,0 +1,14 @@
+<app-section-container headingLevel="h1" [title]="title" [subtitle]="summary">
+  <div class="industry-layout">
+    <figure class="industry-visual">
+      <img [src]="imageSrc" [alt]="imageAlt" width="1200" height="520" loading="eager" decoding="async" />
+    </figure>
+    <article class="industry-placeholder">
+      <p>Built for operator adoption, measurable delivery, and predictable support.</p>
+      <ul>
+        <li *ngFor="let point of highlights">{{ point }}</li>
+      </ul>
+      <p>Book a demo for a live walkthrough configured for this industry.</p>
+    </article>
+  </div>
+</app-section-container>

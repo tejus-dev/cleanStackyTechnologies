@@ -1,0 +1,10 @@
+<div class="modal" *ngIf="open" role="dialog" aria-modal="true" [attr.aria-label]="title">
+  <button class="modal__backdrop" type="button" (click)="close()" aria-label="Close dialog"></button>
+  <section class="modal__panel">
+    <header class="modal__head">
+      <h2>{{ title }}</h2>
+      <button class="modal__close" type="button" (click)="close()" aria-label="Close">×</button>
+    </header>
+    <ng-content></ng-content>
+  </section>
+</div>

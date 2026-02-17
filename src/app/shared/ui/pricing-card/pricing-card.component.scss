@@ -1,0 +1,35 @@
+.pricing-card {
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-7);
+  background: #fff;
+  box-shadow: var(--shadow-sm);
+}
+
+.pricing-card--highlighted {
+  border-color: color-mix(in srgb, var(--color-accent-600), white 45%);
+  box-shadow: var(--shadow-lg);
+}
+
+.pricing-card h3 {
+  margin: 0;
+  font-size: var(--text-2xl);
+}
+
+.pricing-card__line {
+  margin: var(--space-3) 0 0;
+}
+
+.pricing-card ul {
+  margin: var(--space-5) 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: var(--space-2);
+}
+
+.pricing-card li::before {
+  content: '•';
+  margin-right: 0.5rem;
+  color: var(--color-accent-700);
+}

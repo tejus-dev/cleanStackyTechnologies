@@ -1,0 +1,205 @@
+<section class="hero">
+  <div class="container hero__grid">
+    <div>
+      <p class="eyebrow">Business Systems & Product Engineering</p>
+      <h1>Run your business on one system.</h1>
+      <p class="hero__sub">ERP • CRM • WhatsApp automation • Websites - built and managed by CleanStacky Technologies.</p>
+      <div class="hero__actions">
+        <app-ui-button variant="primary" icon="arrow" (pressed)="openDemo()">Book a Demo</app-ui-button>
+        <app-ui-button variant="secondary" routerLink="/systems" text="View Systems"></app-ui-button>
+      </div>
+      <p class="hero__trust">Trusted by growing schools, clinics and SMBs in India</p>
+      <div class="hero__logos" aria-label="Trusted client logos">
+        <span>EduGroup</span>
+        <span>CareBridge</span>
+        <span>BuildAxis</span>
+        <span>FarmFlow</span>
+        <span>RetailNest</span>
+      </div>
+    </div>
+
+    <aside class="hero__preview" aria-label="CleanStacky dashboard preview">
+      <div class="hero__preview-top">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="hero__preview-media">
+        <img
+          src="/dashboard-preview-v2.svg"
+          alt="CleanStacky Technologies operations dashboard preview"
+          class="hero__preview-image"
+          width="1400"
+          height="900"
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
+        />
+        <article class="hero__signal hero__signal--left">
+          <strong>98.7%</strong>
+          <span>Workflow SLA</span>
+        </article>
+        <article class="hero__signal hero__signal--right">
+          <strong>46 Leads</strong>
+          <span>Auto-followups sent</span>
+        </article>
+      </div>
+      <p>Unified ops view: leads, collections, workflows, and support signals.</p>
+    </aside>
+  </div>
+</section>
+
+<app-section-container id="systems" title="Systems" subtitle="Productized systems with measurable outcomes.">
+  <div class="grid grid--4">
+    <app-feature-card
+      *ngFor="let card of systemCards"
+      [title]="card.title"
+      [description]="card.description"
+      [outcome]="card.outcome"
+      [detailsLink]="card.link"
+    ></app-feature-card>
+  </div>
+  <figure class="section-visual reveal">
+    <img
+      src="/system-workflow.svg"
+      alt="End to end workflow from lead intake to support automation"
+      width="1280"
+      height="520"
+      loading="lazy"
+      decoding="async"
+    />
+  </figure>
+</app-section-container>
+
+<app-section-container id="industries" title="Industries" subtitle="Choose your industry and see how the stack adapts.">
+  <div class="chips">
+    <a *ngFor="let item of industries" [routerLink]="['/industries', item.slug]">{{ item.label }}</a>
+  </div>
+</app-section-container>
+
+<app-section-container title="Why CleanStacky Technologies" subtitle="We do not just build software. We run it with your team.">
+  <div class="why-layout">
+    <div class="why-grid">
+      <article>Hybrid delivery: product speed + custom fit</article>
+      <article>Secure, scalable, and well-documented systems</article>
+      <article>Fast support on WhatsApp and structured SLA process</article>
+      <article>Clean UI your staff can adopt quickly</article>
+      <article>Delivery ownership from launch to support</article>
+    </div>
+    <figure class="section-visual section-visual--compact reveal">
+      <img
+        src="/industry-ops.svg"
+        alt="Industry operations modules for schools clinics and businesses"
+        width="1200"
+        height="720"
+        loading="lazy"
+        decoding="async"
+      />
+    </figure>
+  </div>
+  <ol class="timeline">
+    <li><strong>Discover</strong><span>Process mapping and requirements</span></li>
+    <li><strong>Build</strong><span>Module delivery in weekly cycles</span></li>
+    <li><strong>Launch</strong><span>Data migration, training, go-live</span></li>
+    <li><strong>Support</strong><span>Fixes, improvements, and monitoring</span></li>
+  </ol>
+</app-section-container>
+
+<app-section-container id="case-studies" title="Case Studies" subtitle="Selected delivery proof.">
+  <div class="grid grid--3">
+    <app-case-study-card
+      imageSrc="/case-study-school.svg"
+      imageAlt="School ERP operations dashboard case study preview"
+      clientType="School Group"
+      problem="Fee collection took too long and reporting was delayed."
+      solution="Implemented admissions + fees + receipts + closure workflow."
+      outcome="Reduced fee collection process time by 40%."
+    ></app-case-study-card>
+    <app-case-study-card
+      imageSrc="/case-study-clinic.svg"
+      imageAlt="Clinic appointment and billing workflow case study preview"
+      clientType="Clinic"
+      problem="Appointment and billing workflows were fragmented."
+      solution="Built centralized clinic console with reminders and billing."
+      outcome="Improved front-desk response time and reduced missed follow-ups."
+    ></app-case-study-card>
+    <app-case-study-card
+      imageSrc="/case-study-smb.svg"
+      imageAlt="SMB CRM and support workflow case study preview"
+      clientType="SMB Distributor"
+      problem="Leads and support were managed across disconnected tools."
+      solution="Delivered CRM + invoice + support dashboard + WhatsApp alerts."
+      outcome="Improved lead handoff quality and faster support visibility."
+    ></app-case-study-card>
+  </div>
+</app-section-container>
+
+<app-section-container title="Operational Impact" subtitle="Measured before and after outcomes from delivered systems.">
+  <div class="proof-grid">
+    <article class="proof-card" *ngFor="let item of proofMetrics">
+      <h3>{{ item.metric }}</h3>
+      <p class="proof-card__before">{{ item.before }}</p>
+      <p class="proof-card__after">{{ item.after }}</p>
+      <p class="proof-card__impact">{{ item.impact }}</p>
+    </article>
+  </div>
+</app-section-container>
+
+<app-section-container id="pricing" title="Pricing" subtitle="Transparent ranges for planning. Final pricing depends on modules and users.">
+  <div class="grid grid--3">
+    <app-pricing-card
+      name="Starter"
+      setup="₹30k–₹60k"
+      monthly="₹5k–₹10k"
+      [features]="['Core module setup', 'Basic support', 'Monthly backups', 'Team onboarding']"
+    ></app-pricing-card>
+    <app-pricing-card
+      name="Growth"
+      setup="₹60k–₹1.2L"
+      monthly="₹10k–₹20k"
+      [features]="['Multi-module rollout', 'Priority support', 'Dashboards and reports', 'Training + handholding']"
+      [highlighted]="true"
+    ></app-pricing-card>
+    <app-pricing-card
+      name="Enterprise"
+      setup="Custom"
+      monthly="Custom"
+      [features]="['Advanced integrations', 'SLA support model', 'Security/compliance options', 'Dedicated delivery pod']"
+    ></app-pricing-card>
+  </div>
+</app-section-container>
+
+<app-section-container title="Testimonials" subtitle="Authentic feedback from operators and founders.">
+  <div class="grid grid--3">
+    <app-testimonial-card
+      quote="The team understood our school operations and shipped modules our admins actually use."
+      name="Rahul S"
+      role="Director"
+      city="Bangalore"
+    ></app-testimonial-card>
+    <app-testimonial-card
+      quote="Support over WhatsApp is quick and practical. We are not blocked waiting for updates."
+      name="Dr. Meera"
+      role="Clinic Owner"
+      city="Mysore"
+    ></app-testimonial-card>
+    <app-testimonial-card
+      quote="Our CRM and invoicing process is finally structured and visible for the whole team."
+      name="Karthik N"
+      role="Operations Lead"
+      city="Chennai"
+    ></app-testimonial-card>
+  </div>
+</app-section-container>
+
+<section class="final-cta" id="contact">
+  <div class="container final-cta__box">
+    <div>
+      <h2>See a live demo tailored to your business.</h2>
+      <p>Tell us your workflow and we will show a relevant system walkthrough.</p>
+    </div>
+    <div class="final-cta__actions">
+      <app-ui-button variant="primary" icon="arrow" (pressed)="openDemo()">Book Demo</app-ui-button>
+    </div>
+  </div>
+</section>

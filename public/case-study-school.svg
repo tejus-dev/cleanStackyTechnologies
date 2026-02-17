@@ -1,0 +1,36 @@
+<svg width="960" height="560" viewBox="0 0 960 560" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="School ERP fee operations screenshot">
+  <rect width="960" height="560" rx="20" fill="#F4F8FD"/>
+  <rect x="20" y="20" width="920" height="520" rx="16" fill="#FFFFFF" stroke="#D9E5F1"/>
+  <rect x="20" y="20" width="920" height="56" rx="16" fill="#FBFDFF"/>
+  <circle cx="46" cy="48" r="6" fill="#FF5F57"/><circle cx="66" cy="48" r="6" fill="#FEBB2D"/><circle cx="86" cy="48" r="6" fill="#28C840"/>
+  <text x="118" y="53" fill="#102B43" font-size="15" font-weight="700" font-family="Inter, Arial">School ERP - Fee Office</text>
+  <rect x="748" y="34" width="170" height="28" rx="14" fill="#0F88B0"/><text x="792" y="52" fill="#EAF8FE" font-size="11" font-weight="600" font-family="Inter, Arial">Daily Closure</text>
+
+  <rect x="44" y="96" width="252" height="424" rx="12" fill="#F7FBFF" stroke="#E3EDF7"/>
+  <text x="62" y="124" fill="#57708A" font-size="11" font-family="Inter, Arial">RECEIPT SUMMARY</text>
+  <rect x="62" y="140" width="216" height="82" rx="10" fill="#E9F3FC"/>
+  <text x="76" y="168" fill="#1A364F" font-size="12" font-family="Inter, Arial">Collected Today</text>
+  <text x="76" y="202" fill="#102B43" font-size="26" font-weight="700" font-family="Inter, Arial">Rs 2.14L</text>
+
+  <rect x="62" y="238" width="216" height="58" rx="10" fill="#EDF4FA"/>
+  <text x="76" y="272" fill="#5E7892" font-size="12" font-family="Inter, Arial">Pending follow-up: 39 families</text>
+  <rect x="62" y="306" width="216" height="58" rx="10" fill="#EDF4FA"/>
+  <text x="76" y="340" fill="#5E7892" font-size="12" font-family="Inter, Arial">Auto reminders sent: 112</text>
+  <rect x="62" y="374" width="216" height="58" rx="10" fill="#EDF4FA"/>
+  <text x="76" y="408" fill="#5E7892" font-size="12" font-family="Inter, Arial">Failed payments queue: 7</text>
+
+  <rect x="316" y="96" width="604" height="206" rx="12" fill="#F8FBFF" stroke="#E3EDF7"/>
+  <text x="336" y="124" fill="#19354E" font-size="14" font-weight="700" font-family="Inter, Arial">Fee Collection Trend</text>
+  <line x1="336" y1="266" x2="892" y2="266" stroke="#DFE9F4"/>
+  <polyline points="346,246 414,230 482,238 550,212 618,196 686,170 754,158 822,142 882,126" fill="none" stroke="#1498C1" stroke-width="4" stroke-linecap="round"/>
+  <polyline points="346,254 414,248 482,244 550,236 618,226 686,218 754,208 822,202 882,194" fill="none" stroke="#94CEE3" stroke-width="3" stroke-linecap="round"/>
+
+  <rect x="316" y="316" width="604" height="204" rx="12" fill="#F8FBFF" stroke="#E3EDF7"/>
+  <text x="336" y="344" fill="#19354E" font-size="14" font-weight="700" font-family="Inter, Arial">Transaction Register</text>
+  <rect x="336" y="362" width="564" height="34" rx="8" fill="#EAF3FC"/>
+  <text x="350" y="383" fill="#4E6A85" font-size="11" font-family="Inter, Arial">INV-2409  Grade 9  Term Fee  UPI  Success  10:14 AM</text>
+  <rect x="336" y="402" width="564" height="34" rx="8" fill="#EAF3FC"/>
+  <text x="350" y="423" fill="#4E6A85" font-size="11" font-family="Inter, Arial">INV-2410  Grade 7  Transport  Cash  Success  10:26 AM</text>
+  <rect x="336" y="442" width="564" height="34" rx="8" fill="#EAF3FC"/>
+  <text x="350" y="463" fill="#4E6A85" font-size="11" font-family="Inter, Arial">INV-2412  Grade 5  Exam Fee  Reminder Sent  10:41 AM</text>
+</svg>

@@ -1,0 +1,32 @@
+<svg width="1200" height="520" viewBox="0 0 1200 520" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Clinic system workflow diagram">
+  <rect width="1200" height="520" rx="24" fill="#F4FAF8"/>
+  <rect x="30" y="30" width="1140" height="460" rx="18" fill="#FFFFFF" stroke="#DAE9E2"/>
+  <text x="66" y="82" fill="#1A3D37" font-size="26" font-weight="700" font-family="Inter, Arial">Clinic System Workflow</text>
+  <text x="66" y="110" fill="#6B8980" font-size="13" font-family="Inter, Arial">Appointment intake to billing and follow-up automation.</text>
+
+  <rect x="66" y="150" width="260" height="284" rx="12" fill="#F7FCFA" stroke="#E1EFE9"/>
+  <text x="88" y="184" fill="#1A3D37" font-size="16" font-weight="700" font-family="Inter, Arial">Front Desk</text>
+  <line x1="104" y1="212" x2="104" y2="400" stroke="#BDD9CE" stroke-width="2"/>
+  <circle cx="104" cy="236" r="6" fill="#2A9D8F"/><circle cx="104" cy="286" r="6" fill="#2A9D8F"/><circle cx="104" cy="336" r="6" fill="#2A9D8F"/>
+  <text x="122" y="240" fill="#5D7D74" font-size="12" font-family="Inter, Arial">Book appointment</text>
+  <text x="122" y="290" fill="#5D7D74" font-size="12" font-family="Inter, Arial">Assign doctor</text>
+  <text x="122" y="340" fill="#5D7D74" font-size="12" font-family="Inter, Arial">Queue patient</text>
+
+  <rect x="358" y="150" width="360" height="132" rx="12" fill="#F7FCFA" stroke="#E1EFE9"/>
+  <text x="380" y="184" fill="#1A3D37" font-size="16" font-weight="700" font-family="Inter, Arial">Consultation + Notes</text>
+  <rect x="380" y="202" width="316" height="60" rx="10" fill="#EAF5F1"/>
+
+  <rect x="358" y="302" width="360" height="132" rx="12" fill="#F7FCFA" stroke="#E1EFE9"/>
+  <text x="380" y="336" fill="#1A3D37" font-size="16" font-weight="700" font-family="Inter, Arial">Billing + Receipts</text>
+  <rect x="380" y="354" width="316" height="60" rx="10" fill="#EAF5F1"/>
+
+  <rect x="750" y="150" width="394" height="284" rx="12" fill="#F7FCFA" stroke="#E1EFE9"/>
+  <text x="772" y="184" fill="#1A3D37" font-size="16" font-weight="700" font-family="Inter, Arial">Follow-up Automation</text>
+  <rect x="772" y="206" width="350" height="44" rx="10" fill="#EAF5F1"/>
+  <rect x="772" y="258" width="350" height="44" rx="10" fill="#EAF5F1"/>
+  <rect x="772" y="310" width="350" height="44" rx="10" fill="#EAF5F1"/>
+  <rect x="772" y="362" width="350" height="44" rx="10" fill="#EAF5F1"/>
+
+  <line x1="326" y1="218" x2="346" y2="218" stroke="#2A9D8F" stroke-width="4"/><line x1="718" y1="218" x2="738" y2="218" stroke="#2A9D8F" stroke-width="4"/>
+  <line x1="718" y1="368" x2="738" y2="368" stroke="#2A9D8F" stroke-width="4"/>
+</svg>

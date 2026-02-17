@@ -1,0 +1,62 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Industry operations visual">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="720" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8FCFF"/>
+      <stop offset="1" stop-color="#EDF5FC"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#0D7A9B"/>
+      <stop offset="1" stop-color="#1598C2"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="720" rx="28" fill="url(#bg)"/>
+  <rect x="28" y="28" width="1144" height="664" rx="24" fill="#FFFFFF" stroke="#DCE8F4"/>
+
+  <text x="64" y="86" fill="#17344D" font-size="28" font-weight="700" font-family="Inter, Segoe UI, Arial, sans-serif">Industry-ready Operations Stack</text>
+  <text x="64" y="112" fill="#68839D" font-size="14" font-family="Inter, Segoe UI, Arial, sans-serif">Reusable modules for schools, clinics, construction and SMB operations.</text>
+
+  <rect x="64" y="150" width="340" height="236" rx="18" fill="#F7FBFF" stroke="#E3EEF8"/>
+  <text x="88" y="190" fill="#17344D" font-size="18" font-weight="700" font-family="Inter, Segoe UI, Arial, sans-serif">Schools</text>
+  <text x="88" y="220" fill="#637F99" font-size="13" font-family="Inter, Segoe UI, Arial, sans-serif">Admissions and fees</text>
+  <text x="88" y="242" fill="#637F99" font-size="13" font-family="Inter, Segoe UI, Arial, sans-serif">Attendance and transport</text>
+  <text x="88" y="264" fill="#637F99" font-size="13" font-family="Inter, Segoe UI, Arial, sans-serif">Receipts and parent alerts</text>
+  <rect x="88" y="294" width="292" height="70" rx="12" fill="#EAF4FD"/>
+  <text x="106" y="324" fill="#5B7690" font-size="12" font-family="Inter, Segoe UI, Arial, sans-serif">Closure reports sent weekly to management.</text>
+
+  <rect x="430" y="150" width="340" height="236" rx="18" fill="#F7FBFF" stroke="#E3EEF8"/>
+  <text x="454" y="190" fill="#17344D" font-size="18" font-weight="700" font-family="Inter, Segoe UI, Arial, sans-serif">Clinics</text>
+  <text x="454" y="220" fill="#637F99" font-size="13" font-family="Inter, Segoe UI, Arial, sans-serif">Appointments and billing</text>
+  <text x="454" y="242" fill="#637F99" font-size="13" font-family="Inter, Segoe UI, Arial, sans-serif">Patient follow-up automation</text>
+  <text x="454" y="264" fill="#637F99" font-size="13" font-family="Inter, Segoe UI, Arial, sans-serif">Care timeline visibility</text>
+  <rect x="454" y="294" width="292" height="70" rx="12" fill="#EAF4FD"/>
+  <text x="472" y="324" fill="#5B7690" font-size="12" font-family="Inter, Segoe UI, Arial, sans-serif">No-show reminders run through WhatsApp.</text>
+
+  <rect x="796" y="150" width="340" height="236" rx="18" fill="#F7FBFF" stroke="#E3EEF8"/>
+  <text x="820" y="190" fill="#17344D" font-size="18" font-weight="700" font-family="Inter, Segoe UI, Arial, sans-serif">Business and Field Teams</text>
+  <text x="820" y="220" fill="#637F99" font-size="13" font-family="Inter, Segoe UI, Arial, sans-serif">Lead CRM and invoicing</text>
+  <text x="820" y="242" fill="#637F99" font-size="13" font-family="Inter, Segoe UI, Arial, sans-serif">Construction and farm workflows</text>
+  <text x="820" y="264" fill="#637F99" font-size="13" font-family="Inter, Segoe UI, Arial, sans-serif">Service requests and SLA tracking</text>
+  <rect x="820" y="294" width="292" height="70" rx="12" fill="#EAF4FD"/>
+  <text x="838" y="324" fill="#5B7690" font-size="12" font-family="Inter, Segoe UI, Arial, sans-serif">Dashboards unify office and ground activity.</text>
+
+  <rect x="64" y="424" width="1072" height="228" rx="20" fill="#F7FBFF" stroke="#E3EEF8"/>
+  <text x="92" y="466" fill="#16334B" font-size="20" font-weight="700" font-family="Inter, Segoe UI, Arial, sans-serif">Automation Layer (shared across industries)</text>
+
+  <rect x="92" y="494" width="220" height="48" rx="12" fill="#EAF4FD"/>
+  <text x="112" y="523" fill="#55718B" font-size="13" font-family="Inter, Segoe UI, Arial, sans-serif">WhatsApp reminders</text>
+
+  <rect x="338" y="494" width="220" height="48" rx="12" fill="#EAF4FD"/>
+  <text x="358" y="523" fill="#55718B" font-size="13" font-family="Inter, Segoe UI, Arial, sans-serif">Invoice and receipt alerts</text>
+
+  <rect x="584" y="494" width="220" height="48" rx="12" fill="#EAF4FD"/>
+  <text x="604" y="523" fill="#55718B" font-size="13" font-family="Inter, Segoe UI, Arial, sans-serif">Support ticket routing</text>
+
+  <rect x="830" y="494" width="278" height="48" rx="12" fill="url(#accent)"/>
+  <text x="852" y="523" fill="#EAF8FF" font-size="13" font-weight="600" font-family="Inter, Segoe UI, Arial, sans-serif">Unified reporting and governance</text>
+
+  <path d="M202 542V602H968V542" stroke="#B7CCE0" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="202" cy="602" r="7" fill="#0F87AE"/>
+  <circle cx="968" cy="602" r="7" fill="#0F87AE"/>
+  <text x="426" y="626" fill="#627F99" font-size="13" font-family="Inter, Segoe UI, Arial, sans-serif">Single source of truth across teams</text>
+</svg>

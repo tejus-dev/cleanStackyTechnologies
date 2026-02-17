@@ -1,0 +1,23 @@
+<app-section-container headingLevel="h1" title="Contact" subtitle="Tell us about your workflows and goals. We respond within 24 hours.">
+  <div class="contact-layout">
+    <form class="contact-form" [formGroup]="form" (ngSubmit)="submit()">
+      <app-form-field [formGroup]="form" controlName="name" label="Name" placeholder="Your name"></app-form-field>
+      <app-form-field [formGroup]="form" controlName="phone" label="Phone" type="tel" placeholder="+91"></app-form-field>
+      <app-form-field [formGroup]="form" controlName="email" label="Email" type="email" placeholder="you@company.com"></app-form-field>
+      <app-form-field [formGroup]="form" controlName="message" label="Message" type="textarea" placeholder="Tell us your current system challenge"></app-form-field>
+      <div class="contact-form__actions">
+        <app-ui-button variant="primary" type="submit">Send inquiry</app-ui-button>
+        <app-ui-button variant="secondary" href="https://wa.me/919000000000" target="_blank">WhatsApp</app-ui-button>
+      </div>
+    </form>
+
+    <aside class="contact-info">
+      <h3>Talk to our team</h3>
+      <p>Email: info@cleanstacky.com</p>
+      <p>Bangalore, India</p>
+      <div class="map-placeholder" aria-label="Map placeholder">Map placeholder</div>
+    </aside>
+  </div>
+
+  <p class="toast" *ngIf="toastVisible()" role="status" aria-live="polite">Thanks, your inquiry has been prepared successfully.</p>
+</app-section-container>

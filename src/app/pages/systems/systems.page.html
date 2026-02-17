@@ -1,0 +1,11 @@
+<app-section-container headingLevel="h1" title="Systems" subtitle="Overview of productized systems delivered by CleanStacky Technologies.">
+  <div class="systems-grid">
+    <app-feature-card
+      *ngFor="let card of cards"
+      [title]="card.title"
+      [description]="card.description"
+      [outcome]="card.outcome"
+      [detailsLink]="card.link"
+    ></app-feature-card>
+  </div>
+</app-section-container>

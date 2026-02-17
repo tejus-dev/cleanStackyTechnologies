@@ -1,0 +1,16 @@
+<label class="form-field" [formGroup]="formGroup">
+  <span>{{ label }}</span>
+  <textarea
+    *ngIf="type === 'textarea'"
+    [formControlName]="controlName"
+    [placeholder]="placeholder"
+    rows="4"
+  ></textarea>
+  <input
+    *ngIf="type !== 'textarea'"
+    [type]="type"
+    [formControlName]="controlName"
+    [placeholder]="placeholder"
+  >
+  <small class="form-field__error" *ngIf="invalid">{{ requiredMessage }}</small>
+</label>

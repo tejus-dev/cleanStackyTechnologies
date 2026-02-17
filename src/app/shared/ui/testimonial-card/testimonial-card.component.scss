@@ -1,0 +1,17 @@
+.testimonial-card {
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-xl);
+  background: #fff;
+  padding: var(--space-6);
+}
+
+.testimonial-card__quote {
+  margin: 0;
+  font-size: var(--text-lg);
+}
+
+.testimonial-card__meta {
+  margin-top: var(--space-4);
+  color: var(--color-ink-600);
+  font-size: var(--text-sm);
+}

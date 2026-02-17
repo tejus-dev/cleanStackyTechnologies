@@ -1,0 +1,141 @@
+<svg width="1400" height="900" viewBox="0 0 1400 900" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="CleanStacky operations dashboard preview">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1400" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F3F8FC"/>
+      <stop offset="1" stop-color="#EAF2F9"/>
+    </linearGradient>
+    <linearGradient id="surface" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#FAFCFE"/>
+    </linearGradient>
+    <linearGradient id="primary" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#0B7FA3"/>
+      <stop offset="1" stop-color="#1499C5"/>
+    </linearGradient>
+    <filter id="shadow" x="-120" y="-120" width="1640" height="1140" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="26" stdDeviation="28" flood-color="#0A1728" flood-opacity="0.16"/>
+    </filter>
+  </defs>
+
+  <rect width="1400" height="900" rx="40" fill="url(#bg)"/>
+
+  <g filter="url(#shadow)">
+    <rect x="46" y="44" width="1308" height="812" rx="28" fill="url(#surface)" stroke="#D5E1EF"/>
+  </g>
+
+  <rect x="46" y="44" width="1308" height="72" rx="28" fill="#FFFFFF"/>
+  <rect x="46" y="115" width="1308" height="1" fill="#E6EDF5"/>
+
+  <circle cx="82" cy="80" r="7" fill="#FF5F57"/>
+  <circle cx="106" cy="80" r="7" fill="#FEBC2E"/>
+  <circle cx="130" cy="80" r="7" fill="#28C840"/>
+
+  <text x="168" y="86" fill="#0F243B" font-size="20" font-weight="700" font-family="Inter, Segoe UI, Arial, sans-serif">CleanStacky Console</text>
+  <rect x="550" y="62" width="360" height="36" rx="18" fill="#F4F8FC" stroke="#E4EDF6"/>
+  <text x="574" y="85" fill="#8AA0B7" font-size="14" font-family="Inter, Segoe UI, Arial, sans-serif">Search leads, invoices, students, tickets...</text>
+
+  <rect x="1174" y="62" width="158" height="36" rx="18" fill="url(#primary)"/>
+  <text x="1218" y="85" fill="#EAF8FF" font-size="13" font-weight="600" font-family="Inter, Segoe UI, Arial, sans-serif">Book Demo</text>
+
+  <rect x="66" y="134" width="240" height="700" rx="18" fill="#F7FAFD" stroke="#E5EDF6"/>
+  <text x="92" y="174" fill="#5E7690" font-size="12" font-weight="600" font-family="Inter, Segoe UI, Arial, sans-serif">NAVIGATION</text>
+
+  <rect x="84" y="194" width="204" height="42" rx="12" fill="url(#primary)"/>
+  <text x="104" y="221" fill="#E8F8FF" font-size="14" font-weight="600" font-family="Inter, Segoe UI, Arial, sans-serif">Overview</text>
+
+  <rect x="84" y="248" width="204" height="40" rx="12" fill="#EEF4FA"/>
+  <text x="104" y="273" fill="#69839D" font-size="14" font-family="Inter, Segoe UI, Arial, sans-serif">Admissions</text>
+
+  <rect x="84" y="298" width="204" height="40" rx="12" fill="#EEF4FA"/>
+  <text x="104" y="323" fill="#69839D" font-size="14" font-family="Inter, Segoe UI, Arial, sans-serif">Fees &amp; Billing</text>
+
+  <rect x="84" y="348" width="204" height="40" rx="12" fill="#EEF4FA"/>
+  <text x="104" y="373" fill="#69839D" font-size="14" font-family="Inter, Segoe UI, Arial, sans-serif">CRM Pipeline</text>
+
+  <rect x="84" y="398" width="204" height="40" rx="12" fill="#EEF4FA"/>
+  <text x="104" y="423" fill="#69839D" font-size="14" font-family="Inter, Segoe UI, Arial, sans-serif">Support Desk</text>
+
+  <rect x="84" y="448" width="204" height="40" rx="12" fill="#EEF4FA"/>
+  <text x="104" y="473" fill="#69839D" font-size="14" font-family="Inter, Segoe UI, Arial, sans-serif">WhatsApp Flows</text>
+
+  <rect x="84" y="778" width="204" height="40" rx="12" fill="#EEF4FA"/>
+  <text x="104" y="803" fill="#69839D" font-size="14" font-family="Inter, Segoe UI, Arial, sans-serif">Settings</text>
+
+  <rect x="330" y="134" width="1004" height="94" rx="18" fill="#FFFFFF" stroke="#E5EDF6"/>
+  <text x="356" y="170" fill="#17324A" font-size="22" font-weight="700" font-family="Inter, Segoe UI, Arial, sans-serif">Good morning, Operations Team</text>
+  <text x="356" y="196" fill="#6E869F" font-size="14" font-family="Inter, Segoe UI, Arial, sans-serif">Live status for leads, collections, service SLAs, and automation health.</text>
+
+  <rect x="1138" y="153" width="176" height="56" rx="14" fill="#F1F7FD" stroke="#E3ECF7"/>
+  <text x="1160" y="177" fill="#66809A" font-size="12" font-family="Inter, Segoe UI, Arial, sans-serif">SLA Compliance</text>
+  <text x="1160" y="198" fill="#163851" font-size="20" font-weight="700" font-family="Inter, Segoe UI, Arial, sans-serif">97.8%</text>
+
+  <rect x="330" y="250" width="238" height="126" rx="16" fill="#FFFFFF" stroke="#E5EDF6"/>
+  <text x="352" y="278" fill="#6D86A0" font-size="12" font-family="Inter, Segoe UI, Arial, sans-serif">New Leads (7d)</text>
+  <text x="352" y="320" fill="#17324A" font-size="34" font-weight="700" font-family="Inter, Segoe UI, Arial, sans-serif">184</text>
+  <text x="352" y="347" fill="#159C68" font-size="12" font-weight="600" font-family="Inter, Segoe UI, Arial, sans-serif">+22% vs last week</text>
+
+  <rect x="582" y="250" width="238" height="126" rx="16" fill="#FFFFFF" stroke="#E5EDF6"/>
+  <text x="604" y="278" fill="#6D86A0" font-size="12" font-family="Inter, Segoe UI, Arial, sans-serif">Collections (MTD)</text>
+  <text x="604" y="320" fill="#17324A" font-size="34" font-weight="700" font-family="Inter, Segoe UI, Arial, sans-serif">Rs 12.8L</text>
+  <text x="604" y="347" fill="#159C68" font-size="12" font-weight="600" font-family="Inter, Segoe UI, Arial, sans-serif">On track to target</text>
+
+  <rect x="834" y="250" width="238" height="126" rx="16" fill="#FFFFFF" stroke="#E5EDF6"/>
+  <text x="856" y="278" fill="#6D86A0" font-size="12" font-family="Inter, Segoe UI, Arial, sans-serif">Open Tickets</text>
+  <text x="856" y="320" fill="#17324A" font-size="34" font-weight="700" font-family="Inter, Segoe UI, Arial, sans-serif">23</text>
+  <text x="856" y="347" fill="#D97706" font-size="12" font-weight="600" font-family="Inter, Segoe UI, Arial, sans-serif">5 need escalation</text>
+
+  <rect x="1086" y="250" width="248" height="126" rx="16" fill="#FFFFFF" stroke="#E5EDF6"/>
+  <text x="1108" y="278" fill="#6D86A0" font-size="12" font-family="Inter, Segoe UI, Arial, sans-serif">Automation Success</text>
+  <text x="1108" y="320" fill="#17324A" font-size="34" font-weight="700" font-family="Inter, Segoe UI, Arial, sans-serif">99.2%</text>
+  <text x="1108" y="347" fill="#159C68" font-size="12" font-weight="600" font-family="Inter, Segoe UI, Arial, sans-serif">WhatsApp + SMS active</text>
+
+  <rect x="330" y="392" width="640" height="442" rx="18" fill="#FFFFFF" stroke="#E5EDF6"/>
+  <text x="356" y="425" fill="#18334B" font-size="16" font-weight="700" font-family="Inter, Segoe UI, Arial, sans-serif">Revenue &amp; Conversion Trend</text>
+  <text x="356" y="447" fill="#6D86A0" font-size="12" font-family="Inter, Segoe UI, Arial, sans-serif">Last 6 months</text>
+
+  <rect x="356" y="468" width="588" height="214" rx="14" fill="#F7FBFF" stroke="#E7EEF6"/>
+  <line x1="384" y1="642" x2="920" y2="642" stroke="#DDE7F1"/>
+  <line x1="384" y1="602" x2="920" y2="602" stroke="#EDF3F8"/>
+  <line x1="384" y1="562" x2="920" y2="562" stroke="#EDF3F8"/>
+  <line x1="384" y1="522" x2="920" y2="522" stroke="#EDF3F8"/>
+
+  <polyline points="390,624 460,602 528,612 596,574 664,558 732,536 800,524 868,500" fill="none" stroke="#1397C3" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="390,632 460,622 528,614 596,606 664,596 732,578 800,562 868,548" fill="none" stroke="#8FC7DE" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <circle cx="868" cy="500" r="6" fill="#1397C3"/>
+  <circle cx="868" cy="548" r="5" fill="#8FC7DE"/>
+
+  <rect x="356" y="706" width="588" height="106" rx="14" fill="#F7FBFF" stroke="#E7EEF6"/>
+  <text x="382" y="736" fill="#6A849E" font-size="12" font-family="Inter, Segoe UI, Arial, sans-serif">Top funnel bottleneck</text>
+  <text x="382" y="760" fill="#17324A" font-size="14" font-weight="600" font-family="Inter, Segoe UI, Arial, sans-serif">Lead-to-demo no-show rate increased in North zone</text>
+  <text x="382" y="786" fill="#4D6782" font-size="13" font-family="Inter, Segoe UI, Arial, sans-serif">Action: Automated WhatsApp reminder sequence launched yesterday.</text>
+
+  <rect x="986" y="392" width="348" height="212" rx="18" fill="#FFFFFF" stroke="#E5EDF6"/>
+  <text x="1012" y="425" fill="#18334B" font-size="16" font-weight="700" font-family="Inter, Segoe UI, Arial, sans-serif">Workflow Health</text>
+  <text x="1012" y="447" fill="#6D86A0" font-size="12" font-family="Inter, Segoe UI, Arial, sans-serif">Automation queue by status</text>
+
+  <circle cx="1088" cy="515" r="64" fill="#EAF2FA"/>
+  <path d="M1088 451 A64 64 0 0 1 1149 558 L1088 515 Z" fill="#0F87AE"/>
+  <path d="M1149 558 A64 64 0 0 1 1043 567 L1088 515 Z" fill="#56B4D4"/>
+  <path d="M1043 567 A64 64 0 0 1 1088 451 L1088 515 Z" fill="#9AD5EA"/>
+  <circle cx="1088" cy="515" r="32" fill="#FFFFFF"/>
+
+  <rect x="1180" y="484" width="130" height="14" rx="7" fill="#0F87AE"/>
+  <text x="1180" y="511" fill="#5B7591" font-size="12" font-family="Inter, Segoe UI, Arial, sans-serif">Completed 72%</text>
+  <rect x="1180" y="529" width="130" height="14" rx="7" fill="#56B4D4"/>
+  <text x="1180" y="556" fill="#5B7591" font-size="12" font-family="Inter, Segoe UI, Arial, sans-serif">Running 18%</text>
+  <rect x="1180" y="574" width="130" height="14" rx="7" fill="#9AD5EA"/>
+  <text x="1180" y="601" fill="#5B7591" font-size="12" font-family="Inter, Segoe UI, Arial, sans-serif">Retry 10%</text>
+
+  <rect x="986" y="622" width="348" height="212" rx="18" fill="#FFFFFF" stroke="#E5EDF6"/>
+  <text x="1012" y="655" fill="#18334B" font-size="16" font-weight="700" font-family="Inter, Segoe UI, Arial, sans-serif">Recent Activity</text>
+
+  <rect x="1012" y="676" width="296" height="42" rx="10" fill="#F7FBFF"/>
+  <text x="1028" y="701" fill="#5E7893" font-size="12" font-family="Inter, Segoe UI, Arial, sans-serif">Fee receipt generated for Grade 9 - INV-1098</text>
+
+  <rect x="1012" y="726" width="296" height="42" rx="10" fill="#F7FBFF"/>
+  <text x="1028" y="751" fill="#5E7893" font-size="12" font-family="Inter, Segoe UI, Arial, sans-serif">WhatsApp follow-up sent to 46 leads (West region)</text>
+
+  <rect x="1012" y="776" width="296" height="42" rx="10" fill="#F7FBFF"/>
+  <text x="1028" y="801" fill="#5E7893" font-size="12" font-family="Inter, Segoe UI, Arial, sans-serif">Support ticket #429 closed within SLA</text>
+</svg>

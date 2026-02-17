@@ -1,0 +1,39 @@
+.system-layout {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.system-visual {
+  margin: 0;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  background: #f8fbff;
+  box-shadow: var(--shadow-sm);
+}
+
+.system-visual img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.system-panel {
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-xl);
+  background: #fff;
+  padding: var(--space-6);
+}
+
+.system-panel h2 {
+  margin: 0 0 var(--space-4);
+  font-size: var(--text-xl);
+}
+
+.detail-list,
+.timeline-list {
+  margin: 0;
+  padding-left: 1.2rem;
+  display: grid;
+  gap: var(--space-3);
+}

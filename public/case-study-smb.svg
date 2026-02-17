@@ -1,0 +1,35 @@
+<svg width="960" height="560" viewBox="0 0 960 560" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SMB CRM kanban screenshot">
+  <rect width="960" height="560" rx="20" fill="#F5F9FE"/>
+  <rect x="20" y="20" width="920" height="520" rx="16" fill="#FFFFFF" stroke="#D9E5F2"/>
+  <text x="48" y="56" fill="#122F47" font-size="16" font-weight="700" font-family="Inter, Arial">Business CRM - Pipeline and Support</text>
+
+  <rect x="44" y="84" width="210" height="436" rx="12" fill="#F7FBFF" stroke="#E3EDF8"/>
+  <text x="62" y="112" fill="#55748E" font-size="11" font-family="Inter, Arial">KPIs</text>
+  <text x="62" y="148" fill="#122F47" font-size="26" font-weight="700" font-family="Inter, Arial">48</text><text x="118" y="148" fill="#5D7892" font-size="11" font-family="Inter, Arial">New leads</text>
+  <text x="62" y="188" fill="#122F47" font-size="26" font-weight="700" font-family="Inter, Arial">11</text><text x="118" y="188" fill="#5D7892" font-size="11" font-family="Inter, Arial">Won deals</text>
+  <text x="62" y="228" fill="#122F47" font-size="26" font-weight="700" font-family="Inter, Arial">97%</text><text x="136" y="228" fill="#5D7892" font-size="11" font-family="Inter, Arial">SLA met</text>
+
+  <rect x="274" y="84" width="646" height="436" rx="12" fill="#F7FBFF" stroke="#E3EDF8"/>
+  <text x="294" y="112" fill="#1B3E56" font-size="14" font-weight="700" font-family="Inter, Arial">Lead Kanban</text>
+
+  <rect x="294" y="128" width="146" height="372" rx="10" fill="#EEF5FC"/>
+  <text x="310" y="151" fill="#5A7690" font-size="11" font-family="Inter, Arial">Incoming</text>
+  <rect x="304" y="164" width="126" height="78" rx="8" fill="#FFFFFF" stroke="#DDE8F4"/>
+  <rect x="304" y="250" width="126" height="78" rx="8" fill="#FFFFFF" stroke="#DDE8F4"/>
+
+  <rect x="448" y="128" width="146" height="372" rx="10" fill="#EEF5FC"/>
+  <text x="464" y="151" fill="#5A7690" font-size="11" font-family="Inter, Arial">Qualified</text>
+  <rect x="458" y="164" width="126" height="78" rx="8" fill="#FFFFFF" stroke="#DDE8F4"/>
+  <rect x="458" y="250" width="126" height="78" rx="8" fill="#FFFFFF" stroke="#DDE8F4"/>
+  <rect x="458" y="336" width="126" height="78" rx="8" fill="#FFFFFF" stroke="#DDE8F4"/>
+
+  <rect x="602" y="128" width="146" height="372" rx="10" fill="#EEF5FC"/>
+  <text x="620" y="151" fill="#5A7690" font-size="11" font-family="Inter, Arial">Proposal</text>
+  <rect x="612" y="164" width="126" height="78" rx="8" fill="#FFFFFF" stroke="#DDE8F4"/>
+  <rect x="612" y="250" width="126" height="78" rx="8" fill="#FFFFFF" stroke="#DDE8F4"/>
+
+  <rect x="756" y="128" width="146" height="372" rx="10" fill="#E7F2FB"/>
+  <text x="780" y="151" fill="#4E6B84" font-size="11" font-family="Inter, Arial">Won</text>
+  <rect x="766" y="164" width="126" height="78" rx="8" fill="#0F89B1"/>
+  <rect x="766" y="250" width="126" height="78" rx="8" fill="#0F89B1"/>
+</svg>

@@ -1,0 +1,14 @@
+.about-box {
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-2xl);
+  background: #fff;
+  padding: var(--space-7);
+}
+
+.about-box p {
+  margin: 0;
+}
+
+.about-box p + p {
+  margin-top: var(--space-4);
+}

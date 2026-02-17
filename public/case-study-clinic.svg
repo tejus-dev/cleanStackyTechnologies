@@ -1,0 +1,31 @@
+<svg width="960" height="560" viewBox="0 0 960 560" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Clinic operations scheduling screenshot">
+  <rect width="960" height="560" rx="20" fill="#F6FAFC"/>
+  <rect x="20" y="20" width="920" height="520" rx="16" fill="#FFFFFF" stroke="#D6E5EE"/>
+  <text x="48" y="56" fill="#12344A" font-size="16" font-weight="700" font-family="Inter, Arial">Clinic Console - Front Desk</text>
+
+  <rect x="44" y="84" width="270" height="436" rx="12" fill="#F8FCFF" stroke="#DFEDF6"/>
+  <text x="62" y="112" fill="#587C93" font-size="11" font-family="Inter, Arial">TODAY TIMELINE</text>
+  <line x1="84" y1="136" x2="84" y2="492" stroke="#CCE0EC" stroke-width="2"/>
+  <circle cx="84" cy="170" r="6" fill="#2A9D8F"/><text x="104" y="174" fill="#28475E" font-size="12" font-family="Inter, Arial">09:15  Follow-up  Dr Iyer</text>
+  <circle cx="84" cy="222" r="6" fill="#2A9D8F"/><text x="104" y="226" fill="#28475E" font-size="12" font-family="Inter, Arial">09:40  New consult  Dr Menon</text>
+  <circle cx="84" cy="274" r="6" fill="#E9A23B"/><text x="104" y="278" fill="#28475E" font-size="12" font-family="Inter, Arial">10:10  Lab review  Waiting</text>
+  <circle cx="84" cy="326" r="6" fill="#2A9D8F"/><text x="104" y="330" fill="#28475E" font-size="12" font-family="Inter, Arial">10:50  Billing closed</text>
+
+  <rect x="334" y="84" width="586" height="160" rx="12" fill="#F8FCFF" stroke="#DFEDF6"/>
+  <text x="354" y="112" fill="#1A3F56" font-size="14" font-weight="700" font-family="Inter, Arial">No-show Performance</text>
+  <rect x="354" y="126" width="220" height="98" rx="10" fill="#EAF5FA"/>
+  <text x="372" y="154" fill="#597D94" font-size="11" font-family="Inter, Arial">No-show rate</text>
+  <text x="372" y="194" fill="#12344A" font-size="30" font-weight="700" font-family="Inter, Arial">6.8%</text>
+  <text x="372" y="212" fill="#2A9D8F" font-size="11" font-family="Inter, Arial">Down from 11.2%</text>
+  <rect x="592" y="126" width="308" height="98" rx="10" fill="#EAF5FA"/>
+  <polyline points="612,204 648,192 684,184 720,170 756,162 792,146 828,136 876,124" fill="none" stroke="#219EBC" stroke-width="4" stroke-linecap="round"/>
+
+  <rect x="334" y="260" width="586" height="260" rx="12" fill="#F8FCFF" stroke="#DFEDF6"/>
+  <text x="354" y="288" fill="#1A3F56" font-size="14" font-weight="700" font-family="Inter, Arial">Patient Queue and Communication</text>
+  <rect x="354" y="306" width="546" height="42" rx="9" fill="#EAF5FA"/>
+  <text x="370" y="331" fill="#4C6D84" font-size="12" font-family="Inter, Arial">PT-4421  Consultation complete  Billing pending</text>
+  <rect x="354" y="356" width="546" height="42" rx="9" fill="#EAF5FA"/>
+  <text x="370" y="381" fill="#4C6D84" font-size="12" font-family="Inter, Arial">PT-4422  Reminder delivered via WhatsApp  Confirmed</text>
+  <rect x="354" y="406" width="546" height="42" rx="9" fill="#EAF5FA"/>
+  <text x="370" y="431" fill="#4C6D84" font-size="12" font-family="Inter, Arial">PT-4423  Follow-up booked  3:10 PM</text>
+</svg>

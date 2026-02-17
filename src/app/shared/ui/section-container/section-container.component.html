@@ -1,0 +1,10 @@
+<section [attr.id]="id" class="section">
+  <div class="container">
+    <header class="section__head" *ngIf="title || subtitle">
+      <h1 *ngIf="title && headingLevel === 'h1'">{{ title }}</h1>
+      <h2 *ngIf="title && headingLevel === 'h2'">{{ title }}</h2>
+      <p *ngIf="subtitle">{{ subtitle }}</p>
+    </header>
+    <ng-content></ng-content>
+  </div>
+</section>

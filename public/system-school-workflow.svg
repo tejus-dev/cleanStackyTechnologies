@@ -1,0 +1,33 @@
+<svg width="1200" height="520" viewBox="0 0 1200 520" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="School ERP workflow diagram">
+  <rect width="1200" height="520" rx="24" fill="#F5FAFF"/>
+  <rect x="30" y="30" width="1140" height="460" rx="18" fill="#FFFFFF" stroke="#DDEAF5"/>
+  <text x="66" y="82" fill="#17354F" font-size="26" font-weight="700" font-family="Inter, Arial">School ERP Workflow</text>
+  <text x="66" y="110" fill="#69839E" font-size="13" font-family="Inter, Arial">Admissions to fee closure and parent communication.</text>
+
+  <rect x="66" y="150" width="232" height="126" rx="12" fill="#F7FBFF" stroke="#E3EDF8"/>
+  <text x="88" y="184" fill="#17354F" font-size="16" font-weight="700" font-family="Inter, Arial">Admissions</text>
+  <text x="88" y="210" fill="#62809B" font-size="12" font-family="Inter, Arial">Inquiry to enrollment</text>
+
+  <rect x="348" y="150" width="232" height="126" rx="12" fill="#F7FBFF" stroke="#E3EDF8"/>
+  <text x="370" y="184" fill="#17354F" font-size="16" font-weight="700" font-family="Inter, Arial">Fee Ops</text>
+  <text x="370" y="210" fill="#62809B" font-size="12" font-family="Inter, Arial">Invoices, receipts, due alerts</text>
+
+  <rect x="630" y="150" width="232" height="126" rx="12" fill="#F7FBFF" stroke="#E3EDF8"/>
+  <text x="652" y="184" fill="#17354F" font-size="16" font-weight="700" font-family="Inter, Arial">Attendance</text>
+  <text x="652" y="210" fill="#62809B" font-size="12" font-family="Inter, Arial">Role-based updates and logs</text>
+
+  <rect x="912" y="150" width="232" height="126" rx="12" fill="#F7FBFF" stroke="#E3EDF8"/>
+  <text x="934" y="184" fill="#17354F" font-size="16" font-weight="700" font-family="Inter, Arial">Reporting</text>
+  <text x="934" y="210" fill="#62809B" font-size="12" font-family="Inter, Arial">Weekly closure and finance view</text>
+
+  <line x1="298" y1="214" x2="336" y2="214" stroke="#1797C1" stroke-width="4" stroke-linecap="round"/>
+  <line x1="580" y1="214" x2="618" y2="214" stroke="#1797C1" stroke-width="4" stroke-linecap="round"/>
+  <line x1="862" y1="214" x2="900" y2="214" stroke="#1797C1" stroke-width="4" stroke-linecap="round"/>
+
+  <rect x="66" y="312" width="1078" height="142" rx="14" fill="#F7FBFF" stroke="#E3EDF8"/>
+  <text x="92" y="346" fill="#17354F" font-size="16" font-weight="700" font-family="Inter, Arial">Automation and Controls</text>
+  <text x="92" y="372" fill="#62809B" font-size="13" font-family="Inter, Arial">WhatsApp reminders, failed-payment retries, and admin approval checkpoints.</text>
+  <rect x="92" y="392" width="298" height="34" rx="10" fill="#EAF3FC"/>
+  <rect x="406" y="392" width="298" height="34" rx="10" fill="#EAF3FC"/>
+  <rect x="720" y="392" width="398" height="34" rx="10" fill="#EAF3FC"/>
+</svg>

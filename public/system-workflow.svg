@@ -1,0 +1,56 @@
+<svg width="1280" height="520" viewBox="0 0 1280 520" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="System workflow preview">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1280" y2="520" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F9FCFF"/>
+      <stop offset="1" stop-color="#EEF6FC"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#0E7FA3"/>
+      <stop offset="1" stop-color="#1B97C1"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1280" height="520" rx="28" fill="url(#bg)"/>
+  <rect x="24" y="24" width="1232" height="472" rx="24" fill="#FFFFFF" stroke="#DBE7F3"/>
+
+  <text x="58" y="78" fill="#17324A" font-size="28" font-weight="700" font-family="Inter, Segoe UI, Arial, sans-serif">End-to-End Operating Workflow</text>
+  <text x="58" y="104" fill="#67839E" font-size="14" font-family="Inter, Segoe UI, Arial, sans-serif">One connected flow from inquiry to support automation.</text>
+
+  <rect x="58" y="148" width="248" height="140" rx="18" fill="#F7FBFF" stroke="#E2EDF8"/>
+  <text x="82" y="184" fill="#0F2A42" font-size="18" font-weight="700" font-family="Inter, Segoe UI, Arial, sans-serif">Lead Intake</text>
+  <text x="82" y="214" fill="#607C98" font-size="13" font-family="Inter, Segoe UI, Arial, sans-serif">Website forms</text>
+  <text x="82" y="236" fill="#607C98" font-size="13" font-family="Inter, Segoe UI, Arial, sans-serif">CRM qualification</text>
+  <text x="82" y="258" fill="#607C98" font-size="13" font-family="Inter, Segoe UI, Arial, sans-serif">Auto WhatsApp response</text>
+
+  <rect x="364" y="148" width="248" height="140" rx="18" fill="#F7FBFF" stroke="#E2EDF8"/>
+  <text x="388" y="184" fill="#0F2A42" font-size="18" font-weight="700" font-family="Inter, Segoe UI, Arial, sans-serif">Delivery Ops</text>
+  <text x="388" y="214" fill="#607C98" font-size="13" font-family="Inter, Segoe UI, Arial, sans-serif">ERP and workflow modules</text>
+  <text x="388" y="236" fill="#607C98" font-size="13" font-family="Inter, Segoe UI, Arial, sans-serif">Task approvals</text>
+  <text x="388" y="258" fill="#607C98" font-size="13" font-family="Inter, Segoe UI, Arial, sans-serif">Execution dashboard</text>
+
+  <rect x="670" y="148" width="248" height="140" rx="18" fill="#F7FBFF" stroke="#E2EDF8"/>
+  <text x="694" y="184" fill="#0F2A42" font-size="18" font-weight="700" font-family="Inter, Segoe UI, Arial, sans-serif">Visibility</text>
+  <text x="694" y="214" fill="#607C98" font-size="13" font-family="Inter, Segoe UI, Arial, sans-serif">Live KPIs</text>
+  <text x="694" y="236" fill="#607C98" font-size="13" font-family="Inter, Segoe UI, Arial, sans-serif">Finance and SLA tracking</text>
+  <text x="694" y="258" fill="#607C98" font-size="13" font-family="Inter, Segoe UI, Arial, sans-serif">Operator action alerts</text>
+
+  <rect x="976" y="148" width="248" height="140" rx="18" fill="#F7FBFF" stroke="#E2EDF8"/>
+  <text x="1000" y="184" fill="#0F2A42" font-size="18" font-weight="700" font-family="Inter, Segoe UI, Arial, sans-serif">Support Loop</text>
+  <text x="1000" y="214" fill="#607C98" font-size="13" font-family="Inter, Segoe UI, Arial, sans-serif">Ticket routing</text>
+  <text x="1000" y="236" fill="#607C98" font-size="13" font-family="Inter, Segoe UI, Arial, sans-serif">WhatsApp escalations</text>
+  <text x="1000" y="258" fill="#607C98" font-size="13" font-family="Inter, Segoe UI, Arial, sans-serif">Resolution analytics</text>
+
+  <path d="M306 218H348" stroke="url(#accent)" stroke-width="4" stroke-linecap="round"/>
+  <path d="M612 218H654" stroke="url(#accent)" stroke-width="4" stroke-linecap="round"/>
+  <path d="M918 218H960" stroke="url(#accent)" stroke-width="4" stroke-linecap="round"/>
+
+  <circle cx="348" cy="218" r="6" fill="#1B97C1"/>
+  <circle cx="654" cy="218" r="6" fill="#1B97C1"/>
+  <circle cx="960" cy="218" r="6" fill="#1B97C1"/>
+
+  <rect x="58" y="328" width="1166" height="136" rx="16" fill="#F5FAFF" stroke="#E0EBF7"/>
+  <text x="86" y="366" fill="#17324A" font-size="18" font-weight="700" font-family="Inter, Segoe UI, Arial, sans-serif">Operational Impact Snapshot</text>
+  <text x="86" y="396" fill="#627E99" font-size="13" font-family="Inter, Segoe UI, Arial, sans-serif">- 32 percent faster lead response with automated intake workflows</text>
+  <text x="86" y="418" fill="#627E99" font-size="13" font-family="Inter, Segoe UI, Arial, sans-serif">- 41 percent reduction in manual follow-ups via bot-driven reminders</text>
+  <text x="86" y="440" fill="#627E99" font-size="13" font-family="Inter, Segoe UI, Arial, sans-serif">- Weekly dashboard visibility for leadership and operators</text>
+</svg>

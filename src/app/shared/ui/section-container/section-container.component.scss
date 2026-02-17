@@ -1,0 +1,21 @@
+.section {
+  padding-block: var(--space-20);
+}
+
+.section__head {
+  margin-bottom: var(--space-12);
+}
+
+.section__head h1,
+.section__head h2 {
+  margin: 0;
+  font-size: var(--text-4xl);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.section__head p {
+  margin-top: var(--space-4);
+  max-width: 68ch;
+  color: var(--color-ink-600);
+}

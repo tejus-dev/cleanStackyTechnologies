@@ -1,0 +1,44 @@
+.industry-layout {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.industry-visual {
+  margin: 0;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  background: #f8fbff;
+  box-shadow: var(--shadow-sm);
+}
+
+.industry-visual img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.industry-placeholder {
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-2xl);
+  background: #fff;
+  padding: var(--space-7);
+}
+
+.industry-placeholder p {
+  margin: 0;
+}
+
+.industry-placeholder p + p {
+  margin-top: var(--space-3);
+}
+
+.industry-placeholder ul {
+  margin: var(--space-4) 0;
+  padding-left: 1.05rem;
+  color: var(--color-ink-700);
+}
+
+.industry-placeholder li + li {
+  margin-top: var(--space-2);
+}

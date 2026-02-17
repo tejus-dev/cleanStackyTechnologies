@@ -1,0 +1,9 @@
+<article class="case-study-card">
+  <figure *ngIf="imageSrc" class="case-study-card__media">
+    <img [src]="imageSrc" [alt]="imageAlt || clientType + ' case study preview'" width="960" height="560" loading="lazy" decoding="async" />
+  </figure>
+  <p class="case-study-card__type">{{ clientType }}</p>
+  <p><strong>Problem:</strong> {{ problem }}</p>
+  <p><strong>Solution:</strong> {{ solution }}</p>
+  <p class="case-study-card__outcome"><strong>Outcome:</strong> {{ outcome }}</p>
+</article>

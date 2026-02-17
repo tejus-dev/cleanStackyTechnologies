@@ -1,0 +1,23 @@
+<app-section-container headingLevel="h1" title="Pricing" subtitle="Transparent ranges for planning. Final pricing depends on modules and users.">
+  <div class="pricing-grid">
+    <app-pricing-card
+      name="Starter"
+      setup="₹30k–₹60k"
+      monthly="₹5k–₹10k"
+      [features]="['Core setup', 'Basic support', 'Backups', 'Training']"
+    ></app-pricing-card>
+    <app-pricing-card
+      name="Growth"
+      setup="₹60k–₹1.2L"
+      monthly="₹10k–₹20k"
+      [features]="['Multi-module rollout', 'Priority support', 'Reports', 'Training']"
+      [highlighted]="true"
+    ></app-pricing-card>
+    <app-pricing-card
+      name="Enterprise"
+      setup="Custom"
+      monthly="Custom"
+      [features]="['Custom architecture', 'Advanced SLA', 'Dedicated support', 'Security controls']"
+    ></app-pricing-card>
+  </div>
+</app-section-container>

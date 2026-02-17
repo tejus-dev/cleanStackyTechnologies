@@ -1,0 +1,11 @@
+.systems-grid {
+  display: grid;
+  gap: var(--space-5);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 760px) {
+  .systems-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,22 @@
+<svg width="1200" height="520" viewBox="0 0 1200 520" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Business CRM workflow diagram">
+  <rect width="1200" height="520" rx="24" fill="#F5F8FE"/>
+  <rect x="30" y="30" width="1140" height="460" rx="18" fill="#FFFFFF" stroke="#DDE4F3"/>
+  <text x="66" y="82" fill="#243751" font-size="26" font-weight="700" font-family="Inter, Arial">Business CRM Workflow</text>
+  <text x="66" y="110" fill="#6D7F99" font-size="13" font-family="Inter, Arial">Lead intake, deal progression, invoicing and support SLA in one loop.</text>
+
+  <rect x="66" y="150" width="1078" height="176" rx="14" fill="#F8FAFF" stroke="#E4EAF6"/>
+  <text x="92" y="184" fill="#243751" font-size="16" font-weight="700" font-family="Inter, Arial">Pipeline Stages</text>
+  <rect x="92" y="206" width="196" height="96" rx="10" fill="#EDF1FC"/><text x="112" y="260" fill="#60728D" font-size="12" font-family="Inter, Arial">Incoming</text>
+  <rect x="306" y="206" width="196" height="96" rx="10" fill="#EDF1FC"/><text x="326" y="260" fill="#60728D" font-size="12" font-family="Inter, Arial">Qualified</text>
+  <rect x="520" y="206" width="196" height="96" rx="10" fill="#EDF1FC"/><text x="540" y="260" fill="#60728D" font-size="12" font-family="Inter, Arial">Proposal</text>
+  <rect x="734" y="206" width="196" height="96" rx="10" fill="#EDF1FC"/><text x="754" y="260" fill="#60728D" font-size="12" font-family="Inter, Arial">Negotiation</text>
+  <rect x="948" y="206" width="170" height="96" rx="10" fill="#5C6BC3"/><text x="980" y="260" fill="#ECF1FF" font-size="12" font-family="Inter, Arial">Won</text>
+
+  <rect x="66" y="346" width="530" height="108" rx="14" fill="#F8FAFF" stroke="#E4EAF6"/>
+  <text x="92" y="378" fill="#243751" font-size="16" font-weight="700" font-family="Inter, Arial">Invoice and Collections</text>
+  <rect x="92" y="396" width="478" height="36" rx="10" fill="#EDF1FC"/>
+
+  <rect x="614" y="346" width="530" height="108" rx="14" fill="#F8FAFF" stroke="#E4EAF6"/>
+  <text x="640" y="378" fill="#243751" font-size="16" font-weight="700" font-family="Inter, Arial">Support and SLA</text>
+  <rect x="640" y="396" width="478" height="36" rx="10" fill="#EDF1FC"/>
+</svg>

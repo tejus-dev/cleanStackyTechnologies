@@ -1,0 +1,9 @@
+<app-modal [open]="modalService.isOpen()" title="Book a Demo" (closed)="modalService.close()">
+  <form [formGroup]="form" (ngSubmit)="submit()" class="demo-form">
+    <app-form-field [formGroup]="form" controlName="name" label="Name" placeholder="Your full name"></app-form-field>
+    <app-form-field [formGroup]="form" controlName="phone" label="Phone" placeholder="+91"></app-form-field>
+    <app-form-field [formGroup]="form" controlName="email" label="Email" type="email" placeholder="you@company.com"></app-form-field>
+    <app-form-field [formGroup]="form" controlName="businessType" label="Business Type" placeholder="School, clinic, SMB..."></app-form-field>
+    <app-ui-button type="submit" variant="primary" [fullWidth]="true">Submit Demo Request</app-ui-button>
+  </form>
+</app-modal>

@@ -1,39 +1,12 @@
-import { AfterViewInit, Component, Inject, OnDestroy, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { UiEffectsService } from './core/services/ui-effects.service';
+import { Component } from '@angular/core';
+import { NavbarComponent } from './shared/layout/navbar/navbar.component';
+import { FooterComponent } from './shared/layout/footer/footer.component';
+import { DemoModalComponent } from './shared/ui/demo-modal/demo-modal.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.html',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, NavbarComponent, FooterComponent, DemoModalComponent],
 })
-export class App implements AfterViewInit, OnDestroy {
-  constructor(
-    @Inject(PLATFORM_ID) private readonly platformId: object,
-    private readonly uiEffectsService: UiEffectsService
-  ) {}
-
-  ngAfterViewInit(): void {
-    if (!isPlatformBrowser(this.platformId)) {
-      return;
-    }
-    this.initializeUiEffects();
-  }
-
-  onRouteActivate(): void {
-    if (!isPlatformBrowser(this.platformId)) {
-      return;
-    }
-    this.initializeUiEffects();
-  }
-
-  ngOnDestroy(): void {
-    this.uiEffectsService.destroy();
-  }
-
-  private initializeUiEffects(): void {
-    // Run after route component has rendered into the outlet.
-    requestAnimationFrame(() => this.uiEffectsService.initialize());
-  }
-}
+export class App {}

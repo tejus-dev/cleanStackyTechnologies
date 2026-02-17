@@ -1,0 +1,14 @@
+/
+/systems
+/systems/school-erp
+/systems/clinic-system
+/systems/business-crm
+/industries/schools
+/industries/clinics
+/industries/construction
+/industries/agriculture
+/industries/services
+/case-studies
+/pricing
+/about
+/contact
