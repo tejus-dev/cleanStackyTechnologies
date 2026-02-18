@@ -29,6 +29,8 @@ export class App {
         path?: string;
         image?: string;
         robots?: string;
+        schema?: Record<string, unknown>;
+        schemaId?: string;
       } | undefined;
 
       if (data?.title && data?.description) {
@@ -37,6 +39,10 @@ export class App {
           image: data.image,
           robots: data.robots,
         });
+      }
+
+      if (data?.schema) {
+        this.seo.setJsonLd(data.schema, data.schemaId || 'jsonld-page');
       }
     });
   }

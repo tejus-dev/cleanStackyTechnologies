@@ -56,4 +56,18 @@ export class SeoService {
     link.setAttribute('href', canonicalUrl);
     this.document.head.appendChild(link);
   }
+
+  public setJsonLd(schema: Record<string, unknown>, id = 'jsonld-default'): void {
+    const existing = this.document.getElementById(id);
+    if (existing) {
+      existing.textContent = JSON.stringify(schema);
+      return;
+    }
+
+    const script = this.document.createElement('script');
+    script.type = 'application/ld+json';
+    script.id = id;
+    script.text = JSON.stringify(schema);
+    this.document.head.appendChild(script);
+  }
 }
