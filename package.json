@@ -4,9 +4,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --configuration production",
+    "build": "ng build --configuration production && npm run generate:seo",
     "build:ssr": "ng build --configuration production",
-    "serve:ssr": "node dist/clenstacky/server/server.mjs"
+    "serve:ssr": "node dist/clenstacky/server/server.mjs",
+    "generate:seo": "node scripts/generate-seo.mjs"
   },
   "prettier": {
     "printWidth": 100,
