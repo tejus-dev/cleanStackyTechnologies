@@ -17,7 +17,7 @@ export class NavbarComponent {
 
   protected readonly navLinks = [
     { label: 'Systems', href: '/systems' },
-    { label: 'Industries', href: '/industries/schools' },
+    { label: 'Industries', href: '/industries' },
     { label: 'Case Studies', href: '/case-studies' },
     { label: 'Pricing', href: '/pricing' },
     { label: 'About', href: '/about' },

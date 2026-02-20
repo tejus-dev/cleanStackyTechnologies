@@ -58,9 +58,11 @@ export class HomePage implements OnInit {
   protected readonly industries = [
     { label: 'Schools', slug: 'schools' },
     { label: 'Clinics', slug: 'clinics' },
-    { label: 'Construction', slug: 'construction' },
-    { label: 'Agriculture', slug: 'agriculture' },
-    { label: 'Services', slug: 'services' },
+    { label: 'Diagnostics Centres', slug: 'diagnostics-centres' },
+    { label: 'Textile Business', slug: 'textile-business' },
+    { label: 'B2B Business', slug: 'b2b-business' },
+    { label: 'B2C Business', slug: 'b2c-business' },
+    { label: 'Any Business (Tech + Solutions)', slug: 'any-business-tech-solutions' },
   ];
 
   protected readonly proofMetrics = [

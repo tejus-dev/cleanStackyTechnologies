@@ -1,11 +1,106 @@
-<app-section-container headingLevel="h1" title="Systems" subtitle="Overview of productized systems delivered by CleanStacky Technologies.">
-  <div class="systems-grid">
-    <app-feature-card
-      *ngFor="let card of cards"
-      [title]="card.title"
-      [description]="card.description"
-      [outcome]="card.outcome"
-      [detailsLink]="card.link"
-    ></app-feature-card>
-  </div>
-</app-section-container>
+<section class="systems-page">
+  <section class="hero container">
+    <h1>Systems that run your Business Smoothly</h1>
+    <p class="hero__subhead">
+      Productized software for your businesses built to reduce manual work and improve daily
+      control.
+    </p>
+  </section>
+
+  <section class="container systems-grid-wrap" aria-labelledby="systems-grid-title">
+    <div class="section-head">
+      <h2 id="systems-grid-title">Core systems</h2>
+    </div>
+    <div class="systems-grid" role="list">
+      <article class="systems-card" role="listitem" *ngFor="let system of systems; trackBy: trackBySystemId">
+        <div class="systems-card__icon" [innerHTML]="safeSvg(system.iconSvg)"></div>
+        <h3>{{ system.title }}</h3>
+        <p>{{ system.description }}</p>
+        <p class="systems-card__best-for"><strong>Best for:</strong> {{ system.bestFor }}</p>
+
+        <ul>
+          <li *ngFor="let outcome of system.outcomes; trackBy: trackByIndex">{{ outcome }}</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+  
+  <!-- <section class="container deep-dive" aria-labelledby="deep-dive-title">
+    <div class="section-head">
+      <h2 id="deep-dive-title">System deep dives</h2>
+      <p>Each implementation is focused on removing operational friction from your daily workflows.</p>
+    </div>
+
+    <section class="deep-dive__card" *ngFor="let system of systems; trackBy: trackBySystemId" [id]="system.id">
+      <h2>{{ system.title }}</h2>
+      <p>{{ system.deepDiveText }}</p>
+
+      <div class="deep-dive__lists">
+        <div>
+          <h3>Key features</h3>
+          <ul>
+            <li *ngFor="let feature of system.features; trackBy: trackByIndex">{{ feature }}</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3>Operational outcomes</h3>
+          <ul>
+            <li *ngFor="let outcome of system.outcomes; trackBy: trackByIndex">{{ outcome }}</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="deep-dive__cta">
+        <app-ui-button variant="primary" icon="arrow" routerLink="/contact">Request a Demo</app-ui-button>
+        <app-ui-button variant="secondary" [href]="mailToLink">Talk to Us</app-ui-button>
+      </div>
+    </section>
+  </section> -->
+
+  <section class="container how-we-deliver" aria-labelledby="delivery-title">
+    <div class="section-head">
+      <h2 id="delivery-title">How we deliver</h2>
+    </div>
+
+    <ol>
+      <li *ngFor="let step of deliverySteps; let i = index; trackBy: trackByIndex">
+        <span>{{ i + 1 }}</span>
+        <h3>{{ step.title }}</h3>
+        <p>{{ step.detail }}</p>
+      </li>
+    </ol>
+  </section>
+
+  <section class="container faq" aria-labelledby="faq-title">
+    <div class="section-head">
+      <h2 id="faq-title">Frequently asked questions</h2>
+    </div>
+
+    <div class="faq__list">
+      <article *ngFor="let faq of faqs; let i = index; trackBy: trackByIndex" class="faq__item">
+        <h3>
+          <button type="button" class="faq__trigger" (click)="toggleFaq(i)" [attr.aria-expanded]="isFaqOpen(i)"
+            [attr.aria-controls]="'faq-panel-' + i" [id]="'faq-trigger-' + i">
+            <span>{{ faq.question }}</span>
+            <span aria-hidden="true">{{ isFaqOpen(i) ? '−' : '+' }}</span>
+          </button>
+        </h3>
+        <div class="faq__panel" [id]="'faq-panel-' + i" role="region" [attr.aria-labelledby]="'faq-trigger-' + i"
+          [hidden]="!isFaqOpen(i)">
+          <p>{{ faq.answer }}</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="container final-cta" aria-labelledby="systems-final-cta-title">
+    <div class="final-cta__box">
+      <div>
+        <h2 id="systems-final-cta-title">Want to see a working demo tailored to your business?</h2>
+        <p>Bangalore • Remote delivery available</p>
+      </div>
+      <app-ui-button variant="primary" icon="arrow" routerLink="/contact">Book a Demo</app-ui-button>
+    </div>
+  </section>
+</section>

@@ -1,14 +1,47 @@
-<app-section-container headingLevel="h1" [title]="title" [subtitle]="summary">
-  <div class="industry-layout">
-    <figure class="industry-visual">
-      <img [src]="imageSrc" [alt]="imageAlt" width="1200" height="520" loading="eager" decoding="async" />
-    </figure>
-    <article class="industry-placeholder">
-      <p>Built for operator adoption, measurable delivery, and predictable support.</p>
-      <ul>
-        <li *ngFor="let point of highlights">{{ point }}</li>
-      </ul>
-      <p>Book a demo for a live walkthrough configured for this industry.</p>
-    </article>
-  </div>
-</app-section-container>
+<section class="industry-page">
+  <section class="container page-head">
+    <h1>Industries we serve</h1>
+    <p>Choose your industry to see how CleanStacky builds practical systems that reduce manual work and improve
+      operational control.</p>
+  </section>
+
+  <section class="container cards" aria-labelledby="industry-cards-title">
+    <h2 id="industry-cards-title">Industry cards</h2>
+
+    <div class="cards__grid" role="list">
+      <article class="industry-card" role="listitem" *ngFor="let item of industries; trackBy: trackBySlug"
+        [class.is-selected]="isSelected(item.slug)">
+        <h3>{{ item.label }}</h3>
+        <p>{{ item.description }}</p>
+
+        <ul>
+          <li *ngFor="let point of item.highlights; trackBy: trackByIndex">{{ point }}</li>
+        </ul>
+
+        <div class="industry-card__actions">
+          <app-ui-button variant="primary" icon="arrow" routerLink="/contact">Book Demo</app-ui-button>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="container faq" aria-labelledby="industry-faq-title">
+    <h2 id="industry-faq-title">Frequently asked questions</h2>
+
+    <div class="faq__list">
+      <article *ngFor="let faq of faqs; let i = index; trackBy: trackByIndex" class="faq__item">
+        <h3>
+          <button type="button" class="faq__trigger" (click)="toggleFaq(i)" [attr.aria-expanded]="isFaqOpen(i)"
+            [attr.aria-controls]="'faq-panel-' + i" [id]="'faq-trigger-' + i">
+            <span>{{ faq.question }}</span>
+            <span aria-hidden="true">{{ isFaqOpen(i) ? '−' : '+' }}</span>
+          </button>
+        </h3>
+        <div class="faq__panel" [id]="'faq-panel-' + i" role="region" [attr.aria-labelledby]="'faq-trigger-' + i"
+          [hidden]="!isFaqOpen(i)">
+          <p>{{ faq.answer }}</p>
+        </div>
+      </article>
+    </div>
+  </section>
+</section>

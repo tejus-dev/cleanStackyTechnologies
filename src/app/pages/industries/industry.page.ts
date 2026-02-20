@@ -1,76 +1,165 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
-import { SectionContainerComponent } from '../../shared/ui/section-container/section-container.component';
+import { ChangeDetectionStrategy, Component, DestroyRef, OnInit, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { SeoService } from '../../core/services/seo.service';
+import { UiButtonComponent } from '../../shared/ui/button/ui-button.component';
+
+type IndustryCard = {
+  slug: string;
+  label: string;
+  description: string;
+  highlights: string[];
+};
+
+type FaqItem = {
+  question: string;
+  answer: string;
+};
 
 @Component({
   selector: 'app-industry-page',
   standalone: true,
-  imports: [CommonModule, SectionContainerComponent],
+  imports: [CommonModule, RouterLink, UiButtonComponent],
   templateUrl: './industry.page.html',
   styleUrl: './industry.page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IndustryPage implements OnInit {
-  protected title = 'Industry';
-  protected summary = 'Solutions adapted for your operations context.';
-  protected imageSrc = '/industry-schools.svg';
-  protected imageAlt = 'Industry operations visual';
-  protected highlights: string[] = [];
+  protected readonly industries: IndustryCard[] = [
+    {
+      slug: 'schools',
+      label: 'Schools',
+      description: 'Admissions, fee collection, attendance, and parent communication workflows for school operations.',
+      highlights: ['Faster fee closure', 'Cleaner admin control', 'Daily reporting visibility'],
+    },
+    {
+      slug: 'clinics',
+      label: 'Clinics',
+      description: 'Appointment, billing, and patient communication systems designed for smooth clinic execution.',
+      highlights: ['Reduced no-shows', 'Faster front-desk flow', 'Cleaner billing'],
+    },
+    {
+      slug: 'diagnostics-centres',
+      label: 'Diagnostics Centres',
+      description: 'Booking, sample tracking, report dispatch, and billing workflows for diagnostics teams.',
+      highlights: ['Sample status visibility', 'Faster report release', 'Better daily closure'],
+    },
+    {
+      slug: 'textile-business',
+      label: 'Textile Business',
+      description: 'Order, stock, dispatch, and follow-up operations for textile businesses.',
+      highlights: ['Order-to-dispatch control', 'Stock visibility', 'Less manual coordination'],
+    },
+    {
+      slug: 'b2b-business',
+      label: 'B2B Business',
+      description: 'Lead pipeline, proposal, invoicing, and support workflows for B2B teams.',
+      highlights: ['Stronger pipeline governance', 'Faster proposal cycles', 'Post-sale visibility'],
+    },
+    {
+      slug: 'b2c-business',
+      label: 'B2C Business',
+      description: 'Customer response, order flow, support, and retention operations for B2C businesses.',
+      highlights: ['Faster first response', 'Better order control', 'Retention automation'],
+    },
+    {
+      slug: 'any-business-tech-solutions',
+      label: 'Any Business (Tech + Solutions)',
+      description: 'Custom ERP, CRM, workflows, dashboards, and automation for any business needing operational systems.',
+      highlights: ['Workflow-first implementation', 'Automation-ready operations', 'Role-based dashboards'],
+    },
+  ];
 
-  private readonly contentMap: Record<string, { title: string; summary: string; imageSrc: string; imageAlt: string; highlights: string[] }> = {
-    schools: {
-      title: 'Schools',
-      summary: 'Admissions, fee operations, attendance and reporting workflows for schools.',
-      imageSrc: '/industry-schools.svg',
-      imageAlt: 'Schools operations dashboard preview',
-      highlights: ['Admissions to fee closure workflow', 'Parent communication automation', 'Weekly finance and compliance reports'],
+  protected readonly faqs: FaqItem[] = [
+    {
+      question: 'Can you customize systems for our exact process?',
+      answer: 'Yes. We start with practical modules and customize workflows based on your operations.',
     },
-    clinics: {
-      title: 'Clinics',
-      summary: 'Appointment, billing and patient communication systems for clinics.',
-      imageSrc: '/industry-clinics.svg',
-      imageAlt: 'Clinic operations dashboard preview',
-      highlights: ['Appointment and billing integration', 'Automated no-show reminders', 'Support response visibility'],
+    {
+      question: 'Do you support WhatsApp automation?',
+      answer: 'Yes. We implement reminder and alert workflows tied to real operational events.',
     },
-    construction: {
-      title: 'Construction',
-      summary: 'Lead, site operations and reporting workflows for construction teams.',
-      imageSrc: '/industry-construction.svg',
-      imageAlt: 'Construction operations dashboard preview',
-      highlights: ['Lead qualification and bid tracking', 'Site milestone and task approvals', 'Progress reporting for leadership'],
+    {
+      question: 'Can we get web and mobile together?',
+      answer: 'Yes. We can deliver web dashboards and mobile workflows as one connected system.',
     },
-    agriculture: {
-      title: 'Agriculture',
-      summary: 'Catalog, ordering, inventory and supply workflows for agri businesses.',
-      imageSrc: '/industry-agriculture.svg',
-      imageAlt: 'Agriculture operations dashboard preview',
-      highlights: ['Catalog and ordering control', 'Dispatch and stock visibility', 'Field-team workflow automation'],
+    {
+      question: 'What is the typical implementation timeline?',
+      answer: 'Most phase-one implementations can start in a few weeks depending on scope and readiness.',
     },
-    services: {
-      title: 'Services',
-      summary: 'Sales, delivery and support operations for service-oriented teams.',
-      imageSrc: '/industry-services.svg',
-      imageAlt: 'Service operations dashboard preview',
-      highlights: ['Lead to proposal governance', 'Invoice and fulfillment control', 'SLA-based support workflow'],
+    {
+      question: 'Do you support integrations?',
+      answer: 'Yes. We integrate with billing, payments, and other operational tools where needed.',
     },
-  };
+    {
+      question: 'Do you provide support after launch?',
+      answer: 'Yes. We continue with fixes, improvements, and iteration based on usage metrics.',
+    },
+  ];
 
-  constructor(
-    private readonly route: ActivatedRoute,
-    private readonly seo: SeoService
-  ) {}
+  protected selectedSlug = '';
+
+  private readonly route = inject(ActivatedRoute);
+  private readonly seo = inject(SeoService);
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly openFaqIndexes = new Set<number>();
 
   ngOnInit(): void {
-    const slug = this.route.snapshot.paramMap.get('industry') || 'schools';
-    const data = this.contentMap[slug] || this.contentMap['schools'];
-    this.title = data.title;
-    this.summary = data.summary;
-    this.imageSrc = data.imageSrc;
-    this.imageAlt = data.imageAlt;
-    this.highlights = data.highlights;
+    this.route.paramMap.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((params) => {
+      const slug = params.get('industry') || '';
+      this.selectedSlug = slug;
 
-    this.seo.update(`${data.title} Industry Solutions | CleanStacky`, data.summary, `/industries/${slug}`);
+      const selected = this.industries.find((item) => item.slug === slug);
+      const title = selected ? `${selected.label} Industry Systems | CleanStacky Technologies` : 'Industry Systems | CleanStacky Technologies';
+      const description = selected
+        ? `${selected.description} Custom workflows, dashboards, and automation support included.`
+        : 'Industry-focused software systems for schools, clinics, diagnostics centres, textile, B2B, B2C, and custom business workflows.';
+
+      this.seo.updateAdvanced(title, description, {
+        path: selected ? `/industries/${selected.slug}` : '/industries',
+      });
+
+      this.seo.setJsonLd(
+        {
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: this.faqs.map((faq) => ({
+            '@type': 'Question',
+            name: faq.question,
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: faq.answer,
+            },
+          })),
+        },
+        'jsonld-industry-faq',
+      );
+    });
+  }
+
+  protected isSelected(slug: string): boolean {
+    return this.selectedSlug === slug;
+  }
+
+  protected toggleFaq(index: number): void {
+    if (this.openFaqIndexes.has(index)) {
+      this.openFaqIndexes.delete(index);
+      return;
+    }
+
+    this.openFaqIndexes.add(index);
+  }
+
+  protected isFaqOpen(index: number): boolean {
+    return this.openFaqIndexes.has(index);
+  }
+
+  protected trackBySlug(_: number, item: IndustryCard): string {
+    return item.slug;
+  }
+
+  protected trackByIndex(index: number): number {
+    return index;
   }
 }

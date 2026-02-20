@@ -33,7 +33,7 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/systems/systems.page').then((m) => m.SystemsPage),
     data: {
       title: 'Systems | CleanStacky Technologies',
-      description: 'System modules for schools, clinics and SMB operations.',
+      description: 'School ERP, clinic system, CRM, WhatsApp automation, supermarket mobile applications, e-commerce websites, and custom business solutions.',
       path: '/systems',
     },
   },
@@ -125,6 +125,15 @@ export const routes: Routes = [
         },
         areaServed: 'IN',
       },
+    },
+  },
+  {
+    path: 'industries',
+    loadComponent: () => import('./pages/industries/industry.page').then((m) => m.IndustryPage),
+    data: {
+      title: 'Industry Systems | CleanStacky Technologies',
+      description: 'Industry-focused software systems for schools, clinics, diagnostics centres, textile, B2B, B2C, and custom business workflows.',
+      path: '/industries',
     },
   },
   {
