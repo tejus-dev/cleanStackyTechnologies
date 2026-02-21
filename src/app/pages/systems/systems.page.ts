@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { DomSanitizer, Meta, SafeHtml, Title } from '@angular/platform-browser';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { UiButtonComponent } from '../../shared/ui/button/ui-button.component';
 import { SeoService } from '../../core/services/seo.service';
 
@@ -30,6 +30,9 @@ type FaqItem = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SystemsPage implements OnInit {
+  private seo = inject(SeoService);
+  private sanitizer = inject(DomSanitizer);
+
   protected readonly systems: SystemItem[] = [
     {
       id: 'school-erp',
@@ -52,7 +55,7 @@ export class SystemsPage implements OnInit {
         'Role-based dashboards for admin, accounts, and management',
       ],
       deepDiveText:
-        'Manual school operations usually break across spreadsheets, WhatsApp chats, and disconnected billing steps. We implement a single ERP flow so admissions, fees, attendance, and reporting stay synchronized for daily decision-making.',
+        'Manual school operations usually break across spreadsheets, disconnected chats, and billing steps. We implement a single ERP flow so admissions, fees, attendance, and reporting stay synchronized for daily decision-making.',
     },
     {
       id: 'clinic-system',
@@ -101,8 +104,8 @@ export class SystemsPage implements OnInit {
         'Most teams track leads in one tool and support in another, which weakens accountability. We connect the entire lifecycle so sales, operations, and founders can monitor progress from first inquiry to retained customer.',
     },
     {
-      id: 'whatsapp-automation',
-      title: 'WhatsApp Automation',
+      id: 'workflow-automation',
+      title: 'Workflow Automation',
       iconSvg:
         '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 11.9A8 8 0 1 1 7.4 5.4 8 8 0 0 1 20 11.9Z"></path><path d="M12 8.8c.6 1.2 1.5 2.1 2.7 2.7"></path><path d="m8.5 19.3 1.2-3"></path></svg>',
       description:
@@ -182,7 +185,7 @@ export class SystemsPage implements OnInit {
     },
     {
       title: 'Automate',
-      detail: 'Add WhatsApp reminders, alerts, and follow-up triggers where needed.',
+      detail: 'Add reminders, alerts, and follow-up triggers where needed.',
     },
     {
       title: 'Improve',
@@ -202,7 +205,7 @@ export class SystemsPage implements OnInit {
         'Yes. We support practical integration approaches for billing and payment flows, based on your current stack and operational requirements.',
     },
     {
-      question: 'Do you support WhatsApp automation as part of implementation?',
+      question: 'Do you support workflow automation as part of implementation?',
       answer:
         'Yes. We implement reminder and alert journeys tied to real events such as due dates, appointment schedules, and follow-up milestones.',
     },
@@ -227,22 +230,13 @@ export class SystemsPage implements OnInit {
 
   private readonly openFaqIndexes = new Set<number>();
 
-  constructor(
-    private readonly seo: SeoService,
-    private readonly sanitizer: DomSanitizer,
-    private readonly meta: Meta,
-    private readonly title: Title
-  ) {}
-
   ngOnInit(): void {
-    const pageTitle = 'Systems | CleanStacky Technologies';
-    const pageDescription =
-      'School ERP, clinic system, CRM, WhatsApp automation, supermarket mobile applications, e-commerce websites, and custom business solutions for operational control.';
-
-    this.title.setTitle(pageTitle);
-    this.meta.updateTag({ name: 'description', content: pageDescription });
-    this.meta.updateTag({ property: 'og:title', content: 'CleanStacky Technologies' });
-    this.meta.updateTag({ property: 'og:image', content: 'https://cleanstacky.com/og-image.jpg' });
+    this.seo.setPageMeta({
+      title: 'Business Systems — ERP, CRM & Automation | CleanStacky Technologies',
+      description:
+        'Productized ERP, CRM, clinic management, and WhatsApp automation systems built for Indian schools, clinics, and SMBs.',
+      ogUrl: 'https://cleanstacky.com/systems',
+    });
 
     this.seo.setJsonLd(
       {

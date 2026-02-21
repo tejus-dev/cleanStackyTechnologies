@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { SectionContainerComponent } from '../../shared/ui/section-container/section-container.component';
@@ -8,7 +8,7 @@ import { PricingCardComponent } from '../../shared/ui/pricing-card/pricing-card.
 import { TestimonialCardComponent } from '../../shared/ui/testimonial-card/testimonial-card.component';
 import { UiButtonComponent } from '../../shared/ui/button/ui-button.component';
 import { DemoModalService } from '../../core/services/demo-modal.service';
-import { Meta, Title } from '@angular/platform-browser';
+import { SeoService } from '../../core/services/seo.service';
 
 @Component({
   selector: 'app-home-page',
@@ -28,6 +28,9 @@ import { Meta, Title } from '@angular/platform-browser';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomePage implements OnInit {
+  private demoModal = inject(DemoModalService);
+  private seo = inject(SeoService);
+
   protected readonly systemCards = [
     {
       title: 'School ERP',
@@ -49,7 +52,7 @@ export class HomePage implements OnInit {
     },
     {
       title: 'Automation',
-      description: 'WhatsApp workflows, alerts, and follow-ups integrated with your systems.',
+      description: 'Workflow automation, alerts, and follow-ups integrated with your systems.',
       outcome: 'Outcome: reduced manual follow-up and faster customer response.',
       link: '/systems',
     },
@@ -75,7 +78,7 @@ export class HomePage implements OnInit {
     {
       metric: 'Clinic No-show Rate',
       before: 'Before: missed appointments and ad-hoc call reminders',
-      after: 'After: scheduled WhatsApp reminders and tracking',
+      after: 'After: scheduled automated reminders and tracking',
       impact: '35% fewer no-shows',
     },
     {
@@ -86,21 +89,13 @@ export class HomePage implements OnInit {
     },
   ];
 
-  constructor(
-    private readonly demoModal: DemoModalService,
-    private readonly meta: Meta,
-    private readonly title: Title
-  ) {}
-
   ngOnInit(): void {
-    const pageTitle = 'Run your business on one system | CleanStacky Technologies';
-    const pageDescription =
-      'ERP, CRM, WhatsApp automation and websites built and managed by CleanStacky Technologies for growing teams in India.';
-
-    this.title.setTitle(pageTitle);
-    this.meta.updateTag({ name: 'description', content: pageDescription });
-    this.meta.updateTag({ property: 'og:title', content: 'CleanStacky Technologies' });
-    this.meta.updateTag({ property: 'og:image', content: 'https://cleanstacky.com/og-image.jpg' });
+    this.seo.setPageMeta({
+      title: 'School ERP & Clinic Management Software India | CleanStacky Technologies',
+      description:
+        'ERP, CRM and WhatsApp automation for schools, clinics and SMBs in India. Book a tailored demo with CleanStacky.',
+      ogUrl: 'https://cleanstacky.com/',
+    });
   }
 
   protected openDemo(): void {

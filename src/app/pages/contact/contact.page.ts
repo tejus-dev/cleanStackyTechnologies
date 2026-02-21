@@ -1,10 +1,10 @@
-import { ChangeDetectionStrategy, Component, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, signal, inject } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { SectionContainerComponent } from '../../shared/ui/section-container/section-container.component';
 import { FormFieldComponent } from '../../shared/ui/form-field/form-field.component';
 import { UiButtonComponent } from '../../shared/ui/button/ui-button.component';
-import { Meta, Title } from '@angular/platform-browser';
+import { SeoService } from '../../core/services/seo.service';
 
 @Component({
   selector: 'app-contact-page',
@@ -16,30 +16,22 @@ import { Meta, Title } from '@angular/platform-browser';
 })
 export class ContactPage implements OnInit {
   protected readonly toastVisible = signal(false);
-  protected readonly form;
-
-  constructor(
-    private readonly formBuilder: FormBuilder,
-    private readonly meta: Meta,
-    private readonly title: Title
-  ) {
-    this.form = this.formBuilder.group({
-      name: ['', Validators.required],
-      phone: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      message: ['', Validators.required],
-    });
-  }
+  private formBuilder = inject(FormBuilder);
+  private seo = inject(SeoService);
+  protected readonly form = this.formBuilder.group({
+    name: ['', Validators.required],
+    phone: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]],
+    message: ['', Validators.required],
+  });
 
   ngOnInit(): void {
-    const pageTitle = 'Contact | CleanStacky Technologies';
-    const pageDescription =
-      'Contact CleanStacky Technologies by email for ERP, CRM, and business system demos.';
-
-    this.title.setTitle(pageTitle);
-    this.meta.updateTag({ name: 'description', content: pageDescription });
-    this.meta.updateTag({ property: 'og:title', content: 'CleanStacky Technologies' });
-    this.meta.updateTag({ property: 'og:image', content: 'https://cleanstacky.com/og-image.jpg' });
+    this.seo.setPageMeta({
+      title: 'Book a Demo | CleanStacky Technologies',
+      description:
+        'Book a free tailored demo with CleanStacky. Tell us your workflow and we will show a relevant system walkthrough.',
+      ogUrl: 'https://cleanstacky.com/contact',
+    });
   }
 
   protected submit(): void {

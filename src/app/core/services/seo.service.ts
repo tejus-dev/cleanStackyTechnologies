@@ -1,63 +1,35 @@
 import { DOCUMENT } from '@angular/common';
 import { Injectable, inject } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
+import { Title, Meta } from '@angular/platform-browser';
 
-type SeoOptions = {
-  path?: string;
-  image?: string;
-  type?: 'website' | 'article';
-  robots?: string;
-};
+interface SeoConfig {
+  title: string;
+  description: string;
+  ogUrl: string;
+  ogTitle?: string;
+  ogDescription?: string;
+}
 
 @Injectable({ providedIn: 'root' })
 export class SeoService {
-  private readonly baseUrl = 'https://cleanstacky.com';
-  private readonly defaultImage = 'https://cleanstacky.com/CST_LOGO.png';
-  private readonly title = inject(Title);
-  private readonly meta = inject(Meta);
-  private readonly document = inject(DOCUMENT);
+  private title = inject(Title);
+  private meta = inject(Meta);
+  private document = inject(DOCUMENT);
 
-  public update(title: string, description: string, path = ''): void {
-    this.updateAdvanced(title, description, { path });
+  setPageMeta(config: SeoConfig): void {
+    const ogTitle = config.ogTitle ?? config.title;
+    const ogDescription = config.ogDescription ?? config.description;
+
+    this.title.setTitle(config.title);
+    this.meta.updateTag({ name: 'description', content: config.description });
+    this.meta.updateTag({ property: 'og:title', content: ogTitle });
+    this.meta.updateTag({ property: 'og:description', content: ogDescription });
+    this.meta.updateTag({ property: 'og:url', content: config.ogUrl });
+    this.meta.updateTag({ name: 'twitter:title', content: ogTitle });
+    this.meta.updateTag({ name: 'twitter:description', content: ogDescription });
   }
 
-  public updateAdvanced(title: string, description: string, options: SeoOptions = {}): void {
-    const path = options.path || '';
-    const canonicalUrl = `${this.baseUrl}${path}`;
-    const image = options.image || this.defaultImage;
-    const ogType = options.type || 'website';
-    const robots = options.robots || 'index,follow';
-
-    this.title.setTitle(title);
-
-    this.meta.updateTag({ name: 'description', content: description });
-    this.meta.updateTag({ name: 'robots', content: robots });
-    this.meta.updateTag({ property: 'og:title', content: title });
-    this.meta.updateTag({ property: 'og:description', content: description });
-    this.meta.updateTag({ property: 'og:type', content: ogType });
-    this.meta.updateTag({ property: 'og:url', content: canonicalUrl });
-    this.meta.updateTag({ property: 'og:image', content: image });
-    this.meta.updateTag({ property: 'og:site_name', content: 'CleanStacky Technologies' });
-    this.meta.updateTag({ property: 'og:locale', content: 'en_IN' });
-    this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
-    this.meta.updateTag({ name: 'twitter:title', content: title });
-    this.meta.updateTag({ name: 'twitter:description', content: description });
-    this.meta.updateTag({ name: 'twitter:image', content: image });
-    this.meta.updateTag({ name: 'twitter:url', content: canonicalUrl });
-
-    const existing = this.document.querySelector('link[rel="canonical"]');
-    if (existing) {
-      existing.setAttribute('href', canonicalUrl);
-      return;
-    }
-
-    const link = this.document.createElement('link');
-    link.setAttribute('rel', 'canonical');
-    link.setAttribute('href', canonicalUrl);
-    this.document.head.appendChild(link);
-  }
-
-  public setJsonLd(schema: Record<string, unknown>, id = 'jsonld-default'): void {
+  setJsonLd(schema: Record<string, unknown>, id = 'jsonld-default'): void {
     const existing = this.document.getElementById(id);
     if (existing) {
       existing.textContent = JSON.stringify(schema);

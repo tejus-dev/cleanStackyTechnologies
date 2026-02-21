@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Meta, Title } from '@angular/platform-browser';
 import { CaseStudyCardComponent } from '../../shared/ui/case-study-card/case-study-card.component';
 import { SectionContainerComponent } from '../../shared/ui/section-container/section-container.component';
+import { SeoService } from '../../core/services/seo.service';
 
 @Component({
   selector: 'app-case-studies-page',
@@ -13,18 +13,14 @@ import { SectionContainerComponent } from '../../shared/ui/section-container/sec
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CaseStudiesPage implements OnInit {
-  constructor(
-    private readonly meta: Meta,
-    private readonly title: Title
-  ) {}
+  private seo = inject(SeoService);
 
   ngOnInit(): void {
-    const pageTitle = 'Case Studies | CleanStacky Technologies';
-    const pageDescription = 'Selected case studies across schools, clinics and SMB operations.';
-
-    this.title.setTitle(pageTitle);
-    this.meta.updateTag({ name: 'description', content: pageDescription });
-    this.meta.updateTag({ property: 'og:title', content: 'CleanStacky Technologies' });
-    this.meta.updateTag({ property: 'og:image', content: 'https://cleanstacky.com/og-image.jpg' });
+    this.seo.setPageMeta({
+      title: 'Case Studies — Delivered Results | CleanStacky Technologies',
+      description:
+        'Real outcomes from CleanStacky deployments: 40% faster fee cycles, 35% fewer no-shows, 50% faster lead response.',
+      ogUrl: 'https://cleanstacky.com/case-studies',
+    });
   }
 }

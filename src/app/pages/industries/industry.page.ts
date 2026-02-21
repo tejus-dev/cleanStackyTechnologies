@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { Meta, Title } from '@angular/platform-browser';
+import { SeoService } from '../../core/services/seo.service';
 import { UiButtonComponent } from '../../shared/ui/button/ui-button.component';
 
 type IndustryCard = {
@@ -30,19 +30,22 @@ export class IndustryPage implements OnInit {
     {
       slug: 'schools',
       label: 'Schools',
-      description: 'Admissions, fee collection, attendance, and parent communication workflows for school operations.',
+      description:
+        'Admissions, fee collection, attendance, and parent communication workflows for school operations.',
       highlights: ['Faster fee closure', 'Cleaner admin control', 'Daily reporting visibility'],
     },
     {
       slug: 'clinics',
       label: 'Clinics',
-      description: 'Appointment, billing, and patient communication systems designed for smooth clinic execution.',
+      description:
+        'Appointment, billing, and patient communication systems designed for smooth clinic execution.',
       highlights: ['Reduced no-shows', 'Faster front-desk flow', 'Cleaner billing'],
     },
     {
       slug: 'diagnostics-centres',
       label: 'Diagnostics Centres',
-      description: 'Booking, sample tracking, report dispatch, and billing workflows for diagnostics teams.',
+      description:
+        'Booking, sample tracking, report dispatch, and billing workflows for diagnostics teams.',
       highlights: ['Sample status visibility', 'Faster report release', 'Better daily closure'],
     },
     {
@@ -54,19 +57,22 @@ export class IndustryPage implements OnInit {
     {
       slug: 'b2b-business',
       label: 'B2B Business',
-      description: 'Lead pipeline, proposal, invoicing, and support workflows for B2B teams.',
+      description:
+        'Lead pipeline, proposal, invoicing, and support workflows for B2B teams.',
       highlights: ['Stronger pipeline governance', 'Faster proposal cycles', 'Post-sale visibility'],
     },
     {
       slug: 'b2c-business',
       label: 'B2C Business',
-      description: 'Customer response, order flow, support, and retention operations for B2C businesses.',
+      description:
+        'Customer response, order flow, support, and retention operations for B2C businesses.',
       highlights: ['Faster first response', 'Better order control', 'Retention automation'],
     },
     {
       slug: 'any-business-tech-solutions',
       label: 'Any Business (Tech + Solutions)',
-      description: 'Custom ERP, CRM, workflows, dashboards, and automation for any business needing operational systems.',
+      description:
+        'Custom ERP, CRM, workflows, dashboards, and automation for any business needing operational systems.',
       highlights: ['Workflow-first implementation', 'Automation-ready operations', 'Role-based dashboards'],
     },
   ];
@@ -74,11 +80,13 @@ export class IndustryPage implements OnInit {
   protected readonly faqs: FaqItem[] = [
     {
       question: 'Can you customize systems for our exact process?',
-      answer: 'Yes. We start with practical modules and customize workflows based on your operations.',
+      answer:
+        'Yes. We start with practical modules and customize workflows based on your operations.',
     },
     {
-      question: 'Do you support WhatsApp automation?',
-      answer: 'Yes. We implement reminder and alert workflows tied to real operational events.',
+      question: 'Do you support workflow automation?',
+      answer:
+        'Yes. We implement reminder and alert workflows tied to real operational events.',
     },
     {
       question: 'Can we get web and mobile together?',
@@ -86,23 +94,25 @@ export class IndustryPage implements OnInit {
     },
     {
       question: 'What is the typical implementation timeline?',
-      answer: 'Most phase-one implementations can start in a few weeks depending on scope and readiness.',
+      answer:
+        'Most phase-one implementations can start in a few weeks depending on scope and readiness.',
     },
     {
       question: 'Do you support integrations?',
-      answer: 'Yes. We integrate with billing, payments, and other operational tools where needed.',
+      answer:
+        'Yes. We integrate with billing, payments, and other operational tools where needed.',
     },
     {
       question: 'Do you provide support after launch?',
-      answer: 'Yes. We continue with fixes, improvements, and iteration based on usage metrics.',
+      answer:
+        'Yes. We continue with fixes, improvements, and iteration based on usage metrics.',
     },
   ];
 
   protected selectedSlug = '';
 
   private readonly route = inject(ActivatedRoute);
-  private readonly meta = inject(Meta);
-  private readonly title = inject(Title);
+  private readonly seo = inject(SeoService);
   private readonly destroyRef = inject(DestroyRef);
   private readonly openFaqIndexes = new Set<number>();
 
@@ -111,17 +121,52 @@ export class IndustryPage implements OnInit {
       const slug = params.get('industry') || '';
       this.selectedSlug = slug;
 
-      const selected = this.industries.find((item) => item.slug === slug);
-      const title = selected ? `${selected.label} Industry Systems | CleanStacky Technologies` : 'Industry Systems | CleanStacky Technologies';
-      const description = selected
-        ? `${selected.description} Custom workflows, dashboards, and automation support included.`
-        : 'Industry-focused software systems for schools, clinics, diagnostics centres, textile, B2B, B2C, and custom business workflows.';
+      const industryMeta: Record<string, { title: string; description: string; ogUrl: string }> = {
+        schools: {
+          title: 'School ERP Software India — Admissions, Fees & Attendance | CleanStacky',
+          description:
+            'Manage admissions, fees, attendance and reporting in one system. Built for Indian schools by CleanStacky Technologies.',
+          ogUrl: 'https://cleanstacky.com/industries/schools',
+        },
+        clinics: {
+          title: 'Clinic Management Software India — Appointments & Billing | CleanStacky',
+          description:
+            "Streamline clinic appointments, billing, reminders and patient history with CleanStacky's staff-friendly clinic system.",
+          ogUrl: 'https://cleanstacky.com/industries/clinics',
+        },
+        'diagnostics-centres': {
+          title: 'Diagnostics Centre Management Software | CleanStacky Technologies',
+          description:
+            'Automate appointment booking, reminders and revenue tracking for diagnostics centres in India.',
+          ogUrl: 'https://cleanstacky.com/industries/diagnostics-centres',
+        },
+        'textile-business': {
+          title: 'Textile Business ERP & CRM India | CleanStacky Technologies',
+          description: 'Structured CRM, billing, and inventory systems for textile businesses in India.',
+          ogUrl: 'https://cleanstacky.com/industries/textile-business',
+        },
+        'b2b-business': {
+          title: 'B2B Business CRM & Operations Software India | CleanStacky',
+          description:
+            'CRM, invoicing, and support dashboards for B2B businesses. Built and managed by CleanStacky Technologies.',
+          ogUrl: 'https://cleanstacky.com/industries/b2b-business',
+        },
+        'b2c-business': {
+          title: 'B2C Business Automation & CRM India | CleanStacky Technologies',
+          description:
+            'WhatsApp automation, CRM, and operations systems for B2C businesses in India.',
+          ogUrl: 'https://cleanstacky.com/industries/b2c-business',
+        },
+      };
 
-      this.title.setTitle(title);
-      this.meta.updateTag({ name: 'description', content: description });
-      this.meta.updateTag({ property: 'og:title', content: 'CleanStacky Technologies' });
-      this.meta.updateTag({ property: 'og:image', content: 'https://cleanstacky.com/og-image.jpg' });
-
+      this.seo.setPageMeta(
+        industryMeta[slug] ?? {
+          title: 'Industries We Serve | CleanStacky Technologies',
+          description:
+            'CleanStacky builds business systems for schools, clinics, diagnostics centres, textile businesses, B2B and B2C companies in India.',
+          ogUrl: 'https://cleanstacky.com/industries',
+        },
+      );
     });
   }
 
