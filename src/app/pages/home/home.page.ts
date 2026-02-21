@@ -8,7 +8,7 @@ import { PricingCardComponent } from '../../shared/ui/pricing-card/pricing-card.
 import { TestimonialCardComponent } from '../../shared/ui/testimonial-card/testimonial-card.component';
 import { UiButtonComponent } from '../../shared/ui/button/ui-button.component';
 import { DemoModalService } from '../../core/services/demo-modal.service';
-import { SeoService } from '../../core/services/seo.service';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home-page',
@@ -88,15 +88,19 @@ export class HomePage implements OnInit {
 
   constructor(
     private readonly demoModal: DemoModalService,
-    private readonly seo: SeoService
+    private readonly meta: Meta,
+    private readonly title: Title
   ) {}
 
   ngOnInit(): void {
-    this.seo.update(
-      'Run your business on one system | CleanStacky Technologies',
-      'ERP, CRM, WhatsApp automation and websites built and managed by CleanStacky Technologies for growing teams in India.',
-      '/'
-    );
+    const pageTitle = 'Run your business on one system | CleanStacky Technologies';
+    const pageDescription =
+      'ERP, CRM, WhatsApp automation and websites built and managed by CleanStacky Technologies for growing teams in India.';
+
+    this.title.setTitle(pageTitle);
+    this.meta.updateTag({ name: 'description', content: pageDescription });
+    this.meta.updateTag({ property: 'og:title', content: 'CleanStacky Technologies' });
+    this.meta.updateTag({ property: 'og:image', content: 'https://cleanstacky.com/og-image.jpg' });
   }
 
   protected openDemo(): void {

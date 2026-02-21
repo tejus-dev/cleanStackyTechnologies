@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { DomSanitizer, Meta, SafeHtml, Title } from '@angular/platform-browser';
 import { UiButtonComponent } from '../../shared/ui/button/ui-button.component';
 import { SeoService } from '../../core/services/seo.service';
 
@@ -229,15 +229,20 @@ export class SystemsPage implements OnInit {
 
   constructor(
     private readonly seo: SeoService,
-    private readonly sanitizer: DomSanitizer
+    private readonly sanitizer: DomSanitizer,
+    private readonly meta: Meta,
+    private readonly title: Title
   ) {}
 
   ngOnInit(): void {
-    this.seo.updateAdvanced(
-      'Systems | CleanStacky Technologies',
-      'School ERP, clinic system, CRM, WhatsApp automation, supermarket mobile applications, e-commerce websites, and custom business solutions for operational control.',
-      { path: '/systems' },
-    );
+    const pageTitle = 'Systems | CleanStacky Technologies';
+    const pageDescription =
+      'School ERP, clinic system, CRM, WhatsApp automation, supermarket mobile applications, e-commerce websites, and custom business solutions for operational control.';
+
+    this.title.setTitle(pageTitle);
+    this.meta.updateTag({ name: 'description', content: pageDescription });
+    this.meta.updateTag({ property: 'og:title', content: 'CleanStacky Technologies' });
+    this.meta.updateTag({ property: 'og:image', content: 'https://cleanstacky.com/og-image.jpg' });
 
     this.seo.setJsonLd(
       {

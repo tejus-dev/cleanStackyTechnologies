@@ -24,22 +24,9 @@ export class App {
       }
 
       const data = active?.snapshot.data as {
-        title?: string;
-        description?: string;
-        path?: string;
-        image?: string;
-        robots?: string;
         schema?: Record<string, unknown>;
         schemaId?: string;
       } | undefined;
-
-      if (data?.title && data?.description) {
-        this.seo.updateAdvanced(data.title, data.description, {
-          path: data.path || this.router.url,
-          image: data.image,
-          robots: data.robots,
-        });
-      }
 
       if (data?.schema) {
         this.seo.setJsonLd(data.schema, data.schemaId || 'jsonld-page');

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Meta, Title } from '@angular/platform-browser';
 import { SectionContainerComponent } from '../../../shared/ui/section-container/section-container.component';
-import { SeoService } from '../../../core/services/seo.service';
 
 @Component({
   selector: 'app-clinic-system-page',
@@ -72,9 +72,18 @@ export class ClinicSystemPage implements OnInit {
     'Week 5+: Go-live and no-show optimization cycles',
   ];
 
-  constructor(private readonly seo: SeoService) {}
+  constructor(
+    private readonly meta: Meta,
+    private readonly title: Title
+  ) {}
 
   ngOnInit(): void {
-    this.seo.update('Clinic System | CleanStacky Technologies', 'Clinic operations software for appointments, billing and reminders.', '/systems/clinic-system');
+    const pageTitle = 'Clinic System | CleanStacky Technologies';
+    const pageDescription = 'Clinic operations software for appointments, billing and reminders.';
+
+    this.title.setTitle(pageTitle);
+    this.meta.updateTag({ name: 'description', content: pageDescription });
+    this.meta.updateTag({ property: 'og:title', content: 'CleanStacky Technologies' });
+    this.meta.updateTag({ property: 'og:image', content: 'https://cleanstacky.com/og-image.jpg' });
   }
 }

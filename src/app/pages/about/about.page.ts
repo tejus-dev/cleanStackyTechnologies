@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
 import { SectionContainerComponent } from '../../shared/ui/section-container/section-container.component';
-import { SeoService } from '../../core/services/seo.service';
 
 @Component({
   selector: 'app-about-page',
@@ -11,9 +11,19 @@ import { SeoService } from '../../core/services/seo.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AboutPage implements OnInit {
-  constructor(private readonly seo: SeoService) {}
+  constructor(
+    private readonly meta: Meta,
+    private readonly title: Title
+  ) {}
 
   ngOnInit(): void {
-    this.seo.update('About | CleanStacky Technologies', 'CleanStacky Technologies is a business systems and product engineering partner based in Bangalore.', '/about');
+    const pageTitle = 'About | CleanStacky Technologies';
+    const pageDescription =
+      'CleanStacky Technologies is a business systems and product engineering partner based in Bangalore.';
+
+    this.title.setTitle(pageTitle);
+    this.meta.updateTag({ name: 'description', content: pageDescription });
+    this.meta.updateTag({ property: 'og:title', content: 'CleanStacky Technologies' });
+    this.meta.updateTag({ property: 'og:image', content: 'https://cleanstacky.com/og-image.jpg' });
   }
 }

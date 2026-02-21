@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { SectionContainerComponent } from '../../shared/ui/section-container/section-container.component';
 import { FormFieldComponent } from '../../shared/ui/form-field/form-field.component';
 import { UiButtonComponent } from '../../shared/ui/button/ui-button.component';
-import { SeoService } from '../../core/services/seo.service';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-contact-page',
@@ -20,7 +20,8 @@ export class ContactPage implements OnInit {
 
   constructor(
     private readonly formBuilder: FormBuilder,
-    private readonly seo: SeoService
+    private readonly meta: Meta,
+    private readonly title: Title
   ) {
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
@@ -31,7 +32,14 @@ export class ContactPage implements OnInit {
   }
 
   ngOnInit(): void {
-    this.seo.update('Contact | CleanStacky Technologies', 'Talk to CleanStacky Technologies for ERP, CRM and WhatsApp automation demos.', '/contact');
+    const pageTitle = 'Contact | CleanStacky Technologies';
+    const pageDescription =
+      'Contact CleanStacky Technologies by email for ERP, CRM, and business system demos.';
+
+    this.title.setTitle(pageTitle);
+    this.meta.updateTag({ name: 'description', content: pageDescription });
+    this.meta.updateTag({ property: 'og:title', content: 'CleanStacky Technologies' });
+    this.meta.updateTag({ property: 'og:image', content: 'https://cleanstacky.com/og-image.jpg' });
   }
 
   protected submit(): void {

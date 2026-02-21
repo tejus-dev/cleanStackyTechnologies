@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Meta, Title } from '@angular/platform-browser';
 import { CaseStudyCardComponent } from '../../shared/ui/case-study-card/case-study-card.component';
 import { SectionContainerComponent } from '../../shared/ui/section-container/section-container.component';
-import { SeoService } from '../../core/services/seo.service';
 
 @Component({
   selector: 'app-case-studies-page',
@@ -13,9 +13,18 @@ import { SeoService } from '../../core/services/seo.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CaseStudiesPage implements OnInit {
-  constructor(private readonly seo: SeoService) {}
+  constructor(
+    private readonly meta: Meta,
+    private readonly title: Title
+  ) {}
 
   ngOnInit(): void {
-    this.seo.update('Case Studies | CleanStacky Technologies', 'Selected case studies across schools, clinics and SMB operations.', '/case-studies');
+    const pageTitle = 'Case Studies | CleanStacky Technologies';
+    const pageDescription = 'Selected case studies across schools, clinics and SMB operations.';
+
+    this.title.setTitle(pageTitle);
+    this.meta.updateTag({ name: 'description', content: pageDescription });
+    this.meta.updateTag({ property: 'og:title', content: 'CleanStacky Technologies' });
+    this.meta.updateTag({ property: 'og:image', content: 'https://cleanstacky.com/og-image.jpg' });
   }
 }

@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { SeoService } from '../../core/services/seo.service';
+import { Meta, Title } from '@angular/platform-browser';
 import { UiButtonComponent } from '../../shared/ui/button/ui-button.component';
 
 type IndustryCard = {
@@ -101,7 +101,8 @@ export class IndustryPage implements OnInit {
   protected selectedSlug = '';
 
   private readonly route = inject(ActivatedRoute);
-  private readonly seo = inject(SeoService);
+  private readonly meta = inject(Meta);
+  private readonly title = inject(Title);
   private readonly destroyRef = inject(DestroyRef);
   private readonly openFaqIndexes = new Set<number>();
 
@@ -116,25 +117,11 @@ export class IndustryPage implements OnInit {
         ? `${selected.description} Custom workflows, dashboards, and automation support included.`
         : 'Industry-focused software systems for schools, clinics, diagnostics centres, textile, B2B, B2C, and custom business workflows.';
 
-      this.seo.updateAdvanced(title, description, {
-        path: selected ? `/industries/${selected.slug}` : '/industries',
-      });
+      this.title.setTitle(title);
+      this.meta.updateTag({ name: 'description', content: description });
+      this.meta.updateTag({ property: 'og:title', content: 'CleanStacky Technologies' });
+      this.meta.updateTag({ property: 'og:image', content: 'https://cleanstacky.com/og-image.jpg' });
 
-      this.seo.setJsonLd(
-        {
-          '@context': 'https://schema.org',
-          '@type': 'FAQPage',
-          mainEntity: this.faqs.map((faq) => ({
-            '@type': 'Question',
-            name: faq.question,
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: faq.answer,
-            },
-          })),
-        },
-        'jsonld-industry-faq',
-      );
     });
   }
 

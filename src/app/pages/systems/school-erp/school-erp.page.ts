@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Meta, Title } from '@angular/platform-browser';
 import { SectionContainerComponent } from '../../../shared/ui/section-container/section-container.component';
-import { SeoService } from '../../../core/services/seo.service';
 
 @Component({
   selector: 'app-school-erp-page',
@@ -72,9 +72,18 @@ export class SchoolErpPage implements OnInit {
     'Week 5+: Go-live support and continuous improvements',
   ];
 
-  constructor(private readonly seo: SeoService) {}
+  constructor(
+    private readonly meta: Meta,
+    private readonly title: Title
+  ) {}
 
   ngOnInit(): void {
-    this.seo.update('School ERP | CleanStacky Technologies', 'Admissions, fee and operations platform for schools.', '/systems/school-erp');
+    const pageTitle = 'School ERP | CleanStacky Technologies';
+    const pageDescription = 'Admissions, fee and operations platform for schools.';
+
+    this.title.setTitle(pageTitle);
+    this.meta.updateTag({ name: 'description', content: pageDescription });
+    this.meta.updateTag({ property: 'og:title', content: 'CleanStacky Technologies' });
+    this.meta.updateTag({ property: 'og:image', content: 'https://cleanstacky.com/og-image.jpg' });
   }
 }

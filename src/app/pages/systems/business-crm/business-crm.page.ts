@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Meta, Title } from '@angular/platform-browser';
 import { SectionContainerComponent } from '../../../shared/ui/section-container/section-container.component';
-import { SeoService } from '../../../core/services/seo.service';
 
 @Component({
   selector: 'app-business-crm-page',
@@ -72,9 +72,18 @@ export class BusinessCrmPage implements OnInit {
     'Week 5+: Production rollout with optimization sprints',
   ];
 
-  constructor(private readonly seo: SeoService) {}
+  constructor(
+    private readonly meta: Meta,
+    private readonly title: Title
+  ) {}
 
   ngOnInit(): void {
-    this.seo.update('Business CRM | CleanStacky Technologies', 'Business CRM platform for lead-to-support workflows.', '/systems/business-crm');
+    const pageTitle = 'Business CRM | CleanStacky Technologies';
+    const pageDescription = 'Business CRM platform for lead-to-support workflows.';
+
+    this.title.setTitle(pageTitle);
+    this.meta.updateTag({ name: 'description', content: pageDescription });
+    this.meta.updateTag({ property: 'og:title', content: 'CleanStacky Technologies' });
+    this.meta.updateTag({ property: 'og:image', content: 'https://cleanstacky.com/og-image.jpg' });
   }
 }
