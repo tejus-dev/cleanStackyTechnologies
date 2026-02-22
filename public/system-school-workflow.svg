@@ -26,7 +26,7 @@
 
   <rect x="66" y="312" width="1078" height="142" rx="14" fill="#F7FBFF" stroke="#E3EDF8"/>
   <text x="92" y="346" fill="#17354F" font-size="16" font-weight="700" font-family="Inter, Arial">Automation and Controls</text>
-  <text x="92" y="372" fill="#62809B" font-size="13" font-family="Inter, Arial">WhatsApp reminders, failed-payment retries, and admin approval checkpoints.</text>
+  <text x="92" y="372" fill="#62809B" font-size="13" font-family="Inter, Arial">Automated reminders, failed-payment retries, and admin approval checkpoints.</text>
   <rect x="92" y="392" width="298" height="34" rx="10" fill="#EAF3FC"/>
   <rect x="406" y="392" width="298" height="34" rx="10" fill="#EAF3FC"/>
   <rect x="720" y="392" width="398" height="34" rx="10" fill="#EAF3FC"/>

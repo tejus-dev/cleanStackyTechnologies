@@ -67,6 +67,28 @@
   max-width: 72ch;
 }
 
+.section-head h2 {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.section-head h2 svg,
+.systems-card li svg {
+  width: 1rem;
+  height: 1rem;
+  flex: 0 0 auto;
+  stroke: currentColor;
+  stroke-width: 1.9;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.section-head h2 svg {
+  color: var(--color-accent-700);
+}
+
 .systems-grid-wrap {
   margin-top: var(--space-10);
 }
@@ -137,6 +159,9 @@
 }
 
 .systems-card li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
   color: var(--color-ink-700);
   font-size: var(--text-sm);
 }

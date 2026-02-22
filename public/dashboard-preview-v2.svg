@@ -56,7 +56,7 @@
   <text x="104" y="423" fill="#69839D" font-size="14" font-family="Inter, Segoe UI, Arial, sans-serif">Support Desk</text>
 
   <rect x="84" y="448" width="204" height="40" rx="12" fill="#EEF4FA"/>
-  <text x="104" y="473" fill="#69839D" font-size="14" font-family="Inter, Segoe UI, Arial, sans-serif">WhatsApp Flows</text>
+  <text x="104" y="473" fill="#69839D" font-size="14" font-family="Inter, Segoe UI, Arial, sans-serif">Automation Flows</text>
 
   <rect x="84" y="778" width="204" height="40" rx="12" fill="#EEF4FA"/>
   <text x="104" y="803" fill="#69839D" font-size="14" font-family="Inter, Segoe UI, Arial, sans-serif">Settings</text>
@@ -87,7 +87,7 @@
   <rect x="1086" y="250" width="248" height="126" rx="16" fill="#FFFFFF" stroke="#E5EDF6"/>
   <text x="1108" y="278" fill="#6D86A0" font-size="12" font-family="Inter, Segoe UI, Arial, sans-serif">Automation Success</text>
   <text x="1108" y="320" fill="#17324A" font-size="34" font-weight="700" font-family="Inter, Segoe UI, Arial, sans-serif">99.2%</text>
-  <text x="1108" y="347" fill="#159C68" font-size="12" font-weight="600" font-family="Inter, Segoe UI, Arial, sans-serif">WhatsApp + SMS active</text>
+  <text x="1108" y="347" fill="#159C68" font-size="12" font-weight="600" font-family="Inter, Segoe UI, Arial, sans-serif">Automations active</text>
 
   <rect x="330" y="392" width="640" height="442" rx="18" fill="#FFFFFF" stroke="#E5EDF6"/>
   <text x="356" y="425" fill="#18334B" font-size="16" font-weight="700" font-family="Inter, Segoe UI, Arial, sans-serif">Revenue &amp; Conversion Trend</text>
@@ -108,7 +108,7 @@
   <rect x="356" y="706" width="588" height="106" rx="14" fill="#F7FBFF" stroke="#E7EEF6"/>
   <text x="382" y="736" fill="#6A849E" font-size="12" font-family="Inter, Segoe UI, Arial, sans-serif">Top funnel bottleneck</text>
   <text x="382" y="760" fill="#17324A" font-size="14" font-weight="600" font-family="Inter, Segoe UI, Arial, sans-serif">Lead-to-demo no-show rate increased in North zone</text>
-  <text x="382" y="786" fill="#4D6782" font-size="13" font-family="Inter, Segoe UI, Arial, sans-serif">Action: Automated WhatsApp reminder sequence launched yesterday.</text>
+  <text x="382" y="786" fill="#4D6782" font-size="13" font-family="Inter, Segoe UI, Arial, sans-serif">Action: Automated reminder sequence launched yesterday.</text>
 
   <rect x="986" y="392" width="348" height="212" rx="18" fill="#FFFFFF" stroke="#E5EDF6"/>
   <text x="1012" y="425" fill="#18334B" font-size="16" font-weight="700" font-family="Inter, Segoe UI, Arial, sans-serif">Workflow Health</text>
@@ -134,7 +134,7 @@
   <text x="1028" y="701" fill="#5E7893" font-size="12" font-family="Inter, Segoe UI, Arial, sans-serif">Fee receipt generated for Grade 9 - INV-1098</text>
 
   <rect x="1012" y="726" width="296" height="42" rx="10" fill="#F7FBFF"/>
-  <text x="1028" y="751" fill="#5E7893" font-size="12" font-family="Inter, Segoe UI, Arial, sans-serif">WhatsApp follow-up sent to 46 leads (West region)</text>
+  <text x="1028" y="751" fill="#5E7893" font-size="12" font-family="Inter, Segoe UI, Arial, sans-serif">Automated follow-up sent to 46 leads (West region)</text>
 
   <rect x="1012" y="776" width="296" height="42" rx="10" fill="#F7FBFF"/>
   <text x="1028" y="801" fill="#5E7893" font-size="12" font-family="Inter, Segoe UI, Arial, sans-serif">Support ticket #429 closed within SLA</text>

@@ -56,7 +56,7 @@ export class ClinicSystemPage implements OnInit {
     'Appointment calendar, doctor assignment, and queue control',
     'Billing, receipts, and payment reconciliation',
     'Patient visit history and staff notes',
-    'WhatsApp reminders and follow-up communication automation',
+    'Automated reminders and follow-up communication workflows',
   ];
 
   protected readonly audiences = [

@@ -25,7 +25,7 @@
   <rect x="354" y="306" width="546" height="42" rx="9" fill="#EAF5FA"/>
   <text x="370" y="331" fill="#4C6D84" font-size="12" font-family="Inter, Arial">PT-4421  Consultation complete  Billing pending</text>
   <rect x="354" y="356" width="546" height="42" rx="9" fill="#EAF5FA"/>
-  <text x="370" y="381" fill="#4C6D84" font-size="12" font-family="Inter, Arial">PT-4422  Reminder delivered via WhatsApp  Confirmed</text>
+  <text x="370" y="381" fill="#4C6D84" font-size="12" font-family="Inter, Arial">PT-4422  Reminder delivered automatically  Confirmed</text>
   <rect x="354" y="406" width="546" height="42" rx="9" fill="#EAF5FA"/>
   <text x="370" y="431" fill="#4C6D84" font-size="12" font-family="Inter, Arial">PT-4423  Follow-up booked  3:10 PM</text>
 </svg>

@@ -23,6 +23,24 @@
   text-decoration: none;
 }
 
+.site-footer p,
+.site-footer a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.site-footer svg {
+  width: 0.9rem;
+  height: 0.9rem;
+  flex: 0 0 auto;
+  stroke: currentColor;
+  stroke-width: 1.9;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 .site-footer a:hover {
   color: var(--color-ink-900);
 }

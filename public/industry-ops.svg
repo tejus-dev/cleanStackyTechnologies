@@ -30,7 +30,7 @@
   <text x="454" y="242" fill="#637F99" font-size="13" font-family="Inter, Segoe UI, Arial, sans-serif">Patient follow-up automation</text>
   <text x="454" y="264" fill="#637F99" font-size="13" font-family="Inter, Segoe UI, Arial, sans-serif">Care timeline visibility</text>
   <rect x="454" y="294" width="292" height="70" rx="12" fill="#EAF4FD"/>
-  <text x="472" y="324" fill="#5B7690" font-size="12" font-family="Inter, Segoe UI, Arial, sans-serif">No-show reminders run through WhatsApp.</text>
+  <text x="472" y="324" fill="#5B7690" font-size="12" font-family="Inter, Segoe UI, Arial, sans-serif">No-show reminders run automatically.</text>
 
   <rect x="796" y="150" width="340" height="236" rx="18" fill="#F7FBFF" stroke="#E3EEF8"/>
   <text x="820" y="190" fill="#17344D" font-size="18" font-weight="700" font-family="Inter, Segoe UI, Arial, sans-serif">Business and Field Teams</text>
@@ -44,7 +44,7 @@
   <text x="92" y="466" fill="#16334B" font-size="20" font-weight="700" font-family="Inter, Segoe UI, Arial, sans-serif">Automation Layer (shared across industries)</text>
 
   <rect x="92" y="494" width="220" height="48" rx="12" fill="#EAF4FD"/>
-  <text x="112" y="523" fill="#55718B" font-size="13" font-family="Inter, Segoe UI, Arial, sans-serif">WhatsApp reminders</text>
+  <text x="112" y="523" fill="#55718B" font-size="13" font-family="Inter, Segoe UI, Arial, sans-serif">Automated reminders</text>
 
   <rect x="338" y="494" width="220" height="48" rx="12" fill="#EAF4FD"/>
   <text x="358" y="523" fill="#55718B" font-size="13" font-family="Inter, Segoe UI, Arial, sans-serif">Invoice and receipt alerts</text>

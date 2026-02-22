@@ -1,15 +1,19 @@
 <section class="systems-page">
   <section class="hero container">
-    <h1>Systems that run your Business Smoothly</h1>
+    <h1>Systems that run your operations</h1>
     <p class="hero__subhead">
-      Productized software for your businesses built to reduce manual work and improve daily
-      control.
+      Productized software built to reduce manual work, improve daily control, and keep teams
+      execution-ready.
     </p>
+    <div class="hero__actions">
+      <app-ui-button variant="primary" icon="arrow" routerLink="/contact">Book a Demo</app-ui-button>
+      <app-ui-button variant="secondary" routerLink="/case-studies">View Case Studies</app-ui-button>
+    </div>
   </section>
 
   <section class="container systems-grid-wrap" aria-labelledby="systems-grid-title">
     <div class="section-head">
-      <h2 id="systems-grid-title">Core systems</h2>
+      <h2 id="systems-grid-title"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h7v7H4z"></path><path d="M13 4h7v4h-7z"></path><path d="M13 10h7v10h-7z"></path><path d="M4 13h7v7H4z"></path></svg>Core systems</h2>
     </div>
     <div class="systems-grid" role="list">
       <article class="systems-card" role="listitem" *ngFor="let system of systems; trackBy: trackBySystemId">
@@ -19,7 +23,7 @@
         <p class="systems-card__best-for"><strong>Best for:</strong> {{ system.bestFor }}</p>
 
         <ul>
-          <li *ngFor="let outcome of system.outcomes; trackBy: trackByIndex">{{ outcome }}</li>
+          <li *ngFor="let outcome of system.outcomes; trackBy: trackByIndex"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l4 4 10-10"></path></svg>{{ outcome }}</li>
         </ul>
       </article>
     </div>
@@ -60,7 +64,7 @@
 
   <section class="container how-we-deliver" aria-labelledby="delivery-title">
     <div class="section-head">
-      <h2 id="delivery-title">How we deliver</h2>
+      <h2 id="delivery-title"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>How we deliver</h2>
     </div>
 
     <ol>
@@ -74,7 +78,7 @@
 
   <section class="container faq" aria-labelledby="faq-title">
     <div class="section-head">
-      <h2 id="faq-title">Frequently asked questions</h2>
+      <h2 id="faq-title"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M9.5 9a2.5 2.5 0 1 1 4.3 1.7c-.8.8-1.8 1.3-1.8 2.5"></path><circle cx="12" cy="16.8" r="0.6"></circle></svg>Frequently asked questions</h2>
     </div>
 
     <div class="faq__list">

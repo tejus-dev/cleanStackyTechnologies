@@ -20,7 +20,7 @@
   <text x="82" y="184" fill="#0F2A42" font-size="18" font-weight="700" font-family="Inter, Segoe UI, Arial, sans-serif">Lead Intake</text>
   <text x="82" y="214" fill="#607C98" font-size="13" font-family="Inter, Segoe UI, Arial, sans-serif">Website forms</text>
   <text x="82" y="236" fill="#607C98" font-size="13" font-family="Inter, Segoe UI, Arial, sans-serif">CRM qualification</text>
-  <text x="82" y="258" fill="#607C98" font-size="13" font-family="Inter, Segoe UI, Arial, sans-serif">Auto WhatsApp response</text>
+  <text x="82" y="258" fill="#607C98" font-size="13" font-family="Inter, Segoe UI, Arial, sans-serif">Auto reminder response</text>
 
   <rect x="364" y="148" width="248" height="140" rx="18" fill="#F7FBFF" stroke="#E2EDF8"/>
   <text x="388" y="184" fill="#0F2A42" font-size="18" font-weight="700" font-family="Inter, Segoe UI, Arial, sans-serif">Delivery Ops</text>
@@ -37,7 +37,7 @@
   <rect x="976" y="148" width="248" height="140" rx="18" fill="#F7FBFF" stroke="#E2EDF8"/>
   <text x="1000" y="184" fill="#0F2A42" font-size="18" font-weight="700" font-family="Inter, Segoe UI, Arial, sans-serif">Support Loop</text>
   <text x="1000" y="214" fill="#607C98" font-size="13" font-family="Inter, Segoe UI, Arial, sans-serif">Ticket routing</text>
-  <text x="1000" y="236" fill="#607C98" font-size="13" font-family="Inter, Segoe UI, Arial, sans-serif">WhatsApp escalations</text>
+  <text x="1000" y="236" fill="#607C98" font-size="13" font-family="Inter, Segoe UI, Arial, sans-serif">Escalation alerts</text>
   <text x="1000" y="258" fill="#607C98" font-size="13" font-family="Inter, Segoe UI, Arial, sans-serif">Resolution analytics</text>
 
   <path d="M306 218H348" stroke="url(#accent)" stroke-width="4" stroke-linecap="round"/>

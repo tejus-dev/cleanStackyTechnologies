@@ -6,7 +6,7 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/home/home.page').then((m) => m.HomePage),
     data: {
       title: 'School ERP & Clinic Management Software India | CleanStacky Technologies',
-      description: 'ERP, CRM and WhatsApp automation for schools, clinics and SMBs in India.',
+      description: 'ERP, CRM and workflow automation for schools, clinics and SMBs in India.',
       path: '/',
       schemaId: 'jsonld-localbusiness',
       schema: {
@@ -33,7 +33,7 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/systems/systems.page').then((m) => m.SystemsPage),
     data: {
       title: 'Systems | CleanStacky Technologies',
-      description: 'School ERP, clinic system, CRM, WhatsApp automation, supermarket mobile applications, e-commerce websites, and custom business solutions.',
+      description: 'School ERP, clinic system, CRM, workflow automation, supermarket mobile applications, e-commerce websites, and custom business solutions.',
       path: '/systems',
     },
   },
@@ -154,7 +154,7 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/pricing/pricing.page').then((m) => m.PricingPage),
     data: {
       title: 'ERP Pricing India | CleanStacky Plans',
-      description: 'Pricing for ERP, CRM and WhatsApp automation with SLA options.',
+      description: 'Pricing for ERP, CRM and workflow automation with SLA options.',
       path: '/pricing',
     },
   },
@@ -172,7 +172,7 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/contact/contact.page').then((m) => m.ContactPage),
     data: {
       title: 'Book a Demo | CleanStacky Technologies',
-      description: 'Speak to the CleanStacky team for ERP, CRM and WhatsApp automation.',
+      description: 'Contact the CleanStacky team by email for ERP, CRM and workflow automation.',
       path: '/contact',
     },
   },
