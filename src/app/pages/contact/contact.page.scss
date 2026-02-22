@@ -27,16 +27,6 @@
   margin: 0 0 var(--space-4);
 }
 
-.map-placeholder {
-  margin-top: var(--space-4);
-  border-radius: var(--radius-xl);
-  border: 1px dashed var(--color-line);
-  padding: var(--space-8);
-  text-align: center;
-  color: var(--color-ink-500);
-  background: linear-gradient(135deg, #eef6ff, #f8fbff);
-}
-
 .toast {
   margin-top: var(--space-4);
   border: 1px solid color-mix(in srgb, var(--color-accent-600), white 50%);
