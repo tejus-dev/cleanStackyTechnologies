@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Urban Thread Storefront Demo</title>
+  <style>
+    :root {
+      --bg: #f6f3ef;
+      --card: #ffffff;
+      --ink: #111111;
+      --muted: #6f6b66;
+      --line: #e4ddd5;
+      --accent: #111111;
+      --accent-2: #d4b07a;
+      --ok: #0f7b3d;
+      --danger: #b42318;
+      --radius: 14px;
+      --shadow: 0 14px 38px rgba(17, 17, 17, 0.08);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Inter", "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+    }
+
+    .top {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(246, 243, 239, 0.9);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .top-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .brand {
+      font-size: 15px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .chip {
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .chip.dark {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+      font-weight: 600;
+    }
+
+    .hero {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 24px 20px 18px;
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 16px;
+    }
+
+    .hero-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .kicker {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: #725f47;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .title {
+      font-size: clamp(28px, 4.2vw, 48px);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      font-weight: 850;
+      margin-bottom: 10px;
+    }
+
+    .sub {
+      color: var(--muted);
+      line-height: 1.5;
+      max-width: 42ch;
+      margin-bottom: 18px;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 13px;
+      background: #fff;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .btn.primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .hero-visual {
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      overflow: hidden;
+      min-height: 260px;
+      background:
+        radial-gradient(circle at 25% 20%, rgba(212,176,122,0.35), transparent 55%),
+        linear-gradient(160deg, #181818 0%, #2b2b2b 100%);
+      color: #f9efe2;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .hero-visual h3 { font-size: 32px; margin-bottom: 6px; line-height: 1; }
+    .hero-visual p { font-size: 13px; color: #dcc8ad; }
+
+    .layout {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 8px 20px 26px;
+      display: grid;
+      grid-template-columns: 270px 1fr;
+      gap: 14px;
+    }
+
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 16px;
+    }
+
+    .panel h4 {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #75624c;
+      margin-bottom: 12px;
+    }
+
+    .filters { display: grid; gap: 10px; }
+    .check { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #333; }
+    .check input { accent-color: #111; }
+
+    .range-label { font-size: 13px; color: var(--muted); margin-top: 6px; }
+
+    .catalog-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      gap: 10px;
+    }
+
+    .catalog-title { font-size: 20px; font-weight: 800; letter-spacing: -0.01em; }
+    .catalog-note { font-size: 12px; color: var(--muted); }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+      background: #fff;
+      transition: transform .16s ease, box-shadow .16s ease;
+      box-shadow: 0 8px 20px rgba(17,17,17,0.04);
+    }
+
+    .card:hover { transform: translateY(-2px); box-shadow: 0 14px 28px rgba(17,17,17,0.09); }
+
+    .thumb {
+      aspect-ratio: 3/4;
+      background: linear-gradient(180deg, #f1ece5, #e4ddd4);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      color: #6f665c;
+      font-size: 12px;
+      padding-bottom: 10px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .meta { padding: 12px; }
+    .name { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+    .row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .price { font-size: 14px; font-weight: 800; }
+    .strike { font-size: 12px; color: #8b847d; text-decoration: line-through; margin-left: 6px; font-weight: 500; }
+
+    .badge {
+      font-size: 11px;
+      border-radius: 999px;
+      padding: 4px 8px;
+      border: 1px solid #e8d2b0;
+      background: #fff5e8;
+      color: #7b5a2e;
+    }
+
+    .actions { margin-top: 10px; display: flex; gap: 8px; }
+    .actions .btn { flex: 1; padding: 8px; font-size: 12px; }
+
+    .drawer {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      width: min(360px, calc(100vw - 24px));
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: 0 20px 42px rgba(17,17,17,0.18);
+      padding: 14px;
+      z-index: 30;
+    }
+
+    .drawer-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; }
+    .drawer-title { font-size: 14px; font-weight: 800; }
+    .mini { font-size: 12px; color: var(--muted); }
+    .cart-list { display: grid; gap: 8px; margin: 10px 0; max-height: 160px; overflow: auto; }
+    .cart-item { display:flex; justify-content:space-between; font-size: 13px; border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; }
+    .total { display:flex; justify-content:space-between; font-size:14px; font-weight:800; margin: 10px 0 12px; }
+
+    .toast {
+      position: fixed;
+      left: 16px;
+      bottom: 16px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--ok);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      padding: 10px 12px;
+      font-size: 12px;
+      display: none;
+      z-index: 40;
+    }
+
+    @media (max-width: 1024px) {
+      .hero { grid-template-columns: 1fr; }
+      .layout { grid-template-columns: 1fr; }
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 640px) {
+      .grid { grid-template-columns: 1fr; }
+      .top-inner { padding: 12px; }
+      .hero { padding: 14px 12px 10px; }
+      .layout { padding: 8px 12px 90px; }
+      .hero-card, .panel { padding: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="top-inner">
+      <div class="brand">Urban Thread</div>
+      <div class="top-actions">
+        <button class="chip" type="button">Men</button>
+        <button class="chip" type="button">Women</button>
+        <button class="chip dark" type="button" onclick="showToast('Checkout flow demo only')">Checkout</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <article class="hero-card">
+      <p class="kicker">Spring Drop 26</p>
+      <h1 class="title">Fast Fashion.<br>Sharper Fit.</h1>
+      <p class="sub">A modern e-commerce demo focused on conversion: quick filters, fast add-to-cart, one-click size select, and premium product storytelling.</p>
+      <div class="hero-cta">
+        <button class="btn primary" onclick="scrollProducts()">Shop New Arrivals</button>
+        <button class="btn" onclick="showToast('Wishlist feature in roadmap')">Open Wishlist</button>
+      </div>
+    </article>
+    <aside class="hero-visual">
+      <h3>UP TO 30% OFF</h3>
+      <p>Curated weekend edit for polos, shackets, denims and utility cargos.</p>
+    </aside>
+  </section>
+
+  <section class="layout" id="products">
+    <aside class="panel">
+      <h4>Filters</h4>
+      <div class="filters">
+        <label class="check"><input type="checkbox" checked> New Arrivals</label>
+        <label class="check"><input type="checkbox" checked> In Stock</label>
+        <label class="check"><input type="checkbox"> Summer Edit</label>
+        <label class="check"><input type="checkbox"> Premium Cotton</label>
+      </div>
+      <h4 style="margin-top:14px;">Price</h4>
+      <input id="price" type="range" min="799" max="4999" value="2999" step="100" style="width:100%;accent-color:#111;" />
+      <p class="range-label">Under <strong id="priceVal">₹2,999</strong></p>
+    </aside>
+
+    <div class="panel">
+      <div class="catalog-head">
+        <div>
+          <h2 class="catalog-title">Trending Now</h2>
+          <p class="catalog-note">10 products • Optimized conversion layout</p>
+        </div>
+        <button class="chip" onclick="showToast('Sort interaction demo')">Sort: Best Selling</button>
+      </div>
+
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <aside class="drawer">
+    <div class="drawer-head">
+      <p class="drawer-title">Bag <span id="count">(0)</span></p>
+      <span class="mini" id="stock">Live stock synced</span>
+    </div>
+    <div class="cart-list" id="cart"></div>
+    <div class="total"><span>Subtotal</span><span id="total">₹0</span></div>
+    <button class="btn primary" style="width:100%;" onclick="showToast('Checkout screen mock')">Proceed to Checkout</button>
+  </aside>
+
+  <div class="toast" id="toast">Added to bag</div>
+
+  <script>
+    const products = [
+      { id: 1, name: 'Relaxed Utility Shirt', price: 1799, mrp: 2499, tag: 'Bestseller', tone: 'Sand' },
+      { id: 2, name: 'Structured Overshirt', price: 2299, mrp: 2999, tag: 'New', tone: 'Olive' },
+      { id: 3, name: 'Linen Blend Trouser', price: 1999, mrp: 2699, tag: 'Hot', tone: 'Stone' },
+      { id: 4, name: 'AirFit Polo Tee', price: 1299, mrp: 1799, tag: 'Core', tone: 'Navy' },
+      { id: 5, name: 'Street Cargo Pant', price: 2399, mrp: 3199, tag: 'Bestseller', tone: 'Graphite' },
+      { id: 6, name: 'Cuban Collar Shirt', price: 1499, mrp: 1999, tag: 'New', tone: 'Ivory' }
+    ];
+
+    const cart = [];
+    const grid = document.getElementById('grid');
+    const cartEl = document.getElementById('cart');
+
+    function inr(v) { return '₹' + v.toLocaleString('en-IN'); }
+
+    function renderProducts() {
+      grid.innerHTML = products.map((p) => `
+        <article class="card">
+          <div class="thumb">${p.tone} Edit</div>
+          <div class="meta">
+            <p class="name">${p.name}</p>
+            <div class="row">
+              <p class="price">${inr(p.price)} <span class="strike">${inr(p.mrp)}</span></p>
+              <span class="badge">${p.tag}</span>
+            </div>
+            <div class="actions">
+              <button class="btn" onclick="quickView(${p.id})">Quick View</button>
+              <button class="btn primary" onclick="addToCart(${p.id})">Add to Bag</button>
+            </div>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    function addToCart(id) {
+      const p = products.find((item) => item.id === id);
+      if (!p) return;
+      cart.push(p);
+      renderCart();
+      showToast(p.name + ' added');
+    }
+
+    function quickView(id) {
+      const p = products.find((item) => item.id === id);
+      if (!p) return;
+      showToast('Quick view: ' + p.name + ' • Sizes S M L XL');
+    }
+
+    function renderCart() {
+      document.getElementById('count').textContent = '(' + cart.length + ')';
+      if (!cart.length) {
+        cartEl.innerHTML = '<p class="mini">Your bag is empty. Add a product to preview checkout flow.</p>';
+        document.getElementById('total').textContent = '₹0';
+        return;
+      }
+      cartEl.innerHTML = cart.map((p, idx) => `
+        <div class="cart-item">
+          <span>${p.name}</span>
+          <span>${inr(p.price)}</span>
+        </div>
+      `).join('');
+      const sum = cart.reduce((a, b) => a + b.price, 0);
+      document.getElementById('total').textContent = inr(sum);
+    }
+
+    let t;
+    function showToast(text) {
+      const el = document.getElementById('toast');
+      el.textContent = text;
+      el.style.display = 'block';
+      clearTimeout(t);
+      t = setTimeout(() => { el.style.display = 'none'; }, 2200);
+    }
+
+    function scrollProducts() {
+      document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    document.getElementById('price').addEventListener('input', (e) => {
+      document.getElementById('priceVal').textContent = inr(Number(e.target.value));
+    });
+
+    renderProducts();
+    renderCart();
+  </script>
+</body>
+</html>

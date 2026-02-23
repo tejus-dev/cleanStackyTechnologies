@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>E-commerce Admin Dashboard Demo</title>
+  <style>
+    :root {
+      --bg: #f4f6fa;
+      --card: #ffffff;
+      --ink: #101828;
+      --muted: #667085;
+      --line: #e4e7ec;
+      --accent: #175cd3;
+      --ok: #067647;
+      --warn: #b54708;
+      --danger: #b42318;
+      --shadow: 0 16px 34px rgba(16,24,40,.08);
+      --radius: 14px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family:"Inter","Segoe UI",sans-serif;
+      color:var(--ink);
+      background:var(--bg);
+      min-height:100vh;
+    }
+
+    .top{
+      position: sticky;
+      top: 0;
+      z-index: 25;
+      background: rgba(244,246,250,.92);
+      backdrop-filter: blur(8px);
+      border-bottom:1px solid var(--line);
+    }
+
+    .top-inner{
+      max-width:1260px;
+      margin:0 auto;
+      padding:14px 18px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+    }
+
+    .brand{font-size:14px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+
+    .chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 12px;font-size:12px;cursor:pointer}
+    .chip.primary{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:600}
+
+    .layout{
+      max-width:1260px;
+      margin:0 auto;
+      padding:16px 18px 26px;
+      display:grid;
+      grid-template-columns: 240px 1fr;
+      gap:14px;
+    }
+
+    .side{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:14px;
+      height: fit-content;
+      position: sticky;
+      top: 74px;
+    }
+
+    .nav-link{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:10px 12px;
+      border-radius:10px;
+      color:#344054;
+      text-decoration:none;
+      font-size:13px;
+      margin-bottom:6px;
+      border:1px solid transparent;
+    }
+
+    .nav-link.active{background:#eff4ff;color:#1d4ed8;border-color:#d3e0ff;font-weight:700}
+    .nav-link:hover{background:#f9fafb;border-color:#eef1f5}
+
+    .content{display:grid;gap:12px}
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:16px;
+    }
+
+    .hero-title{font-size:24px;font-weight:800;letter-spacing:-.02em;margin-bottom:4px}
+    .hero-sub{font-size:13px;color:var(--muted)}
+
+    .kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+    .kpi{border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff}
+    .kpi-label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:8px}
+    .kpi-val{font-size:28px;font-weight:800;letter-spacing:-.02em}
+    .kpi-note{font-size:12px;margin-top:4px}
+    .up{color:var(--ok)} .warn{color:var(--warn)} .down{color:var(--danger)}
+
+    .two{display:grid;grid-template-columns:1.2fr 1fr;gap:12px}
+
+    .section-title{font-size:14px;font-weight:700;margin-bottom:10px}
+    .bars{display:flex;align-items:flex-end;gap:10px;height:140px;padding-top:14px}
+    .bar{flex:1;background:linear-gradient(180deg,#3b82f6,#1d4ed8);border-radius:8px 8px 0 0;position:relative}
+    .bar.dim{background:linear-gradient(180deg,#a7c4fb,#7ea9f8)}
+    .bar span{position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);font-size:10px;color:var(--muted)}
+
+    .legend{display:grid;gap:10px}
+    .legend-row{display:grid;grid-template-columns:100px 1fr 58px;gap:10px;align-items:center}
+    .track{height:12px;border-radius:999px;background:#eef2f7;overflow:hidden}
+    .fill{height:100%;border-radius:999px}
+
+    .orders table{width:100%;border-collapse:collapse;font-size:13px}
+    .orders th{text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);padding:8px;border-bottom:1px solid var(--line)}
+    .orders td{padding:10px 8px;border-bottom:1px solid #f0f2f5}
+
+    .tag{display:inline-flex;align-items:center;gap:5px;padding:4px 8px;border-radius:999px;font-size:11px;border:1px solid}
+    .tag.ok{color:var(--ok);background:#ecfdf3;border-color:#abefc6}
+    .tag.warn{color:var(--warn);background:#fffaeb;border-color:#fedf89}
+    .tag.danger{color:var(--danger);background:#fef3f2;border-color:#fecdca}
+
+    .footer-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:10px}
+
+    .toast{
+      position:fixed;
+      right:16px;
+      bottom:16px;
+      background:#fff;
+      border:1px solid var(--line);
+      border-left:3px solid var(--accent);
+      border-radius:10px;
+      box-shadow:var(--shadow);
+      padding:10px 12px;
+      font-size:12px;
+      display:none;
+      z-index:40;
+    }
+
+    @media (max-width: 1024px){
+      .layout{grid-template-columns:1fr}
+      .side{position:static}
+      .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .two{grid-template-columns:1fr}
+    }
+
+    @media (max-width: 640px){
+      .kpis{grid-template-columns:1fr}
+      .top-inner{padding:12px}
+      .layout{padding:10px 12px 22px}
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="top-inner">
+      <div class="brand">Urban Thread Admin</div>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <button class="chip" onclick="toast('Filter menu demo')">Filters</button>
+        <button class="chip primary" onclick="toast('Export started')">Export Report</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="layout">
+    <aside class="side">
+      <a class="nav-link active" href="#">Overview <strong>•</strong></a>
+      <a class="nav-link" href="#" onclick="toast('Orders module demo')">Orders <strong>23</strong></a>
+      <a class="nav-link" href="#" onclick="toast('Products module demo')">Products <strong>142</strong></a>
+      <a class="nav-link" href="#" onclick="toast('Inventory module demo')">Inventory <strong>7 low</strong></a>
+      <a class="nav-link" href="#" onclick="toast('Campaigns module demo')">Campaigns <strong>4 live</strong></a>
+      <a class="nav-link" href="#" onclick="toast('Support module demo')">Support <strong>12</strong></a>
+    </aside>
+
+    <main class="content">
+      <article class="card">
+        <h1 class="hero-title">Sales Control Center</h1>
+        <p class="hero-sub">Live dashboard for conversion, AOV, fulfillment velocity and return risk.</p>
+      </article>
+
+      <section class="kpis">
+        <article class="kpi">
+          <p class="kpi-label">Today Revenue</p>
+          <p class="kpi-val">₹2.84L</p>
+          <p class="kpi-note up">↑ 14.2% vs yesterday</p>
+        </article>
+        <article class="kpi">
+          <p class="kpi-label">Orders</p>
+          <p class="kpi-val">423</p>
+          <p class="kpi-note up">↑ 8.6% conversion</p>
+        </article>
+        <article class="kpi">
+          <p class="kpi-label">Return Risk</p>
+          <p class="kpi-val">6.8%</p>
+          <p class="kpi-note warn">Size mismatch trend</p>
+        </article>
+        <article class="kpi">
+          <p class="kpi-label">Avg Fulfillment</p>
+          <p class="kpi-val">7h</p>
+          <p class="kpi-note down">Warehouse 2 delayed</p>
+        </article>
+      </section>
+
+      <section class="two">
+        <article class="card">
+          <p class="section-title">Weekly Sales</p>
+          <div class="bars">
+            <div class="bar" style="height:54%"><span>Mon</span></div>
+            <div class="bar" style="height:62%"><span>Tue</span></div>
+            <div class="bar" style="height:48%"><span>Wed</span></div>
+            <div class="bar" style="height:74%"><span>Thu</span></div>
+            <div class="bar" style="height:67%"><span>Fri</span></div>
+            <div class="bar dim" style="height:39%"><span>Sat</span></div>
+            <div class="bar dim" style="height:28%"><span>Sun</span></div>
+          </div>
+        </article>
+        <article class="card">
+          <p class="section-title">Funnel</p>
+          <div class="legend">
+            <div class="legend-row"><span>Sessions</span><div class="track"><div class="fill" style="width:100%;background:#dbeafe"></div></div><strong>18.2k</strong></div>
+            <div class="legend-row"><span>Product View</span><div class="track"><div class="fill" style="width:71%;background:#93c5fd"></div></div><strong>12.9k</strong></div>
+            <div class="legend-row"><span>Add to Cart</span><div class="track"><div class="fill" style="width:33%;background:#60a5fa"></div></div><strong>6.0k</strong></div>
+            <div class="legend-row"><span>Checkout</span><div class="track"><div class="fill" style="width:24%;background:#2563eb"></div></div><strong>4.4k</strong></div>
+            <div class="legend-row"><span>Paid</span><div class="track"><div class="fill" style="width:18%;background:#1d4ed8"></div></div><strong>3.3k</strong></div>
+          </div>
+        </article>
+      </section>
+
+      <article class="card orders">
+        <p class="section-title">Priority Orders</p>
+        <table>
+          <thead>
+            <tr><th>Order</th><th>Customer</th><th>City</th><th>Value</th><th>Status</th><th>Action</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>#UT-23018</td><td>Rahul Menon</td><td>Bengaluru</td><td>₹4,299</td><td><span class="tag warn">Packing</span></td><td><button class="chip" onclick="toast('Marked as dispatched')">Dispatch</button></td></tr>
+            <tr><td>#UT-23017</td><td>Ananya Das</td><td>Mumbai</td><td>₹2,199</td><td><span class="tag ok">Shipped</span></td><td><button class="chip" onclick="toast('Tracking shared')">Share Tracking</button></td></tr>
+            <tr><td>#UT-23016</td><td>Imran Khan</td><td>Hyderabad</td><td>₹5,749</td><td><span class="tag danger">Payment Risk</span></td><td><button class="chip" onclick="toast('Flag sent to finance')">Review</button></td></tr>
+            <tr><td>#UT-23015</td><td>Meera Nair</td><td>Chennai</td><td>₹1,899</td><td><span class="tag ok">Delivered</span></td><td><button class="chip" onclick="toast('Feedback request sent')">Nudge</button></td></tr>
+          </tbody>
+        </table>
+
+        <div class="footer-actions">
+          <button class="chip" onclick="toast('Bulk update queued')">Bulk Update</button>
+          <button class="chip primary" onclick="toast('Sync started with warehouse API')">Sync Warehouse</button>
+        </div>
+      </article>
+    </main>
+  </section>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    let t;
+    function toast(msg){
+      const el = document.getElementById('toast');
+      el.textContent = msg;
+      el.style.display = 'block';
+      clearTimeout(t);
+      t = setTimeout(()=>{ el.style.display='none'; }, 2200);
+    }
+  </script>
+</body>
+</html>

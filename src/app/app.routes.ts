@@ -1,6 +1,8 @@
 import { Routes } from '@angular/router';
 import { CalculatorComponent } from './pages/calculator/calculator.component';
 import { DemoComponent } from './pages/demo/demo.component';
+import { EcommerceAdminDemoComponent } from './pages/ecommerce-admin-demo/ecommerce-admin-demo.component';
+import { EcommerceDemoComponent } from './pages/ecommerce-demo/ecommerce-demo.component';
 import { SchoolDemoComponent } from './pages/school-demo/school-demo.component';
 
 export const routes: Routes = [
@@ -183,6 +185,8 @@ export const routes: Routes = [
   { path: 'demo', component: DemoComponent },
   { path: 'demo/calculator', component: CalculatorComponent },
   { path: 'demo/school', component: SchoolDemoComponent },
+  { path: 'demo/ecommerce', component: EcommerceDemoComponent },
+  { path: 'demo/ecommerce-admin', component: EcommerceAdminDemoComponent },
   {
     path: '**',
     redirectTo: '',
