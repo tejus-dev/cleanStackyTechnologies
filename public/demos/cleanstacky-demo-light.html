@@ -8,21 +8,105 @@
 <meta name="robots" content="noindex">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+:root {
+  --bg: #f7f6f2;
+  --bg2: #f2f1ec;
+  --white: #ffffff;
+  --surface2: #f4f3ef;
+  --border: #e2e0d8;
+  --border2: #d0cec4;
+  --ink: #1a1916;
+  --ink2: #3d3b35;
+  --ink3: #6b6860;
+  --ink4: #9e9b94;
+  --accent: #1a5c38;
+  --accent-light: #e8f5ee;
+  --accent-mid: #2d8a57;
+  --amber: #b45309;
+  --amber-bg: #fef3c7;
+  --red: #b91c1c;
+  --red-bg: #fee2e2;
+  --blue: #1d4ed8;
+  --blue-bg: #dbeafe;
+  --radius: 8px;
+  --radius-lg: 14px;
+  --radius-xl: 16px;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow: 0 4px 14px rgba(0, 0, 0, 0.07);
+  --shadow-lg: 0 12px 36px rgba(0, 0, 0, 0.12);
+  --shadow-xl: 0 18px 50px rgba(0, 0, 0, 0.14);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  min-height: 100%;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: linear-gradient(180deg, #f7f6f2 0%, #f3f2ed 100%);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
 /* ===========================
    PAGE HERO
 =========================== */
 
+.demo-intro {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 18px 22px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow-sm);
+}
 
+.demo-intro-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  font-family: 'DM Mono', monospace;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
 
+.demo-intro-eyebrow::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
 
+.demo-intro-title {
+  font-family: 'Fraunces', serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.15;
+}
 
+.demo-intro-title em {
+  color: var(--accent);
+  font-style: italic;
+}
 
-
-
-
-
-
-
+.demo-intro-sub {
+  font-size: 13px;
+  color: var(--ink3);
+  margin-top: 8px;
+  line-height: 1.55;
+  max-width: 760px;
+}
 /* ===========================
    ROLE TABS
 =========================== */
@@ -748,11 +832,9 @@
    RESPONSIVE
 =========================== */
 @media (max-width: 900px) {
-  
-  
-  
   .role-section { padding: 0 20px; }
   .demo-wrap { padding: 28px 20px 60px; }
+  .demo-intro-title { font-size: 24px; }
   .stat-grid-4 { grid-template-columns: repeat(2, 1fr); }
   .charts-grid { grid-template-columns: 1fr; }
   .staff-grid { grid-template-columns: repeat(3,1fr); }
@@ -765,6 +847,12 @@
   .tbl-th:nth-child(5) { display: none; }
 }
 @media (max-width: 600px) {
+  .demo-intro {
+    padding: 14px 16px;
+    margin-bottom: 16px;
+  }
+  .demo-intro-title { font-size: 22px; }
+  .demo-intro-sub { font-size: 12px; }
   .stat-grid-4 { grid-template-columns: 1fr 1fr; }
   .stat-grid-3 { grid-template-columns: 1fr 1fr; }
   .staff-grid { grid-template-columns: 1fr 1fr; }
@@ -792,6 +880,14 @@
 
 <!-- ========================= DEMO CONTENT ========================= -->
 <div class="demo-wrap">
+  <section class="demo-intro">
+    <div class="demo-intro-eyebrow">Interactive Demo · Diagnostic Centre System</div>
+    <h1 class="demo-intro-title">See your clinic run on <em>one system</em></h1>
+    <p class="demo-intro-sub">
+      Switch between receptionist, phlebotomist, and owner views to experience bookings, home collections,
+      reminders, and analytics in one connected workflow.
+    </p>
+  </section>
 
   <!-- ============== RECEPTIONIST SCREEN ============== -->
   <div class="demo-screen active" id="screen-receptionist">
