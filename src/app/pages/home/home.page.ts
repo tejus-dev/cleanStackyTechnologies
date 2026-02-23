@@ -91,10 +91,14 @@ export class HomePage implements OnInit {
 
   ngOnInit(): void {
     this.seo.setPageMeta({
-      title: 'School ERP & Clinic Management Software India | CleanStacky Technologies',
+      title: 'CleanStacky Technologies | Business Systems for Indian SMBs',
       description:
-        'ERP, CRM and WhatsApp automation for schools, clinics and SMBs in India. Book a tailored demo with CleanStacky.',
-      ogUrl: 'https://cleanstacky.com/',
+        'CleanStacky builds CRM, ERP, and WhatsApp automation systems for diagnostic centres, schools, distributors, textile businesses, and retailers across India. Replace spreadsheets with one clean system.',
+      keywords:
+        'business management software India, CRM for SMB India, WhatsApp automation software, ERP for small business India, business system Bangalore, diagnostic centre software, school ERP India, distributor CRM India',
+      ogTitle: 'CleanStacky Technologies | Business Systems for Indian SMBs',
+      ogDescription: 'CRM, ERP & WhatsApp automation for Indian small businesses.',
+      ogUrl: 'https://cleanstacky.com',
     });
   }
 

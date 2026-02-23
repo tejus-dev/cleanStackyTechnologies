@@ -1,8 +1,13 @@
 import { Routes } from '@angular/router';
 import { CalculatorComponent } from './pages/calculator/calculator.component';
+import { ContactComponent } from './pages/contact/contact.component';
 import { DemoComponent } from './pages/demo/demo.component';
+import { DistributorDemoComponent } from './pages/distributor-demo/distributor-demo.component';
+import { CrmDemoComponent } from './pages/crm-demo/crm-demo.component';
+import { TextileDemoComponent } from './pages/textile-demo/textile-demo.component';
 import { EcommerceAdminDemoComponent } from './pages/ecommerce-admin-demo/ecommerce-admin-demo.component';
 import { EcommerceDemoComponent } from './pages/ecommerce-demo/ecommerce-demo.component';
+import { B2cDemoComponent } from './pages/b2c-demo/b2c-demo.component';
 import { SchoolDemoComponent } from './pages/school-demo/school-demo.component';
 
 export const routes: Routes = [
@@ -174,7 +179,7 @@ export const routes: Routes = [
   },
   {
     path: 'contact',
-    loadComponent: () => import('./pages/contact/contact.page').then((m) => m.ContactPage),
+    component: ContactComponent,
     data: {
       title: 'Book a Demo | CleanStacky Technologies',
       description: 'Contact the CleanStacky team by email for ERP, CRM and workflow automation.',
@@ -187,6 +192,10 @@ export const routes: Routes = [
   { path: 'demo/school', component: SchoolDemoComponent },
   { path: 'demo/ecommerce', component: EcommerceDemoComponent },
   { path: 'demo/ecommerce-admin', component: EcommerceAdminDemoComponent },
+  { path: 'demo/distributor', component: DistributorDemoComponent },
+  { path: 'demo/textile', component: TextileDemoComponent },
+  { path: 'demo/crm', component: CrmDemoComponent },
+  { path: 'demo/b2c', component: B2cDemoComponent },
   {
     path: '**',
     redirectTo: '',

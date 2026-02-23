@@ -1,0 +1,199 @@
+<section class="contact-page">
+  <div class="container">
+    <header class="hero">
+      <p class="eyebrow"><span class="dot" aria-hidden="true"></span>Get Started</p>
+      <h1>Let's build your system</h1>
+      <p class="hero-sub">
+        Tell us about your business. We'll respond on WhatsApp within 2 hours with a tailored
+        demo and pricing — no spam, ever.
+      </p>
+      <div class="trust-strip" aria-label="Trusted by clients">
+        <span class="trust-badge">✓ CF Andrews School</span>
+        <span class="trust-badge">✓ Astra Build Int</span>
+        <span class="trust-badge">✓ Yes Farms</span>
+        <span class="trust-badge">✓ Sathya Bhama Gopal School</span>
+        <span class="trust-badge">✓ Chaara Interior</span>
+      </div>
+    </header>
+
+    <div class="layout" *ngIf="!showSuccess(); else successState">
+      <section class="form-card" aria-labelledby="lead-form-title">
+        <h2 id="lead-form-title" class="visually-hidden">Lead qualification form</h2>
+
+        <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+          <div class="field-card" [class.is-invalid]="controlInvalid('name')">
+            <label class="field-label" for="name">Your Name</label>
+            <input id="name" type="text" formControlName="name" placeholder="e.g. Suresh Kumar" />
+            <p class="field-error-text" *ngIf="controlInvalid('name')">Please enter your name</p>
+          </div>
+
+          <div class="field-card" [class.is-invalid]="controlInvalid('phone')">
+            <label class="field-label" for="phone">WhatsApp Number</label>
+            <div class="phone-wrap">
+              <span class="phone-prefix">+91</span>
+              <input
+                id="phone"
+                type="tel"
+                formControlName="phone"
+                maxlength="10"
+                inputmode="numeric"
+                placeholder="98765 43210"
+              />
+            </div>
+            <p class="field-help">We'll send your demo link here</p>
+            <p class="field-error-text" *ngIf="controlInvalid('phone')">
+              Enter a valid 10-digit WhatsApp number
+            </p>
+          </div>
+
+          <div class="field-card" [class.is-invalid]="controlInvalid('businessType')">
+            <label class="field-label" for="businessType">Type of Business</label>
+            <select id="businessType" formControlName="businessType">
+              <option value="">-- Select your business type --</option>
+              <option *ngFor="let option of businessOptions" [value]="option.value">{{ option.label }}</option>
+            </select>
+            <p class="context-line" *ngIf="businessContext()">{{ businessContext() }}</p>
+            <p class="field-error-text" *ngIf="controlInvalid('businessType')">
+              Please choose your business type
+            </p>
+          </div>
+
+          <div class="field-card selector-row" [class.is-invalid]="teamSizeError()">
+            <p class="field-label">Team Size</p>
+            <div class="pill-grid">
+              <button
+                type="button"
+                class="pill"
+                *ngFor="let size of teamSizes"
+                [class.is-selected]="selectedTeamSize() === size"
+                (click)="selectTeamSize(size)"
+              >
+                {{ size }}
+              </button>
+            </div>
+            <p class="field-error-text" *ngIf="teamSizeError()">Please select your team size</p>
+          </div>
+
+          <div class="field-card chips-wrap" [class.is-invalid]="challengesError()">
+            <div class="chips-head">
+              <p class="field-label">Biggest Challenge Right Now</p>
+              <p class="chips-help">Pick up to 2</p>
+            </div>
+            <div class="chip-grid">
+              <button
+                type="button"
+                class="chip"
+                *ngFor="let challenge of challengeOptions"
+                [class.is-selected]="challengeSelected(challenge)"
+                (click)="toggleChallenge(challenge)"
+              >
+                {{ challenge }}
+              </button>
+            </div>
+            <p class="field-error-text" *ngIf="challengesError()">Please pick at least one challenge</p>
+            <p class="field-info" *ngIf="challengeLimitMessage()">{{ challengeLimitMessage() }}</p>
+          </div>
+
+          <div class="field-card">
+            <label class="field-label" for="message">Anything else? (optional)</label>
+            <textarea
+              id="message"
+              formControlName="message"
+              rows="3"
+              placeholder="Tell us more about your current setup or specific needs..."
+            ></textarea>
+          </div>
+
+          <button type="submit" class="wa-submit">Send on WhatsApp →</button>
+          <p class="privacy">🔒 Your number is only used to contact you about CleanStacky. No spam, ever.</p>
+        </form>
+      </section>
+
+      <aside class="sidebar" aria-label="Trust and process details">
+        <article class="side-card">
+          <p class="side-icon">⚡</p>
+          <h3>2-hour WhatsApp response</h3>
+          <p>
+            Our team responds on WhatsApp within 2 hours on weekdays (10am–7pm IST). You'll get a
+            personalised demo link for your industry.
+          </p>
+        </article>
+
+        <article class="side-card">
+          <h3>What happens next</h3>
+          <ol class="steps">
+            <li>
+              <span class="step-num">1</span>
+              <div>
+                <p class="step-title">You send this form</p>
+                <p>We get it instantly on WhatsApp</p>
+              </div>
+            </li>
+            <li>
+              <span class="step-num">2</span>
+              <div>
+                <p class="step-title">We send a live demo link</p>
+                <p>Matched to your business type</p>
+              </div>
+            </li>
+            <li>
+              <span class="step-num">3</span>
+              <div>
+                <p class="step-title">We schedule a 30-min call</p>
+                <p>To show you the full system</p>
+              </div>
+            </li>
+          </ol>
+        </article>
+
+        <article class="side-card testimonial">
+          <p class="quote">
+            "CleanStacky replaced 3 different tools we were using. Our team now runs everything from
+            one place."
+          </p>
+          <p class="author">— Admin Team, CF Andrews School, Bangalore</p>
+        </article>
+
+        <article class="side-card">
+          <h3>Prefer to reach out directly?</h3>
+          <a class="wa-direct" href="https://wa.me/918951757955" target="_blank" rel="noopener noreferrer">
+            💬 Chat on WhatsApp
+          </a>
+          <p class="direct-mail">info@cleanstacky.com</p>
+        </article>
+
+        <article class="side-card">
+          <h3>Or explore a demo first</h3>
+          <div class="shortcut-grid">
+            <a class="shortcut" href="/demo">Diagnostic Centre Demo</a>
+            <a class="shortcut" href="/demo/school">School ERP Demo</a>
+            <a class="shortcut" href="/demo/distributor">Distributor CRM Demo</a>
+            <a class="shortcut" href="/demo/b2c">B2C Business Demo</a>
+          </div>
+        </article>
+      </aside>
+    </div>
+
+    <ng-template #successState>
+      <section class="success-card">
+        <p class="success-icon">✅</p>
+        <h2>We'll be in touch shortly!</h2>
+        <p class="success-copy">
+          Check WhatsApp — we've received your message and will respond within 2 hours with a demo
+          tailored to your business.
+        </p>
+
+        <div class="summary" *ngIf="submissionSummary() as summary">
+          <p><span>Business:</span> {{ summary.business }}</p>
+          <p><span>Team Size:</span> {{ summary.teamSize }}</p>
+          <p><span>Challenges:</span> {{ summary.challenges.join(', ') }}</p>
+        </div>
+
+        <div class="success-actions">
+          <a class="success-btn primary" href="/demo">View Live Demo →</a>
+          <a class="success-btn ghost" href="/">Back to Home</a>
+        </div>
+      </section>
+    </ng-template>
+  </div>
+</section>

@@ -20,6 +20,8 @@ export class CaseStudiesPage implements OnInit {
       title: 'Case Studies — Delivered Results | CleanStacky Technologies',
       description:
         'Real outcomes from CleanStacky deployments: 40% faster fee cycles, 35% fewer no-shows, 50% faster lead response.',
+      keywords:
+        'ERP case studies India, CRM implementation results India, school clinic software success stories',
       ogUrl: 'https://cleanstacky.com/case-studies',
     });
   }

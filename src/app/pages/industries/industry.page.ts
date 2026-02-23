@@ -121,40 +121,52 @@ export class IndustryPage implements OnInit {
       const slug = params.get('industry') || '';
       this.selectedSlug = slug;
 
-      const industryMeta: Record<string, { title: string; description: string; ogUrl: string }> = {
+      const industryMeta: Record<string, { title: string; description: string; ogUrl: string; keywords?: string }> = {
         schools: {
           title: 'School ERP Software India — Admissions, Fees & Attendance | CleanStacky',
           description:
             'Manage admissions, fees, attendance and reporting in one system. Built for Indian schools by CleanStacky Technologies.',
+          keywords:
+            'school ERP software India, school fee management software, admissions and attendance software India',
           ogUrl: 'https://cleanstacky.com/industries/schools',
         },
         clinics: {
           title: 'Clinic Management Software India — Appointments & Billing | CleanStacky',
           description:
             "Streamline clinic appointments, billing, reminders and patient history with CleanStacky's staff-friendly clinic system.",
+          keywords:
+            'clinic management software India, appointment billing reminders software, clinic CRM India',
           ogUrl: 'https://cleanstacky.com/industries/clinics',
         },
         'diagnostics-centres': {
           title: 'Diagnostics Centre Management Software | CleanStacky Technologies',
           description:
             'Automate appointment booking, reminders and revenue tracking for diagnostics centres in India.',
+          keywords:
+            'diagnostics centre software India, pathology booking and billing software, lab operations system India',
           ogUrl: 'https://cleanstacky.com/industries/diagnostics-centres',
         },
         'textile-business': {
           title: 'Textile Business ERP & CRM India | CleanStacky Technologies',
           description: 'Structured CRM, billing, and inventory systems for textile businesses in India.',
+          keywords:
+            'textile business ERP India, textile CRM software, garment order inventory software India',
           ogUrl: 'https://cleanstacky.com/industries/textile-business',
         },
         'b2b-business': {
           title: 'B2B Business CRM & Operations Software India | CleanStacky',
           description:
             'CRM, invoicing, and support dashboards for B2B businesses. Built and managed by CleanStacky Technologies.',
+          keywords:
+            'B2B CRM software India, invoicing and pipeline software India, B2B operations dashboards',
           ogUrl: 'https://cleanstacky.com/industries/b2b-business',
         },
         'b2c-business': {
           title: 'B2C Business Automation & CRM India | CleanStacky Technologies',
           description:
             'WhatsApp automation, CRM, and operations systems for B2C businesses in India.',
+          keywords:
+            'B2C CRM software India, retail automation software India, WhatsApp automation B2C businesses',
           ogUrl: 'https://cleanstacky.com/industries/b2c-business',
         },
       };
@@ -164,6 +176,8 @@ export class IndustryPage implements OnInit {
           title: 'Industries We Serve | CleanStacky Technologies',
           description:
             'CleanStacky builds business systems for schools, clinics, diagnostics centres, textile businesses, B2B and B2C companies in India.',
+          keywords:
+            'industry software solutions India, school clinic diagnostics CRM ERP India, B2B B2C business systems',
           ogUrl: 'https://cleanstacky.com/industries',
         },
       );

@@ -18,6 +18,8 @@ export class AboutPage implements OnInit {
       title: 'About CleanStacky Technologies | Business Systems & Product Engineering',
       description:
         'CleanStacky Technologies is a Bangalore-based business systems company building ERP, CRM, and automation for schools, clinics, and SMBs in India.',
+      keywords:
+        'about CleanStacky Technologies, Bangalore software company, ERP CRM automation company India',
       ogUrl: 'https://cleanstacky.com/about',
     });
   }

@@ -19,6 +19,8 @@ export class PricingPage implements OnInit {
       title: 'Pricing — ERP & CRM Systems India | CleanStacky Technologies',
       description:
         'Transparent pricing for CleanStacky business systems. Starter from ₹30k setup, ₹5k/month. Growth and Enterprise plans available.',
+      keywords:
+        'ERP pricing India, CRM pricing India, SMB software pricing India, business automation plans',
       ogUrl: 'https://cleanstacky.com/pricing',
     });
   }

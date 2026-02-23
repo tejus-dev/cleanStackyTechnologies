@@ -6,8 +6,11 @@ interface SeoConfig {
   title: string;
   description: string;
   ogUrl: string;
+  keywords?: string;
   ogTitle?: string;
   ogDescription?: string;
+  ogType?: string;
+  robots?: string;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -19,12 +22,19 @@ export class SeoService {
   setPageMeta(config: SeoConfig): void {
     const ogTitle = config.ogTitle ?? config.title;
     const ogDescription = config.ogDescription ?? config.description;
+    const ogType = config.ogType ?? 'website';
+    const robots = config.robots ?? 'index, follow';
 
     this.title.setTitle(config.title);
     this.meta.updateTag({ name: 'description', content: config.description });
+    if (config.keywords) {
+      this.meta.updateTag({ name: 'keywords', content: config.keywords });
+    }
+    this.meta.updateTag({ name: 'robots', content: robots });
     this.meta.updateTag({ property: 'og:title', content: ogTitle });
     this.meta.updateTag({ property: 'og:description', content: ogDescription });
     this.meta.updateTag({ property: 'og:url', content: config.ogUrl });
+    this.meta.updateTag({ property: 'og:type', content: ogType });
     this.meta.updateTag({ name: 'twitter:title', content: ogTitle });
     this.meta.updateTag({ name: 'twitter:description', content: ogDescription });
   }

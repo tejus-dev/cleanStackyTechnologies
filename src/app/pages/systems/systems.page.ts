@@ -235,6 +235,8 @@ export class SystemsPage implements OnInit {
       title: 'Business Systems — ERP, CRM & Automation | CleanStacky Technologies',
       description:
         'Productized ERP, CRM, clinic management, and WhatsApp automation systems built for Indian schools, clinics, and SMBs.',
+      keywords:
+        'ERP software India, CRM software India, clinic management software India, school ERP India, WhatsApp automation business software, SMB operations software',
       ogUrl: 'https://cleanstacky.com/systems',
     });
 
