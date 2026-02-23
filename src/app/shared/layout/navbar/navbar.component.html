@@ -20,6 +20,7 @@
     </nav>
 
     <div class="site-nav__actions site-nav__actions--desktop">
+      <a routerLink="/demo" class="btn-demo-live">See Live Demo</a>
       <app-ui-button variant="primary" icon="arrow" (pressed)="openDemo()">Book a Demo</app-ui-button>
     </div>
 
@@ -40,6 +41,7 @@
         <a *ngFor="let link of navLinks" [routerLink]="link.href" routerLinkActive="is-active" (click)="closeMenu()">{{ link.label }}</a>
       </nav>
       <div class="site-nav__actions site-nav__actions--mobile">
+        <a routerLink="/demo" class="btn-demo-live" (click)="closeMenu()">See Live Demo</a>
         <app-ui-button variant="primary" icon="arrow" (pressed)="openDemo()">Book a Demo</app-ui-button>
       </div>
     </div>

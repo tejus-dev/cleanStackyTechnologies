@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>No-Show Cost Calculator | CleanStacky Technologies</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f7f6f2;
+  --white: #ffffff;
+  --border: #e2e0d8;
+  --border2: #d0cec4;
+  --ink: #1a1916;
+  --ink2: #3d3b35;
+  --ink3: #6b6860;
+  --ink4: #9e9b94;
+  --accent: #1a5c38;
+  --accent-light: #e8f5ee;
+  --accent-mid: #2d8a57;
+  --red: #b91c1c;
+  --red-bg: #fff1f1;
+  --red-border: #fca5a5;
+  --amber: #b45309;
+  --amber-bg: #fffbeb;
+  --shadow: 0 4px 16px rgba(0,0,0,0.07);
+  --shadow-lg: 0 12px 40px rgba(0,0,0,0.1);
+  --r: 10px;
+  --r-lg: 16px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+
+/* ---- MAIN LAYOUT ---- */
+.page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
+
+/* ---- HERO ---- */
+.hero {
+  text-align: center;
+  margin-bottom: 48px;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--red-bg);
+  border: 1px solid var(--red-border);
+  color: var(--red);
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 5px 14px;
+  border-radius: 100px;
+  margin-bottom: 20px;
+}
+.hero-badge::before { content:'₹'; font-weight: 700; }
+.hero-title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(30px, 5vw, 48px);
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+  margin-bottom: 14px;
+}
+.hero-title em { font-style: italic; color: var(--red); }
+.hero-sub {
+  font-size: 16px;
+  color: var(--ink3);
+  font-weight: 300;
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ---- CALCULATOR CARD ---- */
+.calc-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  margin-bottom: 28px;
+}
+.calc-header {
+  background: var(--ink);
+  padding: 20px 28px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.calc-header-icon {
+  width: 36px; height: 36px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+}
+.calc-header-title { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 600; color: white; }
+.calc-header-sub { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 2px; }
+
+.calc-body { padding: 28px; }
+
+/* sliders */
+.slider-group { margin-bottom: 28px; }
+.slider-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 10px;
+}
+.slider-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink2);
+}
+.slider-label span {
+  font-size: 11px;
+  color: var(--ink4);
+  font-weight: 300;
+  margin-left: 4px;
+}
+.slider-value {
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--accent);
+}
+.slider-value small {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  color: var(--ink3);
+  font-weight: 400;
+  margin-left: 3px;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+  border: 3px solid white;
+  box-shadow: 0 2px 8px rgba(26,92,56,0.35);
+  transition: transform 0.15s;
+}
+input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.15); }
+input[type=range]::-moz-range-thumb {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+  border: 3px solid white;
+  box-shadow: 0 2px 8px rgba(26,92,56,0.35);
+}
+.slider-ticks {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+}
+.slider-tick { font-size: 10px; font-family: 'DM Mono', monospace; color: var(--ink4); }
+
+.divider { height: 1px; background: var(--border); margin: 4px 0 28px; }
+
+/* ---- RESULT PANEL ---- */
+.result-panel {
+  background: var(--red-bg);
+  border: 1.5px solid var(--red-border);
+  border-radius: var(--r-lg);
+  padding: 0;
+  overflow: hidden;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+.result-panel-header {
+  background: var(--red);
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.result-panel-title {
+  font-size: 12px;
+  font-family: 'DM Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: white;
+  font-weight: 500;
+}
+.result-panel-body { padding: 24px; }
+
+.result-big {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.result-losing-label {
+  font-size: 13px;
+  color: var(--ink3);
+  margin-bottom: 6px;
+}
+.result-amount {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(42px, 8vw, 68px);
+  font-weight: 700;
+  color: var(--red);
+  line-height: 1;
+  letter-spacing: -2px;
+  transition: all 0.4s ease;
+}
+.result-period { font-size: 16px; color: var(--ink3); font-weight: 300; margin-top: 4px; }
+
+.result-breakdown {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.breakdown-card {
+  background: white;
+  border: 1px solid var(--red-border);
+  border-radius: var(--r);
+  padding: 14px;
+  text-align: center;
+}
+.breakdown-label { font-size: 10px; font-family: 'DM Mono', monospace; text-transform: uppercase; letter-spacing: 0.8px; color: var(--ink4); margin-bottom: 8px; }
+.breakdown-value { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 600; color: var(--ink); }
+.breakdown-value.red { color: var(--red); }
+.breakdown-value.amber { color: var(--amber); }
+.breakdown-sub { font-size: 11px; color: var(--ink4); margin-top: 3px; }
+
+.result-savings {
+  background: var(--accent-light);
+  border: 1px solid rgba(26,92,56,0.2);
+  border-radius: var(--r);
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.savings-icon { font-size: 24px; flex-shrink: 0; }
+.savings-text { flex: 1; }
+.savings-title { font-size: 13px; font-weight: 600; color: var(--accent); }
+.savings-sub { font-size: 12px; color: var(--ink3); margin-top: 3px; line-height: 1.5; }
+.savings-amount {
+  font-family: 'Fraunces', serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+/* ---- LEAD CAPTURE ---- */
+.lead-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  display: none;
+  animation: slideUp 0.4s ease;
+}
+.lead-card.visible { display: block; }
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.lead-card-header {
+  background: var(--accent);
+  padding: 22px 28px;
+}
+.lead-card-title { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 600; color: white; margin-bottom: 4px; }
+.lead-card-sub { font-size: 13px; color: rgba(255,255,255,0.65); }
+.lead-card-body { padding: 28px; }
+
+.lead-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--ink3);
+}
+.form-input {
+  background: var(--bg);
+  border: 1px solid var(--border2);
+  border-radius: var(--r);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  padding: 11px 14px;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  width: 100%;
+}
+.form-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(26,92,56,0.1); }
+.form-input::placeholder { color: var(--ink4); }
+
+.phone-wrap { position: relative; }
+.phone-prefix {
+  position: absolute;
+  left: 14px; top: 50%;
+  transform: translateY(-50%);
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  color: var(--ink3);
+}
+.phone-wrap .form-input { padding-left: 46px; }
+
+.submit-btn {
+  width: 100%;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  background: var(--accent);
+  color: white;
+  padding: 14px;
+  border-radius: var(--r);
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+.submit-btn:hover { background: #154d2e; transform: translateY(-1px); box-shadow: var(--shadow); }
+.submit-btn:active { transform: translateY(0); }
+
+.privacy-note {
+  text-align: center;
+  font-size: 11px;
+  color: var(--ink4);
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+/* ---- SUCCESS STATE ---- */
+.success-card {
+  background: var(--white);
+  border: 1px solid rgba(26,92,56,0.2);
+  border-radius: var(--r-lg);
+  padding: 40px 28px;
+  text-align: center;
+  display: none;
+  animation: slideUp 0.4s ease;
+}
+.success-card.visible { display: block; }
+.success-icon { font-size: 48px; margin-bottom: 16px; }
+.success-title { font-family: 'Fraunces', serif; font-size: 26px; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
+.success-sub { font-size: 14px; color: var(--ink3); line-height: 1.6; max-width: 400px; margin: 0 auto 24px; }
+.success-detail {
+  background: var(--accent-light);
+  border: 1px solid rgba(26,92,56,0.15);
+  border-radius: var(--r);
+  padding: 16px 20px;
+  margin: 0 auto 24px;
+  max-width: 380px;
+  text-align: left;
+}
+.success-row { display: flex; justify-content: space-between; font-size: 13px; padding: 5px 0; }
+.success-row:not(:last-child) { border-bottom: 1px solid rgba(26,92,56,0.1); }
+.s-key { color: var(--ink3); }
+.s-val { font-weight: 500; color: var(--ink); }
+.s-val.green { color: var(--accent); font-weight: 600; }
+
+.whatsapp-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #25d366;
+  color: white;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 12px 24px;
+  border-radius: var(--r);
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s;
+  text-decoration: none;
+}
+.whatsapp-btn:hover { background: #1da851; }
+
+/* ---- SOCIAL PROOF ---- */
+.proof-strip {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 14px;
+  margin-top: 28px;
+}
+.proof-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 16px 18px;
+  text-align: center;
+}
+.proof-num {
+  font-family: 'Fraunces', serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+.proof-label { font-size: 12px; color: var(--ink3); line-height: 1.4; }
+
+@media (max-width: 640px) {
+  .page { padding: 32px 16px 60px; }
+  .calc-body { padding: 20px; }
+  .lead-card-body { padding: 20px; }
+  .lead-form-row { grid-template-columns: 1fr; }
+  .result-breakdown { grid-template-columns: 1fr; }
+  .proof-strip { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="page" style="padding-top: 32px;">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-badge">Revenue Leak Detector</div>
+    <h1 class="hero-title">How much are no-shows<br><em>costing your clinic?</em></h1>
+    <p class="hero-sub">Move the sliders below. See your real number in seconds — then find out how to fix it.</p>
+  </div>
+
+  <!-- CALCULATOR -->
+  <div class="calc-card" id="calc-section">
+    <div class="calc-header">
+      <div class="calc-header-icon">🧮</div>
+      <div>
+        <div class="calc-header-title">Revenue Loss Calculator</div>
+        <div class="calc-header-sub">Adjust to match your clinic's numbers</div>
+      </div>
+    </div>
+    <div class="calc-body">
+
+      <!-- Slider 1 -->
+      <div class="slider-group">
+        <div class="slider-top">
+          <div class="slider-label">Appointments per day <span>(on average)</span></div>
+          <div class="slider-value" id="v-appts">25 <small>/ day</small></div>
+        </div>
+        <input type="range" id="s-appts" min="5" max="100" value="25" step="5" oninput="recalc()">
+        <div class="slider-ticks">
+          <span class="slider-tick">5</span>
+          <span class="slider-tick">25</span>
+          <span class="slider-tick">50</span>
+          <span class="slider-tick">75</span>
+          <span class="slider-tick">100</span>
+        </div>
+      </div>
+
+      <!-- Slider 2 -->
+      <div class="slider-group">
+        <div class="slider-top">
+          <div class="slider-label">No-show / cancellation rate <span>(current %)</span></div>
+          <div class="slider-value" id="v-rate">20 <small>%</small></div>
+        </div>
+        <input type="range" id="s-rate" min="5" max="60" value="20" step="1" oninput="recalc()">
+        <div class="slider-ticks">
+          <span class="slider-tick">5%</span>
+          <span class="slider-tick">20%</span>
+          <span class="slider-tick">40%</span>
+          <span class="slider-tick">60%</span>
+        </div>
+      </div>
+
+      <!-- Slider 3 -->
+      <div class="slider-group">
+        <div class="slider-top">
+          <div class="slider-label">Average billing per patient <span>(₹ per visit)</span></div>
+          <div class="slider-value" id="v-billing">₹800</div>
+        </div>
+        <input type="range" id="s-billing" min="100" max="5000" value="800" step="50" oninput="recalc()">
+        <div class="slider-ticks">
+          <span class="slider-tick">₹100</span>
+          <span class="slider-tick">₹800</span>
+          <span class="slider-tick">₹2000</span>
+          <span class="slider-tick">₹5000</span>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- RESULT PANEL -->
+      <div class="result-panel" id="result-panel">
+        <div class="result-panel-header">
+          <span>🔴</span>
+          <span class="result-panel-title">Your estimated revenue loss</span>
+        </div>
+        <div class="result-panel-body">
+          <div class="result-big">
+            <div class="result-losing-label">You are losing approximately</div>
+            <div class="result-amount" id="result-monthly">₹0</div>
+            <div class="result-period">every month</div>
+          </div>
+
+          <div class="result-breakdown">
+            <div class="breakdown-card">
+              <div class="breakdown-label">No-shows / day</div>
+              <div class="breakdown-value red" id="r-daily-noshows">5</div>
+              <div class="breakdown-sub">appointments lost</div>
+            </div>
+            <div class="breakdown-card">
+              <div class="breakdown-label">Lost / day</div>
+              <div class="breakdown-value amber" id="r-daily-loss">₹4,000</div>
+              <div class="breakdown-sub">in revenue</div>
+            </div>
+            <div class="breakdown-card">
+              <div class="breakdown-label">Lost / year</div>
+              <div class="breakdown-value red" id="r-yearly-loss">₹12L</div>
+              <div class="breakdown-sub">annually</div>
+            </div>
+          </div>
+
+          <div class="result-savings">
+            <div class="savings-icon">✅</div>
+            <div class="savings-text">
+              <div class="savings-title">With automated WhatsApp reminders</div>
+              <div class="savings-sub">CleanStacky reduces no-shows by 35%. You could recover <strong id="r-savings-text">₹1,40,000</strong> per month.</div>
+            </div>
+            <div class="savings-amount" id="r-savings">₹1.4L</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA inside calculator -->
+      <div style="text-align:center;padding-top:8px;">
+        <button onclick="showLeadForm()" style="font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;background:var(--accent);color:white;padding:13px 32px;border-radius:var(--r);border:none;cursor:pointer;transition:all 0.15s;" onmouseover="this.style.background='#154d2e'" onmouseout="this.style.background='var(--accent)'">
+          Get My Free Recovery Plan →
+        </button>
+        <div style="font-size:11px;color:var(--ink4);margin-top:8px;">Takes 30 seconds. No spam.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LEAD CAPTURE FORM -->
+  <div class="lead-card" id="lead-card">
+    <div class="lead-card-header">
+      <div class="lead-card-title">Get your personalised recovery plan</div>
+      <div class="lead-card-sub">We'll show you exactly how to recover <span id="lc-amount">₹0</span>/month — for your clinic size.</div>
+    </div>
+    <div class="lead-card-body">
+      <div class="lead-form-row">
+        <div class="form-group">
+          <label class="form-label">Your Name</label>
+          <input class="form-input" id="f-name" placeholder="e.g. Dr. Ramesh" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Clinic Name</label>
+          <input class="form-input" id="f-clinic" placeholder="e.g. City Diagnostics" />
+        </div>
+      </div>
+      <div class="lead-form-row">
+        <div class="form-group">
+          <label class="form-label">WhatsApp Number</label>
+          <div class="phone-wrap">
+            <span class="phone-prefix">+91</span>
+            <input class="form-input" id="f-phone" type="tel" maxlength="10" placeholder="98765 43210" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">City</label>
+          <input class="form-input" id="f-city" placeholder="e.g. Bangalore" />
+        </div>
+      </div>
+      <button class="submit-btn" onclick="submitLead()">
+        <span>Send My Recovery Plan on WhatsApp</span> <span>→</span>
+      </button>
+      <div class="privacy-note">🔒 Your number is only used to send you the plan. No spam, ever.</div>
+    </div>
+  </div>
+
+  <!-- SUCCESS STATE -->
+  <div class="success-card" id="success-card">
+    <div class="success-icon">🎉</div>
+    <div class="success-title">Your plan is on its way!</div>
+    <div class="success-sub">We've noted your clinic details. A CleanStacky specialist will reach out on WhatsApp within 24 hours with a tailored recovery plan.</div>
+
+    <div class="success-detail" id="success-detail">
+      <div class="success-row"><span class="s-key">Monthly Loss</span><span class="s-val red" id="sc-loss">—</span></div>
+      <div class="success-row"><span class="s-key">Recoverable (35%)</span><span class="s-val green" id="sc-save">—</span></div>
+      <div class="success-row"><span class="s-key">Clinic</span><span class="s-val" id="sc-clinic">—</span></div>
+      <div class="success-row"><span class="s-key">Contact</span><span class="s-val" id="sc-phone">—</span></div>
+    </div>
+
+    <a class="whatsapp-btn" href="#" id="wa-link" target="_blank">
+      💬 Chat with us on WhatsApp
+    </a>
+  </div>
+
+  <!-- SOCIAL PROOF -->
+  <div class="proof-strip">
+    <div class="proof-card">
+      <div class="proof-num">35%</div>
+      <div class="proof-label">Average reduction in no-shows after automated reminders</div>
+    </div>
+    <div class="proof-card">
+      <div class="proof-num">48h</div>
+      <div class="proof-label">Average time to go live on our reminder system</div>
+    </div>
+    <div class="proof-card">
+      <div class="proof-num">₹0</div>
+      <div class="proof-label">Setup cost for the first month — you pay only when it works</div>
+    </div>
+  </div>
+
+</div><!-- end page -->
+
+<script>
+function fmt(n) {
+  if (n >= 10000000) return '₹' + (n/10000000).toFixed(1) + 'Cr';
+  if (n >= 100000) return '₹' + (n/100000).toFixed(1) + 'L';
+  if (n >= 1000) return '₹' + (n/1000).toFixed(1) + 'k';
+  return '₹' + n.toLocaleString('en-IN');
+}
+function fmtFull(n) {
+  return '₹' + n.toLocaleString('en-IN');
+}
+
+let currentMonthlyLoss = 0;
+
+function recalc() {
+  const appts   = parseInt(document.getElementById('s-appts').value);
+  const rate    = parseInt(document.getElementById('s-rate').value);
+  const billing = parseInt(document.getElementById('s-billing').value);
+
+  document.getElementById('v-appts').innerHTML   = appts + ' <small>/ day</small>';
+  document.getElementById('v-rate').innerHTML    = rate  + ' <small>%</small>';
+  document.getElementById('v-billing').textContent = '₹' + billing.toLocaleString('en-IN');
+
+  const dailyNoShows  = Math.round(appts * rate / 100);
+  const dailyLoss     = dailyNoShows * billing;
+  const monthlyLoss   = dailyLoss * 26; // ~26 working days
+  const yearlyLoss    = monthlyLoss * 12;
+  const savings       = Math.round(monthlyLoss * 0.35);
+
+  currentMonthlyLoss = monthlyLoss;
+
+  document.getElementById('r-daily-noshows').textContent = dailyNoShows;
+  document.getElementById('r-daily-loss').textContent    = fmt(dailyLoss);
+  document.getElementById('r-yearly-loss').textContent   = fmt(yearlyLoss);
+  document.getElementById('result-monthly').textContent  = fmt(monthlyLoss);
+  document.getElementById('r-savings').textContent       = fmt(savings);
+  document.getElementById('r-savings-text').textContent  = fmtFull(savings);
+
+  // Animate the number
+  document.getElementById('result-monthly').style.transform = 'scale(1.05)';
+  setTimeout(() => { document.getElementById('result-monthly').style.transform = 'scale(1)'; }, 200);
+}
+
+function showLeadForm() {
+  document.getElementById('lead-card').classList.add('visible');
+  document.getElementById('lc-amount').textContent = fmt(currentMonthlyLoss);
+  document.getElementById('lead-card').scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function submitLead() {
+  const name   = document.getElementById('f-name').value.trim();
+  const clinic = document.getElementById('f-clinic').value.trim();
+  const phone  = document.getElementById('f-phone').value.trim();
+  const city   = document.getElementById('f-city').value.trim();
+
+  if (!name)   { highlight('f-name');   return; }
+  if (!phone || phone.length < 10) { highlight('f-phone'); return; }
+  if (!clinic) { highlight('f-clinic'); return; }
+
+  const savings = Math.round(currentMonthlyLoss * 0.35);
+
+  // Fill success
+  document.getElementById('sc-loss').textContent   = fmt(currentMonthlyLoss);
+  document.getElementById('sc-save').textContent   = fmt(savings);
+  document.getElementById('sc-clinic').textContent = clinic + (city ? ', ' + city : '');
+  document.getElementById('sc-phone').textContent  = '+91 ' + phone;
+
+  const msg = encodeURIComponent(
+    `Hi CleanStacky! I just used your No-Show Calculator.\n\n` +
+    `My clinic: ${clinic}${city ? ', ' + city : ''}\n` +
+    `Monthly loss: ${fmt(currentMonthlyLoss)}\n` +
+    `Recoverable: ${fmt(savings)}\n\n` +
+    `Please send me my recovery plan. – ${name}`
+  );
+  document.getElementById('wa-link').href = `https://wa.me/918000000000?text=${msg}`;
+
+  document.getElementById('calc-section').style.display = 'none';
+  document.getElementById('lead-card').classList.remove('visible');
+  document.getElementById('success-card').classList.add('visible');
+  document.getElementById('success-card').scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function highlight(id) {
+  const el = document.getElementById(id);
+  el.style.borderColor = 'var(--red)';
+  el.style.boxShadow = '0 0 0 3px rgba(185,28,28,0.1)';
+  el.focus();
+  setTimeout(() => { el.style.borderColor = ''; el.style.boxShadow = ''; }, 2000);
+}
+
+function scrollToResult() {
+  document.getElementById('calc-section').scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+// Init
+recalc();
+</script>
+</body>
+</html>

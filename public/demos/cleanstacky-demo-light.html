@@ -1,0 +1,1587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Live Demo — Diagnostic Centre System | CleanStacky Technologies</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ===========================
+   PAGE HERO
+=========================== */
+
+
+
+
+
+
+
+
+
+
+
+
+/* ===========================
+   ROLE TABS
+=========================== */
+.role-section {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 0 40px;
+  position: sticky;
+  top: 0;
+  z-index: 150;
+}
+.role-tabs {
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+}
+.role-tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 24px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink3);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.15s;
+  white-space: nowrap;
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  font-family: 'DM Sans', sans-serif;
+}
+.role-tab:hover { color: var(--ink); }
+.role-tab.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
+.role-tab-icon {
+  width: 26px; height: 26px;
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px;
+  background: var(--surface2);
+  transition: background 0.15s;
+}
+.role-tab.active .role-tab-icon { background: var(--accent-light); }
+
+/* ===========================
+   MAIN LAYOUT
+=========================== */
+.demo-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 40px 80px;
+}
+
+/* ===========================
+   SCREENS
+=========================== */
+.demo-screen { display: none; }
+.demo-screen.active { display: block; animation: fadeUp 0.3s ease; }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===========================
+   SECTION HEADING
+=========================== */
+.screen-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.screen-heading-left {}
+.screen-title {
+  font-family: 'Fraunces', serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+.screen-sub {
+  font-size: 13px;
+  color: var(--ink3);
+  font-weight: 300;
+}
+.screen-heading-right { display: flex; gap: 8px; align-items: center; }
+
+/* ===========================
+   STAT ROW
+=========================== */
+.stat-grid {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.stat-grid-4 { grid-template-columns: repeat(4, 1fr); }
+.stat-grid-3 { grid-template-columns: repeat(3, 1fr); }
+
+.stat-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px 22px;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+.stat-card:hover { box-shadow: var(--shadow); border-color: var(--border2); }
+.stat-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--ink4);
+  margin-bottom: 10px;
+}
+.stat-value {
+  font-family: 'Fraunces', serif;
+  font-size: 34px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.stat-value.green { color: var(--accent); }
+.stat-value.amber { color: var(--amber); }
+.stat-value.red { color: var(--red); }
+.stat-value.blue { color: var(--blue); }
+.stat-note {
+  font-size: 11px;
+  color: var(--ink4);
+  line-height: 1.4;
+}
+.stat-note.up { color: var(--accent-mid); }
+.stat-note.down { color: var(--red); }
+
+/* ===========================
+   ALERT BANNER
+=========================== */
+.alert-banner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #fff8f8;
+  border: 1px solid #fca5a5;
+  border-radius: var(--radius-lg);
+  padding: 14px 18px;
+  margin-bottom: 20px;
+  animation: fadeUp 0.4s ease;
+}
+.alert-icon {
+  width: 38px; height: 38px;
+  background: var(--red-bg);
+  border-radius: var(--radius);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.alert-body { flex: 1; }
+.alert-title { font-size: 13px; font-weight: 600; color: var(--red); }
+.alert-sub { font-size: 12px; color: var(--ink3); margin-top: 2px; }
+
+/* ===========================
+   INNER TABS (missed/leads/bookings)
+=========================== */
+.inner-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0;
+}
+.inner-tab {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink3);
+  padding: 9px 16px;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: all 0.15s;
+  background: none;
+  border-top: none; border-left: none; border-right: none;
+  font-family: 'DM Sans', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.inner-tab:hover { color: var(--ink); }
+.inner-tab.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
+.tab-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--red);
+  color: white;
+  font-size: 9px;
+  font-weight: 700;
+  min-width: 16px;
+  height: 16px;
+  border-radius: 8px;
+  padding: 0 4px;
+  font-family: 'DM Mono', monospace;
+}
+
+/* ===========================
+   DATA TABLE
+=========================== */
+.data-table {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+.table-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface2);
+}
+.table-toolbar-title { font-size: 13px; font-weight: 600; color: var(--ink2); }
+.table-toolbar-actions { display: flex; gap: 8px; }
+
+.tbl-head {
+  display: grid;
+  padding: 10px 20px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface2);
+  gap: 12px;
+}
+.tbl-th {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--ink4);
+}
+.tbl-row {
+  display: grid;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--border);
+  align-items: center;
+  gap: 12px;
+  transition: background 0.1s;
+  cursor: pointer;
+}
+.tbl-row:last-child { border-bottom: none; }
+.tbl-row:hover { background: var(--bg); }
+.tbl-row.highlighted { background: #fffbeb; }
+.tbl-cell { font-size: 13px; color: var(--ink2); }
+.cell-name { font-weight: 500; color: var(--ink); }
+.cell-mono { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--ink3); }
+
+/* grid column layouts */
+.cols-missed { grid-template-columns: 160px 130px 100px 80px 90px 1fr; }
+.cols-leads  { grid-template-columns: 160px 130px 140px 80px 100px 1fr; }
+.cols-bookings { grid-template-columns: 160px 130px 150px 90px 100px 100px; }
+.cols-visits { grid-template-columns: 40px 160px 1fr 150px 100px; }
+
+/* ===========================
+   BADGES
+=========================== */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  padding: 3px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+.badge-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.badge-new { background: var(--red-bg); color: var(--red); }
+.badge-new .badge-dot { background: var(--red); }
+.badge-interested { background: var(--amber-bg); color: var(--amber); }
+.badge-interested .badge-dot { background: var(--amber); }
+.badge-booked { background: var(--accent-light); color: var(--accent); }
+.badge-booked .badge-dot { background: var(--accent); }
+.badge-completed { background: var(--blue-bg); color: var(--blue); }
+.badge-completed .badge-dot { background: var(--blue); }
+.badge-confirmed { background: var(--accent-light); color: var(--accent); }
+.badge-confirmed .badge-dot { background: var(--accent); }
+
+/* ===========================
+   BUTTONS
+=========================== */
+.btn {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: var(--radius);
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  line-height: 1;
+  white-space: nowrap;
+}
+.btn-sm { font-size: 12px; padding: 6px 12px; }
+.btn-primary { background: var(--accent); color: white; }
+.btn-primary:hover { background: #154d2e; box-shadow: var(--shadow-sm); }
+.btn-secondary { background: var(--surface2); color: var(--ink2); border: 1px solid var(--border2); }
+.btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+.btn-ghost { background: transparent; color: var(--ink3); border: 1px solid var(--border); }
+.btn-ghost:hover { color: var(--ink); border-color: var(--border2); }
+.btn-danger-soft { background: var(--red-bg); color: var(--red); border: 1px solid #fca5a5; }
+
+/* ===========================
+   MODALS
+=========================== */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(26,25,22,0.45);
+  backdrop-filter: blur(3px);
+  z-index: 300;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.modal-overlay.open { display: flex; animation: overlayIn 0.2s ease; }
+@keyframes overlayIn { from { opacity: 0; } to { opacity: 1; } }
+.modal {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  width: 100%;
+  max-width: 540px;
+  box-shadow: var(--shadow-xl);
+  animation: modalIn 0.25s ease;
+  overflow: hidden;
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.96) translateY(12px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.modal-header {
+  padding: 22px 26px 18px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+.modal-title { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 600; color: var(--ink); }
+.modal-subtitle { font-size: 12px; color: var(--ink3); margin-top: 3px; }
+.modal-close-btn {
+  width: 28px; height: 28px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--ink3);
+  flex-shrink: 0;
+  transition: all 0.15s;
+  font-family: inherit;
+}
+.modal-close-btn:hover { background: var(--border); color: var(--ink); }
+.modal-body { padding: 22px 26px; }
+.modal-footer {
+  padding: 16px 26px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  background: var(--surface2);
+}
+
+/* ===========================
+   FORMS
+=========================== */
+.form-group { margin-bottom: 16px; }
+.form-label {
+  display: block;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--ink3);
+  margin-bottom: 6px;
+}
+.form-input, .form-select {
+  width: 100%;
+  background: var(--white);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  padding: 10px 13px;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  appearance: none;
+}
+.form-input:focus, .form-select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(26,92,56,0.1);
+}
+.form-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236b6860' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 32px;
+}
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.form-hint { font-size: 11px; color: var(--ink4); margin-top: 4px; }
+
+/* ===========================
+   CONFIRM CARD
+=========================== */
+.confirm-card {
+  background: var(--accent-light);
+  border: 1px solid rgba(26,92,56,0.15);
+  border-radius: var(--radius-lg);
+  padding: 16px 18px;
+  margin-bottom: 16px;
+}
+.confirm-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7px 0;
+  font-size: 13px;
+}
+.confirm-row + .confirm-row { border-top: 1px solid rgba(26,92,56,0.1); }
+.confirm-key { color: var(--ink3); font-size: 12px; }
+.confirm-val { font-weight: 500; color: var(--ink); }
+.confirm-val.success { color: var(--accent); font-weight: 600; }
+
+/* ===========================
+   WHATSAPP PREVIEW
+=========================== */
+.wa-wrap {
+  background: #f0f4ef;
+  border-radius: var(--radius-lg);
+  padding: 14px;
+  border: 1px solid #d4e0d0;
+}
+.wa-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #d4e0d0;
+}
+.wa-dot { width: 8px; height: 8px; background: #25d366; border-radius: 50%; }
+.wa-label { font-size: 11px; color: #25d366; font-family: 'DM Mono', monospace; text-transform: uppercase; letter-spacing: 1px; font-weight: 500; }
+.wa-bubble {
+  background: white;
+  border-radius: 4px 12px 12px 12px;
+  padding: 12px 14px;
+  font-size: 13px;
+  color: #2d2d2d;
+  line-height: 1.65;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+  max-width: 90%;
+}
+.wa-time { font-size: 10px; color: var(--ink4); margin-top: 6px; text-align: right; }
+
+/* ===========================
+   PHLEBOTOMIST VISIT CARDS
+=========================== */
+.route-header {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.route-progress {
+  flex: 1;
+  height: 6px;
+  background: var(--bg2);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.route-progress-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 3px;
+  transition: width 0.5s ease;
+}
+.route-stat { font-size: 13px; font-weight: 500; color: var(--ink); }
+.route-stat span { color: var(--ink3); font-weight: 300; margin-left: 4px; }
+
+.visit-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 18px 20px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: all 0.2s;
+  box-shadow: var(--shadow-sm);
+}
+.visit-card:hover { box-shadow: var(--shadow); border-color: var(--border2); }
+.visit-card.done { opacity: 0.55; background: var(--surface2); }
+.visit-num {
+  width: 36px; height: 36px;
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink3);
+  flex-shrink: 0;
+}
+.visit-num.active-num { background: var(--accent-light); border-color: rgba(26,92,56,0.2); color: var(--accent); }
+.visit-info { flex: 1; }
+.visit-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+.visit-addr { font-size: 12px; color: var(--ink3); margin-top: 3px; }
+.visit-test {
+  font-size: 11px;
+  font-family: 'DM Mono', monospace;
+  color: var(--accent);
+  margin-top: 5px;
+  background: var(--accent-light);
+  display: inline-block;
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+
+/* ===========================
+   OWNER CHARTS
+=========================== */
+.charts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+.chart-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  box-shadow: var(--shadow-sm);
+}
+.chart-card-title { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+.chart-card-sub { font-size: 11px; color: var(--ink4); margin-bottom: 20px; }
+
+/* BAR CHART */
+.bar-chart { display: flex; align-items: flex-end; gap: 8px; height: 90px; }
+.bar-col { display: flex; flex-direction: column; align-items: center; gap: 5px; flex: 1; }
+.bar-fill { width: 100%; border-radius: 4px 4px 0 0; transition: height 0.6s ease; min-height: 3px; }
+.bar-fill.green { background: var(--accent); }
+.bar-fill.green-dim { background: #bbddc9; }
+.bar-label { font-size: 9px; font-family: 'DM Mono', monospace; color: var(--ink4); }
+
+/* FUNNEL */
+.funnel-list { display: flex; flex-direction: column; gap: 10px; }
+.funnel-item { display: flex; align-items: center; gap: 12px; }
+.funnel-key { font-size: 12px; color: var(--ink3); width: 110px; flex-shrink: 0; }
+.funnel-track { flex: 1; height: 22px; background: var(--surface2); border-radius: 4px; overflow: hidden; position: relative; }
+.funnel-fill {
+  height: 100%;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  padding-left: 8px;
+  font-size: 10px;
+  font-family: 'DM Mono', monospace;
+  font-weight: 500;
+  transition: width 0.8s ease;
+}
+.f-red   { background: #fecaca; color: var(--red); }
+.f-amber { background: #fde68a; color: var(--amber); width: 75%; }
+.f-green-m { background: #bbf7d0; color: #166534; width: 56%; }
+.f-green-d { background: var(--accent-light); color: var(--accent); width: 46%; }
+
+/* STAFF TABLE */
+.staff-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 4px;
+}
+.staff-card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  text-align: center;
+  transition: border-color 0.15s;
+}
+.staff-card:hover { border-color: var(--border2); }
+.staff-name { font-size: 11px; font-family: 'DM Mono', monospace; text-transform: uppercase; letter-spacing: 0.6px; color: var(--ink3); margin-bottom: 10px; }
+.staff-value { font-family: 'Fraunces', serif; font-size: 28px; font-weight: 600; color: var(--ink); line-height: 1; margin-bottom: 4px; }
+.staff-value.green { color: var(--accent); }
+.staff-value.amber { color: var(--amber); }
+.staff-value.blue { color: var(--blue); }
+.staff-metric { font-size: 11px; color: var(--ink4); }
+
+/* ===========================
+   TOAST
+=========================== */
+.toast {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-lg);
+  padding: 14px 18px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 13px;
+  z-index: 500;
+  box-shadow: var(--shadow-lg);
+  max-width: 320px;
+  animation: toastIn 0.3s ease;
+}
+@keyframes toastIn {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.toast-icon { font-size: 18px; margin-top: 1px; flex-shrink: 0; }
+.toast-title { font-weight: 600; color: var(--ink); font-size: 13px; }
+.toast-sub { color: var(--ink3); font-size: 12px; margin-top: 2px; }
+
+/* ===========================
+   DIVIDER
+=========================== */
+.section-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 36px 0 28px;
+}
+.divider-line { flex: 1; height: 1px; background: var(--border); }
+.divider-label {
+  font-size: 11px;
+  font-family: 'DM Mono', monospace;
+  color: var(--ink4);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ===========================
+   FLOW STEPS (visual)
+=========================== */
+.flow-steps {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 14px 20px;
+  overflow-x: auto;
+}
+.flow-step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.flow-step-dot {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  border: 2px solid var(--border2);
+  background: var(--surface2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px;
+  font-family: 'DM Mono', monospace;
+  color: var(--ink4);
+  transition: all 0.3s;
+}
+.flow-step-dot.step-done { background: var(--accent); border-color: var(--accent); color: white; }
+.flow-step-dot.step-active { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+.flow-step-name {
+  font-size: 11px;
+  color: var(--ink4);
+  font-weight: 400;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+.flow-step-name.step-done { color: var(--accent); font-weight: 500; }
+.flow-step-name.step-active { color: var(--ink); font-weight: 600; }
+.flow-arrow { color: var(--border2); margin: 0 8px; font-size: 14px; }
+
+/* ===========================
+   PAGE FOOTER CTA
+=========================== */
+
+
+
+
+
+
+
+
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+@media (max-width: 900px) {
+  
+  
+  
+  .role-section { padding: 0 20px; }
+  .demo-wrap { padding: 28px 20px 60px; }
+  .stat-grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .charts-grid { grid-template-columns: 1fr; }
+  .staff-grid { grid-template-columns: repeat(3,1fr); }
+  .cols-missed, .cols-leads, .cols-bookings {
+    grid-template-columns: 1fr 100px 90px;
+  }
+  .tbl-cell:nth-child(4),
+  .tbl-cell:nth-child(5) { display: none; }
+  .tbl-th:nth-child(4),
+  .tbl-th:nth-child(5) { display: none; }
+}
+@media (max-width: 600px) {
+  .stat-grid-4 { grid-template-columns: 1fr 1fr; }
+  .stat-grid-3 { grid-template-columns: 1fr 1fr; }
+  .staff-grid { grid-template-columns: 1fr 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  
+}
+</style>
+</head>
+<body>
+
+<!-- ROLE TABS -->
+<div class="role-section" id="demo-anchor">
+  <div class="role-tabs">
+    <button class="role-tab active" onclick="switchRole('receptionist', this)">
+      <span class="role-tab-icon">📋</span> Receptionist
+    </button>
+    <button class="role-tab" onclick="switchRole('phlebotomist', this)">
+      <span class="role-tab-icon">🧪</span> Phlebotomist
+    </button>
+    <button class="role-tab" onclick="switchRole('owner', this)">
+      <span class="role-tab-icon">📊</span> Owner / Manager
+    </button>
+  </div>
+</div>
+
+<!-- ========================= DEMO CONTENT ========================= -->
+<div class="demo-wrap">
+
+  <!-- ============== RECEPTIONIST SCREEN ============== -->
+  <div class="demo-screen active" id="screen-receptionist">
+
+    <!-- flow indicator -->
+    <div class="flow-steps" id="flow-bar">
+      <div class="flow-step">
+        <div class="flow-step-dot step-active" id="fs1">1</div>
+        <span class="flow-step-name step-active" id="fn1">Missed Call</span>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-step-dot" id="fs2">2</div>
+        <span class="flow-step-name" id="fn2">Qualify Lead</span>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-step-dot" id="fs3">3</div>
+        <span class="flow-step-name" id="fn3">Create Booking</span>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-step-dot" id="fs4">4</div>
+        <span class="flow-step-name" id="fn4">WhatsApp Confirm</span>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-step-dot" id="fs5">5</div>
+        <span class="flow-step-name" id="fn5">Visit Complete</span>
+      </div>
+    </div>
+
+    <!-- inner tabs -->
+    <div class="inner-tabs">
+      <button class="inner-tab active" onclick="switchInner('missed', this)">
+        Missed Calls <span class="tab-badge" id="missed-badge">3</span>
+      </button>
+      <button class="inner-tab" onclick="switchInner('all-leads', this)">All Leads</button>
+      <button class="inner-tab" onclick="switchInner('bookings', this)">Today's Bookings</button>
+    </div>
+
+    <!-- MISSED CALLS -->
+    <div id="inner-missed">
+      <div class="screen-heading">
+        <div class="screen-heading-left">
+          <div class="screen-title">Missed Call Queue</div>
+          <div class="screen-sub">Auto-logged · WhatsApp reply sent to all callers automatically</div>
+        </div>
+        <div class="screen-heading-right">
+          <button class="btn btn-ghost btn-sm">↓ Export</button>
+        </div>
+      </div>
+
+      <div class="alert-banner">
+        <div class="alert-icon">📵</div>
+        <div class="alert-body">
+          <div class="alert-title">3 missed calls in the last 2 hours</div>
+          <div class="alert-sub">System auto-sent a WhatsApp message to each number. Tap a row to call & qualify.</div>
+        </div>
+        <button class="btn btn-ghost btn-sm" onclick="this.closest('.alert-banner').remove()">Dismiss</button>
+      </div>
+
+      <div class="data-table">
+        <div class="table-toolbar">
+          <span class="table-toolbar-title">3 unqualified leads</span>
+          <div class="table-toolbar-actions">
+            <button class="btn btn-secondary btn-sm">Mark All Called</button>
+          </div>
+        </div>
+        <div class="tbl-head cols-missed">
+          <div class="tbl-th">Patient</div>
+          <div class="tbl-th">Phone Number</div>
+          <div class="tbl-th">WA Status</div>
+          <div class="tbl-th">Time</div>
+          <div class="tbl-th">Lead Status</div>
+          <div class="tbl-th">Action</div>
+        </div>
+
+        <div class="tbl-row cols-missed highlighted" onclick="openQualify(0)">
+          <div class="tbl-cell cell-name">Unknown Caller</div>
+          <div class="tbl-cell cell-mono">+91 98765 43210</div>
+          <div class="tbl-cell"><span style="font-size:12px;color:#25d366;font-weight:500;">✓ Sent</span></div>
+          <div class="tbl-cell cell-mono">10:32 AM</div>
+          <div class="tbl-cell"><span class="badge badge-new"><span class="badge-dot"></span>New</span></div>
+          <div class="tbl-cell"><button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();openQualify(0)">📞 Call & Qualify</button></div>
+        </div>
+
+        <div class="tbl-row cols-missed" onclick="openQualify(1)">
+          <div class="tbl-cell cell-name">Unknown Caller</div>
+          <div class="tbl-cell cell-mono">+91 87654 32109</div>
+          <div class="tbl-cell"><span style="font-size:12px;color:#25d366;font-weight:500;">✓ Sent</span></div>
+          <div class="tbl-cell cell-mono">09:58 AM</div>
+          <div class="tbl-cell"><span class="badge badge-new"><span class="badge-dot"></span>New</span></div>
+          <div class="tbl-cell"><button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();openQualify(1)">📞 Call & Qualify</button></div>
+        </div>
+
+        <div class="tbl-row cols-missed" onclick="openQualify(2)">
+          <div class="tbl-cell cell-name">Unknown Caller</div>
+          <div class="tbl-cell cell-mono">+91 76543 21098</div>
+          <div class="tbl-cell"><span style="font-size:12px;color:#25d366;font-weight:500;">✓ Sent</span></div>
+          <div class="tbl-cell cell-mono">09:12 AM</div>
+          <div class="tbl-cell"><span class="badge badge-new"><span class="badge-dot"></span>New</span></div>
+          <div class="tbl-cell"><button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();openQualify(2)">📞 Call & Qualify</button></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ALL LEADS -->
+    <div id="inner-all-leads" style="display:none;">
+      <div class="screen-heading">
+        <div class="screen-heading-left">
+          <div class="screen-title">All Leads</div>
+          <div class="screen-sub">Every patient inquiry across calls, WhatsApp, and walk-ins</div>
+        </div>
+        <div class="screen-heading-right">
+          <button class="btn btn-primary btn-sm">+ New Lead</button>
+        </div>
+      </div>
+      <div class="data-table">
+        <div class="tbl-head cols-leads">
+          <div class="tbl-th">Patient</div>
+          <div class="tbl-th">Phone</div>
+          <div class="tbl-th">Test</div>
+          <div class="tbl-th">Source</div>
+          <div class="tbl-th">Status</div>
+          <div class="tbl-th">Action</div>
+        </div>
+        <div class="tbl-row cols-leads">
+          <div class="tbl-cell cell-name">Priya Sharma</div>
+          <div class="tbl-cell cell-mono">+91 99887 76655</div>
+          <div class="tbl-cell" style="font-size:12px;">CBC + LFT</div>
+          <div class="tbl-cell" style="font-size:11px;color:var(--ink4);">📞 Call</div>
+          <div class="tbl-cell"><span class="badge badge-booked"><span class="badge-dot"></span>Booked</span></div>
+          <div class="tbl-cell"><button class="btn btn-ghost btn-sm">View</button></div>
+        </div>
+        <div class="tbl-row cols-leads">
+          <div class="tbl-cell cell-name">Rajan Kumar</div>
+          <div class="tbl-cell cell-mono">+91 88776 65544</div>
+          <div class="tbl-cell" style="font-size:12px;">Blood Sugar</div>
+          <div class="tbl-cell" style="font-size:11px;color:var(--ink4);">💬 WA</div>
+          <div class="tbl-cell"><span class="badge badge-completed"><span class="badge-dot"></span>Completed</span></div>
+          <div class="tbl-cell"><button class="btn btn-ghost btn-sm">Report</button></div>
+        </div>
+        <div class="tbl-row cols-leads">
+          <div class="tbl-cell cell-name">Sunita Devi</div>
+          <div class="tbl-cell cell-mono">+91 77665 54433</div>
+          <div class="tbl-cell" style="font-size:12px;">Thyroid Panel</div>
+          <div class="tbl-cell" style="font-size:11px;color:var(--ink4);">🚶 Walk-in</div>
+          <div class="tbl-cell"><span class="badge badge-interested"><span class="badge-dot"></span>Interested</span></div>
+          <div class="tbl-cell"><button class="btn btn-secondary btn-sm" onclick="openBookingDirect()">Book</button></div>
+        </div>
+        <div class="tbl-row cols-leads">
+          <div class="tbl-cell cell-name">Mohan Rao</div>
+          <div class="tbl-cell cell-mono">+91 66554 43322</div>
+          <div class="tbl-cell" style="font-size:12px;">HbA1c Panel</div>
+          <div class="tbl-cell" style="font-size:11px;color:var(--ink4);">📞 Call</div>
+          <div class="tbl-cell"><span class="badge badge-new"><span class="badge-dot"></span>New</span></div>
+          <div class="tbl-cell"><button class="btn btn-secondary btn-sm">Qualify</button></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOOKINGS -->
+    <div id="inner-bookings" style="display:none;">
+      <div class="screen-heading">
+        <div class="screen-heading-left">
+          <div class="screen-title">Today's Bookings</div>
+          <div class="screen-sub">All confirmed appointments — Sunday, Feb 22, 2026</div>
+        </div>
+        <div class="screen-heading-right">
+          <button class="btn btn-primary btn-sm" onclick="openBookingDirect()">+ New Booking</button>
+        </div>
+      </div>
+
+      <div class="stat-grid stat-grid-4" style="margin-bottom:20px;">
+        <div class="stat-card">
+          <div class="stat-label">Total Bookings</div>
+          <div class="stat-value" id="total-bookings-stat">11</div>
+          <div class="stat-note up">↑ 2 from yesterday</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Lab Visits</div>
+          <div class="stat-value blue">7</div>
+          <div class="stat-note">Confirmed</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Home Collection</div>
+          <div class="stat-value amber">4</div>
+          <div class="stat-note">Assigned to team</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Completed</div>
+          <div class="stat-value green" id="completed-stat">3</div>
+          <div class="stat-note">Samples received</div>
+        </div>
+      </div>
+
+      <div class="data-table" id="bookings-table">
+        <div class="tbl-head cols-bookings">
+          <div class="tbl-th">Patient</div>
+          <div class="tbl-th">Phone</div>
+          <div class="tbl-th">Test / Package</div>
+          <div class="tbl-th">Slot</div>
+          <div class="tbl-th">Type</div>
+          <div class="tbl-th">Status</div>
+        </div>
+        <div id="bookings-rows">
+          <div class="tbl-row cols-bookings">
+            <div class="tbl-cell cell-name">Priya Sharma</div>
+            <div class="tbl-cell cell-mono">+91 99887 76655</div>
+            <div class="tbl-cell" style="font-size:12px;">CBC + Liver Function</div>
+            <div class="tbl-cell cell-mono">9:00 AM</div>
+            <div class="tbl-cell"><span style="font-size:12px;">🏠 Home</span></div>
+            <div class="tbl-cell"><span class="badge badge-booked"><span class="badge-dot"></span>Confirmed</span></div>
+          </div>
+          <div class="tbl-row cols-bookings">
+            <div class="tbl-cell cell-name">Rajan Kumar</div>
+            <div class="tbl-cell cell-mono">+91 88776 65544</div>
+            <div class="tbl-cell" style="font-size:12px;">Blood Sugar (Fasting)</div>
+            <div class="tbl-cell cell-mono">10:30 AM</div>
+            <div class="tbl-cell"><span style="font-size:12px;">🏥 Lab</span></div>
+            <div class="tbl-cell"><span class="badge badge-completed"><span class="badge-dot"></span>Completed</span></div>
+          </div>
+          <div class="tbl-row cols-bookings">
+            <div class="tbl-cell cell-name">Meena Iyer</div>
+            <div class="tbl-cell cell-mono">+91 77554 33211</div>
+            <div class="tbl-cell" style="font-size:12px;">Full Body Checkup</div>
+            <div class="tbl-cell cell-mono">11:00 AM</div>
+            <div class="tbl-cell"><span style="font-size:12px;">🏥 Lab</span></div>
+            <div class="tbl-cell"><span class="badge badge-booked"><span class="badge-dot"></span>Confirmed</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end receptionist -->
+
+  <!-- ============== PHLEBOTOMIST SCREEN ============== -->
+  <div class="demo-screen" id="screen-phlebotomist">
+
+    <div class="screen-heading">
+      <div class="screen-heading-left">
+        <div class="screen-title">Today's Route</div>
+        <div class="screen-sub">Home collection assignments — Feb 22, 2026 · Bangalore</div>
+      </div>
+      <span class="badge badge-booked"><span class="badge-dot"></span>On Duty</span>
+    </div>
+
+    <div class="stat-grid stat-grid-3" style="margin-bottom:20px;">
+      <div class="stat-card">
+        <div class="stat-label">Total Visits</div>
+        <div class="stat-value">3</div>
+        <div class="stat-note">Today's route</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Completed</div>
+        <div class="stat-value green" id="phleb-done">1</div>
+        <div class="stat-note up">Sample collected</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Remaining</div>
+        <div class="stat-value amber" id="phleb-rem">2</div>
+        <div class="stat-note">Pending visits</div>
+      </div>
+    </div>
+
+    <div class="route-header">
+      <span style="font-size:12px;font-weight:500;color:var(--ink2);">Route Progress</span>
+      <div class="route-progress">
+        <div class="route-progress-fill" id="route-bar" style="width:33%;"></div>
+      </div>
+      <span class="route-stat" id="route-stat-text">1 of 3 <span>completed</span></span>
+    </div>
+
+    <div id="visits-list">
+      <div class="visit-card done" id="vc-1">
+        <div class="visit-num">01</div>
+        <div class="visit-info">
+          <div class="visit-name">Priya Sharma</div>
+          <div class="visit-addr">📍 14, Gandhi Nagar, Koramangala, Bangalore — 560034</div>
+          <span class="visit-test">CBC + Liver Function Test</span>
+        </div>
+        <div style="text-align:right;flex-shrink:0;">
+          <span class="badge badge-completed"><span class="badge-dot"></span>Done</span>
+          <div style="font-size:11px;color:var(--ink4);margin-top:5px;">9:14 AM</div>
+        </div>
+      </div>
+
+      <div class="visit-card" id="vc-2">
+        <div class="visit-num active-num">02</div>
+        <div class="visit-info">
+          <div class="visit-name">Anand Murthy</div>
+          <div class="visit-addr">📍 7/B, 2nd Cross, Indiranagar, Bangalore — 560038</div>
+          <span class="visit-test">Thyroid Panel (T3, T4, TSH)</span>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="markDone(2)">Mark Collected</button>
+      </div>
+
+      <div class="visit-card" id="vc-3">
+        <div class="visit-num">03</div>
+        <div class="visit-info">
+          <div class="visit-name">Sunita Devi</div>
+          <div class="visit-addr">📍 32, 5th Main, JP Nagar, Bangalore — 560078</div>
+          <span class="visit-test">HbA1c + Fasting Blood Sugar</span>
+        </div>
+        <button class="btn btn-secondary btn-sm" onclick="markDone(3)" disabled style="opacity:0.4;cursor:not-allowed;">Mark Collected</button>
+      </div>
+    </div>
+
+  </div><!-- end phlebotomist -->
+
+  <!-- ============== OWNER SCREEN ============== -->
+  <div class="demo-screen" id="screen-owner">
+
+    <div class="screen-heading">
+      <div class="screen-heading-left">
+        <div class="screen-title">Good morning, Dr. Ramesh</div>
+        <div class="screen-sub">City Diagnostics Centre · Feb 22, 2026</div>
+      </div>
+      <span class="badge badge-booked" style="padding:6px 12px;font-size:11px;"><span class="badge-dot"></span>Live</span>
+    </div>
+
+    <div class="stat-grid stat-grid-4" style="margin-bottom:24px;">
+      <div class="stat-card">
+        <div class="stat-label">Calls Today</div>
+        <div class="stat-value">24</div>
+        <div class="stat-note up">↑ 3 from yesterday</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Missed Calls</div>
+        <div class="stat-value red">3</div>
+        <div class="stat-note down">12.5% miss rate</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Leads Recovered</div>
+        <div class="stat-value amber">2</div>
+        <div class="stat-note up">67% recovery via WA</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Bookings</div>
+        <div class="stat-value green">11</div>
+        <div class="stat-note up">↑ 2 from yesterday</div>
+      </div>
+    </div>
+
+    <div class="charts-grid">
+      <div class="chart-card">
+        <div class="chart-card-title">Weekly Bookings</div>
+        <div class="chart-card-sub">This week vs last week</div>
+        <div class="bar-chart">
+          <div class="bar-col"><div class="bar-fill green" style="height:52px;"></div><div class="bar-label">Mon</div></div>
+          <div class="bar-col"><div class="bar-fill green" style="height:68px;"></div><div class="bar-label">Tue</div></div>
+          <div class="bar-col"><div class="bar-fill green" style="height:42px;"></div><div class="bar-label">Wed</div></div>
+          <div class="bar-col"><div class="bar-fill green" style="height:78px;"></div><div class="bar-label">Thu</div></div>
+          <div class="bar-col"><div class="bar-fill green" style="height:60px;"></div><div class="bar-label">Fri</div></div>
+          <div class="bar-col"><div class="bar-fill green-dim" style="height:34px;"></div><div class="bar-label">Sat</div></div>
+          <div class="bar-col"><div class="bar-fill green-dim" style="height:14px;"></div><div class="bar-label">Sun</div></div>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-card-title">Lead Conversion Funnel</div>
+        <div class="chart-card-sub">Calls → Bookings · Today</div>
+        <div class="funnel-list">
+          <div class="funnel-item">
+            <span class="funnel-key">Calls Received</span>
+            <div class="funnel-track"><div class="funnel-fill f-red" style="width:100%;">24</div></div>
+          </div>
+          <div class="funnel-item">
+            <span class="funnel-key">Leads Created</span>
+            <div class="funnel-track"><div class="funnel-fill f-amber" style="width:75%;">18</div></div>
+          </div>
+          <div class="funnel-item">
+            <span class="funnel-key">Interested</span>
+            <div class="funnel-track"><div class="funnel-fill f-green-m" style="width:56%;">13</div></div>
+          </div>
+          <div class="funnel-item">
+            <span class="funnel-key">Booked</span>
+            <div class="funnel-track"><div class="funnel-fill f-green-d" style="width:46%;">11</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="chart-card">
+      <div class="chart-card-title">Staff Performance — Today</div>
+      <div class="chart-card-sub">Real-time execution metrics per staff member</div>
+      <div class="staff-grid">
+        <div class="staff-card">
+          <div class="staff-name">Ananya (Reception)</div>
+          <div class="staff-value green">9</div>
+          <div class="staff-metric">Leads qualified</div>
+        </div>
+        <div class="staff-card">
+          <div class="staff-name">Ramesh (Phlebo)</div>
+          <div class="staff-value amber">1/3</div>
+          <div class="staff-metric">Visits completed</div>
+        </div>
+        <div class="staff-card">
+          <div class="staff-name">Avg. Response Time</div>
+          <div class="staff-value blue">4m</div>
+          <div class="staff-metric">To missed calls</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider">
+      <div class="divider-line"></div>
+      <div class="divider-label">Revenue Signals</div>
+      <div class="divider-line"></div>
+    </div>
+
+    <div class="stat-grid stat-grid-3">
+      <div class="stat-card">
+        <div class="stat-label">Est. Revenue Today</div>
+        <div class="stat-value green">₹18.4k</div>
+        <div class="stat-note up">↑ 12% from Fri</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Home Collection</div>
+        <div class="stat-value">₹5.2k</div>
+        <div class="stat-note">4 visits · ₹100 surcharge each</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">No-show Rate</div>
+        <div class="stat-value amber">8%</div>
+        <div class="stat-note up">↓ From 21% (before reminders)</div>
+      </div>
+    </div>
+
+  </div><!-- end owner -->
+
+
+</div><!-- end demo-wrap -->
+
+
+<!-- ============== QUALIFY MODAL ============== -->
+<div class="modal-overlay" id="qualify-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <div class="modal-title">Qualify Lead</div>
+        <div class="modal-subtitle" id="q-calling-label">Calling +91 98765 43210</div>
+      </div>
+      <button class="modal-close-btn" onclick="closeModal('qualify-modal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Patient Name</label>
+          <input class="form-input" id="q-name" placeholder="e.g. Anand Murthy" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Phone (confirm)</label>
+          <input class="form-input" id="q-phone" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Patient Intent</label>
+        <select class="form-select" id="q-intent">
+          <option value="">Select —</option>
+          <option value="booking">Book a test</option>
+          <option value="price">Price enquiry</option>
+          <option value="report">Report query</option>
+          <option value="home">Home collection request</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Test / Package</label>
+        <input class="form-input" id="q-test" placeholder="e.g. CBC, Thyroid Panel, Full Body Checkup" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Collection Preference</label>
+        <select class="form-select" id="q-ctype">
+          <option value="lab">Lab Visit</option>
+          <option value="home">Home Collection</option>
+        </select>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('qualify-modal')">Cancel</button>
+      <button class="btn btn-primary" onclick="doQualify()">Mark Interested & Create Booking →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============== BOOKING MODAL ============== -->
+<div class="modal-overlay" id="booking-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <div class="modal-title">Create Booking</div>
+        <div class="modal-subtitle" id="booking-for-label">Patient: —</div>
+      </div>
+      <button class="modal-close-btn" onclick="closeModal('booking-modal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Patient Name</label>
+          <input class="form-input" id="b-name" readonly />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Phone</label>
+          <input class="form-input" id="b-phone" readonly />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Test / Package</label>
+        <input class="form-input" id="b-test" />
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Date</label>
+          <input class="form-input" id="b-date" type="date" value="2026-02-22" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Time Slot</label>
+          <select class="form-select" id="b-slot">
+            <option>7:00 AM</option>
+            <option>8:00 AM</option>
+            <option selected>9:00 AM</option>
+            <option>10:30 AM</option>
+            <option>12:00 PM</option>
+            <option>3:00 PM</option>
+            <option>5:00 PM</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Collection Type</label>
+        <select class="form-select" id="b-ctype">
+          <option value="lab">Lab Visit</option>
+          <option value="home">Home Collection (+₹100)</option>
+        </select>
+        <div class="form-hint">Slot availability is checked automatically.</div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('booking-modal')">Back</button>
+      <button class="btn btn-primary" onclick="doConfirmBooking()">Confirm & Send WhatsApp →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============== CONFIRMATION MODAL ============== -->
+<div class="modal-overlay" id="confirm-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <div class="modal-title">✅ Booking Confirmed</div>
+        <div class="modal-subtitle">WhatsApp message sent automatically to patient</div>
+      </div>
+      <button class="modal-close-btn" onclick="closeModal('confirm-modal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="confirm-card">
+        <div class="confirm-row"><span class="confirm-key">Patient</span><span class="confirm-val" id="cf-name">—</span></div>
+        <div class="confirm-row"><span class="confirm-key">Test</span><span class="confirm-val" id="cf-test">—</span></div>
+        <div class="confirm-row"><span class="confirm-key">Date & Time</span><span class="confirm-val" id="cf-slot">—</span></div>
+        <div class="confirm-row"><span class="confirm-key">Collection</span><span class="confirm-val" id="cf-type">—</span></div>
+        <div class="confirm-row"><span class="confirm-key">Status</span><span class="confirm-val success">Confirmed ✓</span></div>
+      </div>
+
+      <div class="wa-wrap">
+        <div class="wa-header">
+          <div class="wa-dot"></div>
+          <div class="wa-label">WhatsApp — Auto Sent</div>
+        </div>
+        <div class="wa-bubble" id="wa-msg">—</div>
+        <div class="wa-time">Delivered · Just now</div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('confirm-modal')">Close</button>
+      <button class="btn btn-primary" onclick="closeModal('confirm-modal');switchInner('bookings', null)">View in Bookings →</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast" style="display:none;">
+  <div class="toast-icon" id="t-icon">✅</div>
+  <div>
+    <div class="toast-title" id="t-title">Done</div>
+    <div class="toast-sub" id="t-sub">Action completed.</div>
+  </div>
+</div>
+
+<script>
+// ===== STATE =====
+let currentLead = {};
+let phlebDoneCount = 1;
+let missedCount = 3;
+
+// ===== ROLE SWITCH =====
+function switchRole(role, btn) {
+  document.querySelectorAll('.demo-screen').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.role-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('screen-' + role).classList.add('active');
+  if (btn) btn.classList.add('active');
+  window.scrollTo({ top: document.getElementById('demo-anchor').offsetTop, behavior: 'smooth' });
+}
+
+// ===== INNER TAB SWITCH =====
+function switchInner(tab, btn) {
+  ['missed','all-leads','bookings'].forEach(t => {
+    const el = document.getElementById('inner-' + t);
+    if (el) el.style.display = t === tab ? 'block' : 'none';
+  });
+  if (btn) {
+    document.querySelectorAll('.inner-tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+  } else {
+    document.querySelectorAll('.inner-tab').forEach(t => {
+      if (t.textContent.toLowerCase().includes(tab.replace('-',' '))) t.classList.add('active');
+    });
+  }
+}
+
+// ===== FLOW STEPS =====
+function setFlowStep(step) {
+  for (let i = 1; i <= 5; i++) {
+    const dot = document.getElementById('fs' + i);
+    const name = document.getElementById('fn' + i);
+    if (!dot) continue;
+    dot.className = 'flow-step-dot';
+    name.className = 'flow-step-name';
+    if (i < step) { dot.classList.add('step-done'); name.classList.add('step-done'); dot.textContent = '✓'; }
+    else if (i === step) { dot.classList.add('step-active'); name.classList.add('step-active'); dot.textContent = i; }
+    else { dot.textContent = i; }
+  }
+}
+
+// ===== QUALIFY MODAL =====
+const phones = ['+91 98765 43210', '+91 87654 32109', '+91 76543 21098'];
+function openQualify(idx) {
+  document.getElementById('q-calling-label').textContent = 'Calling ' + phones[idx];
+  document.getElementById('q-phone').value = phones[idx];
+  document.getElementById('q-name').value = '';
+  document.getElementById('q-test').value = '';
+  document.getElementById('q-intent').value = '';
+  openModal('qualify-modal');
+  setFlowStep(2);
+}
+
+function doQualify() {
+  const name = document.getElementById('q-name').value.trim();
+  const phone = document.getElementById('q-phone').value.trim();
+  const test = document.getElementById('q-test').value.trim();
+  const ctype = document.getElementById('q-ctype').value;
+
+  if (!name || !test) { showToast('⚠️', 'Missing Fields', 'Please fill patient name and test.'); return; }
+
+  currentLead = { name, phone, test, ctype };
+  closeModal('qualify-modal');
+
+  // Update badge
+  missedCount = Math.max(0, missedCount - 1);
+  const badge = document.getElementById('missed-badge');
+  if (badge) { badge.textContent = missedCount; if (missedCount === 0) badge.style.display = 'none'; }
+
+  setTimeout(() => {
+    document.getElementById('b-name').value = name;
+    document.getElementById('b-phone').value = phone;
+    document.getElementById('b-test').value = test;
+    document.getElementById('b-ctype').value = ctype;
+    document.getElementById('booking-for-label').textContent = 'Patient: ' + name;
+    openModal('booking-modal');
+    setFlowStep(3);
+  }, 250);
+}
+
+// ===== BOOKING DIRECT =====
+function openBookingDirect() {
+  document.getElementById('b-name').value = 'Sunita Devi';
+  document.getElementById('b-phone').value = '+91 77665 54433';
+  document.getElementById('b-test').value = 'Thyroid Panel';
+  document.getElementById('b-ctype').value = 'home';
+  document.getElementById('booking-for-label').textContent = 'Patient: Sunita Devi';
+  currentLead = { name: 'Sunita Devi', phone: '+91 77665 54433', test: 'Thyroid Panel', ctype: 'home' };
+  openModal('booking-modal');
+  setFlowStep(3);
+}
+
+// ===== CONFIRM BOOKING =====
+function doConfirmBooking() {
+  const name = document.getElementById('b-name').value;
+  const test = document.getElementById('b-test').value;
+  const slot = document.getElementById('b-slot').value;
+  const ctype = document.getElementById('b-ctype').value;
+  const typeLabel = ctype === 'home' ? '🏠 Home Collection' : '🏥 Lab Visit';
+
+  document.getElementById('cf-name').textContent = name;
+  document.getElementById('cf-test').textContent = test;
+  document.getElementById('cf-slot').textContent = 'Feb 22, 2026 · ' + slot;
+  document.getElementById('cf-type').textContent = typeLabel;
+
+  const fasting = /sugar|blood|lft|liver|hba1c|fasting/i.test(test);
+
+  document.getElementById('wa-msg').innerHTML =
+    `Hi ${name.split(' ')[0]}! ✅ Your appointment is confirmed.<br><br>` +
+    `<strong>Test:</strong> ${test}<br>` +
+    `<strong>When:</strong> Feb 22, 2026 at ${slot}<br>` +
+    `<strong>Visit:</strong> ${typeLabel}<br>` +
+    (ctype === 'home'
+      ? `<br>Our team will arrive at your address at the scheduled time. Please keep your ID ready.`
+      : `<br>Please visit us at City Diagnostics, MG Road, Bangalore.`) +
+    (fasting ? `<br><br>⚠️ <strong>Fasting required</strong> — please avoid food/water for 8–10 hours before the test.` : '') +
+    `<br><br>— City Diagnostics Centre`;
+
+  closeModal('booking-modal');
+  setTimeout(() => {
+    openModal('confirm-modal');
+    setFlowStep(4);
+    showToast('📲', 'WhatsApp Sent', 'Confirmation delivered to ' + name);
+
+    // Add to bookings table
+    const tbody = document.getElementById('bookings-rows');
+    if (tbody) {
+      const row = document.createElement('div');
+      row.className = 'tbl-row cols-bookings highlighted';
+      row.innerHTML = `
+        <div class="tbl-cell cell-name">${name}</div>
+        <div class="tbl-cell cell-mono">${document.getElementById('b-phone').value}</div>
+        <div class="tbl-cell" style="font-size:12px;">${test}</div>
+        <div class="tbl-cell cell-mono">${slot}</div>
+        <div class="tbl-cell"><span style="font-size:12px;">${ctype === 'home' ? '🏠 Home' : '🏥 Lab'}</span></div>
+        <div class="tbl-cell"><span class="badge badge-confirmed"><span class="badge-dot"></span>Confirmed</span></div>
+      `;
+      tbody.prepend(row);
+    }
+  }, 250);
+}
+
+// ===== PHLEBOTOMIST =====
+function markDone(num) {
+  const card = document.getElementById('vc-' + num);
+  if (!card || card.classList.contains('done')) return;
+  card.classList.add('done');
+  card.querySelector('button').outerHTML = `<div style="text-align:right;flex-shrink:0;"><span class="badge badge-completed"><span class="badge-dot"></span>Done</span><div style="font-size:11px;color:var(--ink4);margin-top:5px;">${new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'})}</div></div>`;
+  card.querySelector('.visit-num').className = 'visit-num';
+
+  phlebDoneCount++;
+  document.getElementById('phleb-done').textContent = phlebDoneCount;
+  document.getElementById('phleb-rem').textContent = 3 - phlebDoneCount;
+  const pct = Math.round((phlebDoneCount / 3) * 100);
+  document.getElementById('route-bar').style.width = pct + '%';
+  document.getElementById('route-stat-text').innerHTML = phlebDoneCount + ' of 3 <span>completed</span>';
+
+  // Enable next
+  const next = document.getElementById('vc-' + (num + 1));
+  if (next) {
+    const btn = next.querySelector('button');
+    if (btn) { btn.disabled = false; btn.style.opacity = '1'; btn.style.cursor = 'pointer'; }
+    const numEl = next.querySelector('.visit-num');
+    if (numEl) numEl.className = 'visit-num active-num';
+  }
+
+  showToast('✅', 'Sample Collected', 'Visit ' + num + ' marked done. Lab notified.');
+  if (phlebDoneCount === 3) {
+    setTimeout(() => showToast('🎉', 'All Visits Done', 'Route complete. All samples collected.'), 1500);
+  }
+}
+
+// ===== MODAL HELPERS =====
+function openModal(id) { document.getElementById(id).classList.add('open'); }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+
+document.querySelectorAll('.modal-overlay').forEach(o => {
+  o.addEventListener('click', e => { if (e.target === o) o.classList.remove('open'); });
+});
+
+// ===== TOAST =====
+let toastTimer;
+function showToast(icon, title, sub) {
+  document.getElementById('t-icon').textContent = icon;
+  document.getElementById('t-title').textContent = title;
+  document.getElementById('t-sub').textContent = sub;
+  const t = document.getElementById('toast');
+  t.style.display = 'flex';
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => { t.style.display = 'none'; }, 3800);
+}
+
+// ===== SCROLL =====
+function scrollToDemo() {
+  document.getElementById('demo-anchor').scrollIntoView({ behavior: 'smooth' });
+}
+function openCalendly() {
+  showToast('📅', 'Book a Demo', 'Redirecting to calendly.com/cleanstacky...');
+}
+</script>
+</body>
+</html>

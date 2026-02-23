@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>School ERP Demo | CleanStacky Technologies</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f7f6f2;
+  --white: #fff;
+  --surface2: #f4f3ef;
+  --border: #e2e0d8;
+  --border2: #d0cec4;
+  --ink: #1a1916;
+  --ink2: #3d3b35;
+  --ink3: #6b6860;
+  --ink4: #9e9b94;
+  --accent: #1a5c38;
+  --accent-light: #e8f5ee;
+  --accent-mid: #2d8a57;
+  --amber: #b45309;
+  --amber-bg: #fef3c7;
+  --red: #b91c1c;
+  --red-bg: #fee2e2;
+  --blue: #1d4ed8;
+  --blue-bg: #dbeafe;
+  --purple: #6d28d9;
+  --purple-bg: #ede9fe;
+  --r: 8px;
+  --r-lg: 14px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+  --shadow: 0 4px 14px rgba(0,0,0,0.07);
+  --shadow-lg: 0 12px 40px rgba(0,0,0,0.1);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: auto; min-height: 100%; }
+body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); -webkit-font-smoothing: antialiased; }
+
+
+/* ---- ROLE TABS ---- */
+.role-bar {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 0 40px;
+  position: sticky; top: 0; z-index: 100;
+  display: flex; gap: 0;
+  overflow-x: auto;
+}
+.role-tab {
+  display: flex; align-items: center; gap: 8px;
+  padding: 15px 22px;
+  font-size: 13px; font-weight: 500;
+  color: var(--ink3); cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.15s; white-space: nowrap;
+  background: none; border-top: none; border-left: none; border-right: none;
+  font-family: 'DM Sans', sans-serif;
+}
+.role-tab:hover { color: var(--ink); }
+.role-tab.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
+.tab-icon { width: 24px; height: 24px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 13px; background: var(--surface2); }
+.role-tab.active .tab-icon { background: var(--accent-light); }
+
+/* ---- MAIN ---- */
+.wrap { max-width: 1160px; margin: 0 auto; padding: 36px 28px 80px; }
+
+/* ---- SCREENS ---- */
+.screen { display: none; animation: fadeUp 0.3s ease; }
+.screen.active { display: block; }
+@keyframes fadeUp { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+
+/* ---- PAGE HEADING ---- */
+.pg-head { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 24px; flex-wrap: wrap; gap: 12px; }
+.pg-title { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 600; color: var(--ink); }
+.pg-sub { font-size: 13px; color: var(--ink3); margin-top: 3px; font-weight: 300; }
+
+/* ---- STAT ROW ---- */
+.stats { display: grid; gap: 14px; margin-bottom: 24px; }
+.stats-4 { grid-template-columns: repeat(4,1fr); }
+.stats-3 { grid-template-columns: repeat(3,1fr); }
+.stat {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--r-lg); padding: 18px 20px;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+.stat:hover { box-shadow: var(--shadow); border-color: var(--border2); }
+.stat-lbl { font-family: 'DM Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--ink4); margin-bottom: 8px; }
+.stat-val { font-family: 'Fraunces', serif; font-size: 32px; font-weight: 600; color: var(--ink); line-height: 1; margin-bottom: 5px; }
+.stat-val.green { color: var(--accent); }
+.stat-val.amber { color: var(--amber); }
+.stat-val.red { color: var(--red); }
+.stat-val.blue { color: var(--blue); }
+.stat-note { font-size: 11px; color: var(--ink4); }
+.stat-note.up { color: var(--accent-mid); }
+.stat-note.down { color: var(--red); }
+
+/* ---- INNER TABS ---- */
+.inner-tabs { display: flex; gap: 4px; margin-bottom: 20px; border-bottom: 1px solid var(--border); }
+.itab {
+  font-size: 13px; font-weight: 500; color: var(--ink3);
+  padding: 9px 16px; cursor: pointer;
+  border-bottom: 2px solid transparent; margin-bottom: -1px;
+  transition: all 0.15s; background: none;
+  border-top: none; border-left: none; border-right: none;
+  font-family: 'DM Sans', sans-serif;
+  display: flex; align-items: center; gap: 7px;
+}
+.itab:hover { color: var(--ink); }
+.itab.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
+.i-badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--amber); color: white;
+  font-size: 9px; font-weight: 700;
+  min-width: 16px; height: 16px; border-radius: 8px; padding: 0 4px;
+  font-family: 'DM Mono', monospace;
+}
+
+/* ---- TABLE ---- */
+.tbl { background: var(--white); border: 1px solid var(--border); border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow-sm); }
+.tbl-toolbar { display: flex; align-items: center; justify-content: space-between; padding: 13px 18px; border-bottom: 1px solid var(--border); background: var(--surface2); }
+.tbl-toolbar-title { font-size: 13px; font-weight: 600; color: var(--ink2); }
+.tbl-head { display: grid; padding: 10px 18px; border-bottom: 1px solid var(--border); background: var(--surface2); gap: 10px; }
+.th { font-family: 'DM Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--ink4); }
+.tbl-row { display: grid; padding: 13px 18px; border-bottom: 1px solid var(--border); align-items: center; gap: 10px; transition: background 0.1s; cursor: pointer; }
+.tbl-row:last-child { border-bottom: none; }
+.tbl-row:hover { background: var(--bg); }
+.tbl-row.hl { background: #fffbeb; }
+.tc { font-size: 13px; color: var(--ink2); }
+.tc-name { font-weight: 500; color: var(--ink); }
+.tc-mono { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--ink3); }
+
+/* cols */
+.cols-adm { grid-template-columns: 160px 100px 120px 80px 100px 1fr; }
+.cols-fee { grid-template-columns: 160px 100px 110px 100px 90px 1fr; }
+.cols-att { grid-template-columns: 160px 80px 90px 90px 90px 1fr; }
+.cols-staff { grid-template-columns: 160px 100px 90px 100px 1fr; }
+
+/* ---- BADGES ---- */
+.bdg {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 500;
+  padding: 3px 8px; border-radius: 4px; text-transform: uppercase; white-space: nowrap;
+}
+.bdg-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+.bdg-green { background: var(--accent-light); color: var(--accent); }
+.bdg-green .bdg-dot { background: var(--accent); }
+.bdg-amber { background: var(--amber-bg); color: var(--amber); }
+.bdg-amber .bdg-dot { background: var(--amber); }
+.bdg-red { background: var(--red-bg); color: var(--red); }
+.bdg-red .bdg-dot { background: var(--red); }
+.bdg-blue { background: var(--blue-bg); color: var(--blue); }
+.bdg-blue .bdg-dot { background: var(--blue); }
+.bdg-purple { background: var(--purple-bg); color: var(--purple); }
+.bdg-purple .bdg-dot { background: var(--purple); }
+
+/* ---- BUTTONS ---- */
+.btn {
+  font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500;
+  padding: 7px 14px; border-radius: var(--r); border: none; cursor: pointer;
+  transition: all 0.15s; display: inline-flex; align-items: center; gap: 5px;
+}
+.btn-primary { background: var(--accent); color: white; }
+.btn-primary:hover { background: #154d2e; }
+.btn-secondary { background: var(--surface2); color: var(--ink2); border: 1px solid var(--border2); }
+.btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+.btn-ghost { background: transparent; color: var(--ink3); border: 1px solid var(--border); }
+.btn-ghost:hover { color: var(--ink); border-color: var(--border2); }
+.btn-sm { font-size: 11px; padding: 5px 10px; }
+
+/* ---- MODALS ---- */
+.overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(26,25,22,0.45); backdrop-filter: blur(3px);
+  z-index: 300; align-items: center; justify-content: center; padding: 20px;
+}
+.overlay.open { display: flex; animation: oin 0.2s ease; }
+@keyframes oin { from { opacity:0; } to { opacity:1; } }
+.modal {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 16px; width: 100%; max-width: 520px;
+  box-shadow: var(--shadow-lg); animation: min 0.25s ease; overflow: hidden;
+}
+@keyframes min { from { opacity:0; transform:scale(0.96) translateY(10px); } to { opacity:1; transform:scale(1) translateY(0); } }
+.modal-hd { padding: 20px 24px 16px; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; justify-content: space-between; }
+.modal-title { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 600; }
+.modal-sub { font-size: 12px; color: var(--ink3); margin-top: 3px; }
+.modal-x { width:28px; height:28px; background:var(--surface2); border:1px solid var(--border); border-radius:6px; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:14px; color:var(--ink3); flex-shrink:0; transition:all 0.15s; font-family:inherit; }
+.modal-x:hover { background:var(--border); color:var(--ink); }
+.modal-bd { padding: 22px 24px; }
+.modal-ft { padding: 14px 24px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: flex-end; gap: 10px; background: var(--surface2); }
+
+/* ---- FORMS ---- */
+.fg { margin-bottom: 15px; }
+.flbl { display:block; font-family:'DM Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:0.8px; color:var(--ink3); margin-bottom:6px; }
+.finp, .fsel {
+  width:100%; background:var(--white); border:1px solid var(--border2);
+  border-radius:var(--r); color:var(--ink); font-family:'DM Sans',sans-serif;
+  font-size:13px; padding:10px 13px; outline:none; transition:border-color 0.15s, box-shadow 0.15s;
+  appearance:none;
+}
+.finp:focus, .fsel:focus { border-color:var(--accent); box-shadow:0 0 0 3px rgba(26,92,56,0.1); }
+.fsel { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236b6860' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 12px center; padding-right:32px; }
+.frow { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.fhint { font-size:11px; color:var(--ink4); margin-top:4px; }
+
+/* ---- CONFIRM CARD ---- */
+.confirm-card {
+  background: var(--accent-light);
+  border: 1px solid rgba(26,92,56,0.15);
+  border-radius: var(--r); padding: 14px 16px; margin-bottom: 14px;
+}
+.conf-row { display:flex; justify-content:space-between; font-size:13px; padding:6px 0; }
+.conf-row+.conf-row { border-top:1px solid rgba(26,92,56,0.1); }
+.ck { color:var(--ink3); font-size:12px; }
+.cv { font-weight:500; color:var(--ink); }
+.cv.ok { color:var(--accent); font-weight:600; }
+
+/* ---- RECEIPT ---- */
+.receipt {
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+  border-radius: var(--r); padding: 14px;
+}
+.rcpt-hd { display:flex; align-items:center; gap:8px; margin-bottom:12px; padding-bottom:10px; border-bottom:1px solid #bae6fd; }
+.rcpt-dot { width:7px; height:7px; background:var(--blue); border-radius:50%; }
+.rcpt-lbl { font-size:11px; color:var(--blue); font-family:'DM Mono',monospace; text-transform:uppercase; letter-spacing:1px; }
+.rcpt-body { font-size:13px; color:var(--ink2); line-height:1.7; }
+.rcpt-time { font-size:10px; color:var(--ink4); margin-top:6px; text-align:right; }
+
+/* ---- ATTENDANCE GRID ---- */
+.att-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(44px, 1fr));
+  gap: 8px;
+  margin: 16px 0;
+}
+.att-day {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+}
+.att-dot {
+  width: 38px; height: 38px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 500; cursor: pointer;
+  border: 2px solid var(--border2);
+  transition: all 0.15s;
+  font-family: 'DM Mono', monospace;
+}
+.att-dot.present { background: var(--accent-light); border-color: rgba(26,92,56,0.3); color: var(--accent); }
+.att-dot.absent  { background: var(--red-bg); border-color: rgba(185,28,28,0.3); color: var(--red); }
+.att-dot.holiday { background: var(--surface2); border-color: var(--border); color: var(--ink4); }
+.att-dot:hover:not(.holiday) { transform: scale(1.1); }
+.att-day-lbl { font-size: 9px; font-family: 'DM Mono', monospace; color: var(--ink4); }
+.att-legend { display:flex; gap:16px; margin-top:12px; }
+.att-leg { display:flex; align-items:center; gap:6px; font-size:11px; color:var(--ink3); }
+.att-leg-dot { width:10px; height:10px; border-radius:50%; }
+
+/* ---- CHART ---- */
+.bar-chart { display:flex; align-items:flex-end; gap:8px; height:80px; }
+.bc { display:flex; flex-direction:column; align-items:center; gap:5px; flex:1; }
+.bf { width:100%; border-radius:4px 4px 0 0; }
+.bf-green { background: var(--accent); }
+.bf-blue  { background: var(--blue); }
+.bf-amber { background: #fbbf24; }
+.bf-dim   { background: #bbddc9; }
+.bl { font-size:9px; font-family:'DM Mono',monospace; color:var(--ink4); }
+
+/* ---- 2-COL GRID ---- */
+.two-col { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:20px; }
+.chart-card { background:var(--white); border:1px solid var(--border); border-radius:var(--r-lg); padding:20px; box-shadow:var(--shadow-sm); }
+.cc-title { font-size:13px; font-weight:600; color:var(--ink); margin-bottom:3px; }
+.cc-sub { font-size:11px; color:var(--ink4); margin-bottom:16px; }
+
+/* ---- TOAST ---- */
+.toast {
+  position:fixed; bottom:24px; right:24px;
+  background:var(--white); border:1px solid var(--border);
+  border-left:3px solid var(--accent); border-radius:var(--r-lg);
+  padding:12px 16px; display:flex; align-items:flex-start; gap:10px;
+  z-index:500; box-shadow:var(--shadow-lg); max-width:300px;
+  animation:tin 0.3s ease;
+}
+@keyframes tin { from { opacity:0; transform:translateX(16px); } to { opacity:1; transform:translateX(0); } }
+.t-icon { font-size:18px; flex-shrink:0; margin-top:1px; }
+.t-title { font-weight:600; color:var(--ink); font-size:12px; }
+.t-sub { color:var(--ink3); font-size:11px; margin-top:2px; }
+
+@media (max-width: 900px) {
+  .stats-4 { grid-template-columns: repeat(2,1fr); }
+  .two-col { grid-template-columns: 1fr; }
+  .cols-adm, .cols-fee, .cols-att, .cols-staff { grid-template-columns: 1fr 90px 100px; }
+  .tc:nth-child(4), .tc:nth-child(5), .th:nth-child(4), .th:nth-child(5) { display:none; }
+  .role-bar { padding: 0 16px; }
+  .wrap { padding: 24px 16px 60px; }
+}
+@media (max-width: 600px) {
+  .frow { grid-template-columns: 1fr; }
+  .stats-3 { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ROLE TABS -->
+<div class="role-bar">
+  <button class="role-tab active" onclick="switchRole('admin',this)"><span class="tab-icon">🏫</span>Admin Office</button>
+  <button class="role-tab" onclick="switchRole('teacher',this)"><span class="tab-icon">📚</span>Class Teacher</button>
+  <button class="role-tab" onclick="switchRole('accounts',this)"><span class="tab-icon">💰</span>Accounts</button>
+  <button class="role-tab" onclick="switchRole('principal',this)"><span class="tab-icon">📊</span>Principal</button>
+</div>
+
+<div class="wrap">
+
+<!-- ============ ADMIN SCREEN ============ -->
+<div class="screen active" id="screen-admin">
+
+  <div class="inner-tabs">
+    <button class="itab active" onclick="switchInner('admissions',this)">Admissions <span class="i-badge" id="adm-badge">4</span></button>
+    <button class="itab" onclick="switchInner('students',this)">Students</button>
+    <button class="itab" onclick="switchInner('comms',this)">Communications</button>
+  </div>
+
+  <!-- ADMISSIONS -->
+  <div id="inner-admissions">
+    <div class="pg-head">
+      <div>
+        <div class="pg-title">Admissions — 2026–27</div>
+        <div class="pg-sub">4 applications pending review · 12 confirmed this month</div>
+      </div>
+      <div style="display:flex;gap:8px;">
+        <button class="btn btn-ghost btn-sm">↓ Export</button>
+        <button class="btn btn-primary btn-sm" onclick="openAdmModal()">+ New Application</button>
+      </div>
+    </div>
+
+    <div class="stats stats-4" style="margin-bottom:20px;">
+      <div class="stat"><div class="stat-lbl">Applications</div><div class="stat-val">28</div><div class="stat-note up">↑ 6 this week</div></div>
+      <div class="stat"><div class="stat-lbl">Pending Review</div><div class="stat-val amber">4</div><div class="stat-note">Awaiting call</div></div>
+      <div class="stat"><div class="stat-lbl">Confirmed</div><div class="stat-val green">12</div><div class="stat-note up">Fee collected</div></div>
+      <div class="stat"><div class="stat-lbl">Seats Left</div><div class="stat-val blue">18</div><div class="stat-note">Across all classes</div></div>
+    </div>
+
+    <div class="tbl">
+      <div class="tbl-toolbar">
+        <span class="tbl-toolbar-title">Pending Applications</span>
+        <div style="display:flex;gap:8px;">
+          <button class="btn btn-secondary btn-sm">All Classes</button>
+        </div>
+      </div>
+      <div class="tbl-head cols-adm">
+        <div class="th">Student Name</div>
+        <div class="th">Class</div>
+        <div class="th">Parent Phone</div>
+        <div class="th">Applied</div>
+        <div class="th">Status</div>
+        <div class="th">Action</div>
+      </div>
+      <div class="tbl-row cols-adm hl" onclick="openAdmModal()">
+        <div class="tc tc-name">Arjun Mehta</div>
+        <div class="tc">Grade 3</div>
+        <div class="tc tc-mono">+91 98765 11111</div>
+        <div class="tc tc-mono">Feb 20</div>
+        <div class="tc"><span class="bdg bdg-amber"><span class="bdg-dot"></span>Pending</span></div>
+        <div class="tc"><button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();openAdmModal()">Review</button></div>
+      </div>
+      <div class="tbl-row cols-adm" onclick="openAdmModal()">
+        <div class="tc tc-name">Priya Nair</div>
+        <div class="tc">Grade 6</div>
+        <div class="tc tc-mono">+91 87654 22222</div>
+        <div class="tc tc-mono">Feb 19</div>
+        <div class="tc"><span class="bdg bdg-amber"><span class="bdg-dot"></span>Pending</span></div>
+        <div class="tc"><button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();openAdmModal()">Review</button></div>
+      </div>
+      <div class="tbl-row cols-adm">
+        <div class="tc tc-name">Rohan Singh</div>
+        <div class="tc">Grade 1</div>
+        <div class="tc tc-mono">+91 76543 33333</div>
+        <div class="tc tc-mono">Feb 18</div>
+        <div class="tc"><span class="bdg bdg-green"><span class="bdg-dot"></span>Confirmed</span></div>
+        <div class="tc"><button class="btn btn-ghost btn-sm">View</button></div>
+      </div>
+      <div class="tbl-row cols-adm">
+        <div class="tc tc-name">Ananya Iyer</div>
+        <div class="tc">Grade 9</div>
+        <div class="tc tc-mono">+91 65432 44444</div>
+        <div class="tc tc-mono">Feb 17</div>
+        <div class="tc"><span class="bdg bdg-red"><span class="bdg-dot"></span>Waitlist</span></div>
+        <div class="tc"><button class="btn btn-ghost btn-sm">View</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STUDENTS -->
+  <div id="inner-students" style="display:none;">
+    <div class="pg-head">
+      <div><div class="pg-title">Student Directory</div><div class="pg-sub">482 active students · 2025–26</div></div>
+      <button class="btn btn-primary btn-sm">+ Enrol Student</button>
+    </div>
+    <div class="tbl">
+      <div class="tbl-head cols-adm">
+        <div class="th">Name</div><div class="th">Class</div><div class="th">Roll No</div><div class="th">Fee Status</div><div class="th">Attendance</div><div class="th">Action</div>
+      </div>
+      <div class="tbl-row cols-adm">
+        <div class="tc tc-name">Kavya Reddy</div><div class="tc">Grade 5 A</div><div class="tc tc-mono">505</div><div class="tc"><span class="bdg bdg-green"><span class="bdg-dot"></span>Paid</span></div><div class="tc tc-mono">94%</div><div class="tc"><button class="btn btn-ghost btn-sm">Profile</button></div>
+      </div>
+      <div class="tbl-row cols-adm">
+        <div class="tc tc-name">Dev Sharma</div><div class="tc">Grade 8 B</div><div class="tc tc-mono">821</div><div class="tc"><span class="bdg bdg-red"><span class="bdg-dot"></span>Overdue</span></div><div class="tc tc-mono">78%</div><div class="tc"><button class="btn btn-secondary btn-sm">Fee Reminder</button></div>
+      </div>
+      <div class="tbl-row cols-adm">
+        <div class="tc tc-name">Sara Thomas</div><div class="tc">Grade 2 A</div><div class="tc tc-mono">214</div><div class="tc"><span class="bdg bdg-amber"><span class="bdg-dot"></span>Partial</span></div><div class="tc tc-mono">88%</div><div class="tc"><button class="btn btn-ghost btn-sm">Profile</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMMS -->
+  <div id="inner-comms" style="display:none;">
+    <div class="pg-head">
+      <div><div class="pg-title">Parent Communications</div><div class="pg-sub">Send notices, fee reminders, and announcements</div></div>
+      <button class="btn btn-primary btn-sm" onclick="openCommsModal()">+ Send Notice</button>
+    </div>
+    <div class="stats stats-3">
+      <div class="stat"><div class="stat-lbl">Sent This Month</div><div class="stat-val">47</div><div class="stat-note">Messages</div></div>
+      <div class="stat"><div class="stat-lbl">Fee Reminders</div><div class="stat-val amber">12</div><div class="stat-note">Auto-sent</div></div>
+      <div class="stat"><div class="stat-lbl">Delivery Rate</div><div class="stat-val green">98%</div><div class="stat-note up">Via WhatsApp</div></div>
+    </div>
+    <div style="margin-top:20px;" class="tbl">
+      <div class="tbl-head" style="grid-template-columns:1fr 120px 100px 80px;">
+        <div class="th">Message</div><div class="th">Recipients</div><div class="th">Sent</div><div class="th">Status</div>
+      </div>
+      <div class="tbl-row" style="grid-template-columns:1fr 120px 100px 80px;">
+        <div class="tc">PTM Reminder — Saturday Feb 22</div><div class="tc tc-mono">All Parents</div><div class="tc tc-mono">Feb 19</div><div class="tc"><span class="bdg bdg-green"><span class="bdg-dot"></span>Sent</span></div>
+      </div>
+      <div class="tbl-row" style="grid-template-columns:1fr 120px 100px 80px;">
+        <div class="tc">Q3 Fee Due — Last Date Mar 5</div><div class="tc tc-mono">Grade 6–10</div><div class="tc tc-mono">Feb 18</div><div class="tc"><span class="bdg bdg-green"><span class="bdg-dot"></span>Sent</span></div>
+      </div>
+      <div class="tbl-row" style="grid-template-columns:1fr 120px 100px 80px;">
+        <div class="tc">Holiday Notice — Feb 26 Holiday</div><div class="tc tc-mono">All Parents</div><div class="tc tc-mono">Feb 17</div><div class="tc"><span class="bdg bdg-blue"><span class="bdg-dot"></span>Read</span></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ============ TEACHER SCREEN ============ -->
+<div class="screen" id="screen-teacher">
+
+  <div class="inner-tabs">
+    <button class="itab active" onclick="switchInner2('attendance',this)">Attendance</button>
+    <button class="itab" onclick="switchInner2('classlist',this)">Class List</button>
+  </div>
+
+  <div id="inner2-attendance">
+    <div class="pg-head">
+      <div>
+        <div class="pg-title">Attendance — Grade 5A</div>
+        <div class="pg-sub">Sunday, Feb 22, 2026 · 32 students</div>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <span class="bdg bdg-green" style="padding:6px 12px;font-size:11px;"><span class="bdg-dot"></span>Today marked</span>
+        <button class="btn btn-primary btn-sm" onclick="openAttModal()">Mark / Edit</button>
+      </div>
+    </div>
+
+    <div class="stats stats-4" style="margin-bottom:20px;">
+      <div class="stat"><div class="stat-lbl">Present Today</div><div class="stat-val green" id="att-present">28</div><div class="stat-note up">87.5%</div></div>
+      <div class="stat"><div class="stat-lbl">Absent</div><div class="stat-val red" id="att-absent">4</div><div class="stat-note">Parents notified</div></div>
+      <div class="stat"><div class="stat-lbl">Class Average</div><div class="stat-val">91%</div><div class="stat-note">This month</div></div>
+      <div class="stat"><div class="stat-lbl">Below 75%</div><div class="stat-val amber">2</div><div class="stat-note down">Needs attention</div></div>
+    </div>
+
+    <!-- Monthly calendar grid -->
+    <div class="tbl" style="padding:20px 24px;">
+      <div style="font-size:13px;font-weight:600;color:var(--ink);margin-bottom:4px;">February 2026 — Attendance View</div>
+      <div style="font-size:11px;color:var(--ink4);margin-bottom:14px;">Click a date to toggle status. Green = Present, Red = Absent.</div>
+      <div class="att-grid" id="att-grid"></div>
+      <div class="att-legend">
+        <div class="att-leg"><div class="att-leg-dot" style="background:var(--accent);"></div>Present</div>
+        <div class="att-leg"><div class="att-leg-dot" style="background:var(--red);"></div>Absent</div>
+        <div class="att-leg"><div class="att-leg-dot" style="background:var(--ink4);"></div>Holiday/Weekend</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="inner2-classlist" style="display:none;">
+    <div class="pg-head">
+      <div><div class="pg-title">Grade 5A — Class List</div><div class="pg-sub">32 students · Class Teacher: Mrs. Lakshmi</div></div>
+    </div>
+    <div class="tbl">
+      <div class="tbl-head" style="grid-template-columns:50px 160px 80px 80px 100px 1fr;">
+        <div class="th">Roll</div><div class="th">Name</div><div class="th">Attendance</div><div class="th">Fee</div><div class="th">This Month</div><div class="th"></div>
+      </div>
+      <div class="tbl-row" style="grid-template-columns:50px 160px 80px 80px 100px 1fr;">
+        <div class="tc tc-mono">501</div><div class="tc tc-name">Aryan Kumar</div><div class="tc tc-mono">96%</div><div class="tc"><span class="bdg bdg-green"><span class="bdg-dot"></span>Paid</span></div><div class="tc"><span class="bdg bdg-green"><span class="bdg-dot"></span>Present</span></div><div class="tc"><button class="btn btn-ghost btn-sm">View</button></div>
+      </div>
+      <div class="tbl-row" style="grid-template-columns:50px 160px 80px 80px 100px 1fr;">
+        <div class="tc tc-mono">502</div><div class="tc tc-name">Meena Joshi</div><div class="tc tc-mono">72%</div><div class="tc"><span class="bdg bdg-amber"><span class="bdg-dot"></span>Partial</span></div><div class="tc"><span class="bdg bdg-red"><span class="bdg-dot"></span>Absent</span></div><div class="tc"><button class="btn btn-secondary btn-sm">Notify Parent</button></div>
+      </div>
+      <div class="tbl-row" style="grid-template-columns:50px 160px 80px 80px 100px 1fr;">
+        <div class="tc tc-mono">503</div><div class="tc tc-name">Sai Patel</div><div class="tc tc-mono">89%</div><div class="tc"><span class="bdg bdg-green"><span class="bdg-dot"></span>Paid</span></div><div class="tc"><span class="bdg bdg-green"><span class="bdg-dot"></span>Present</span></div><div class="tc"><button class="btn btn-ghost btn-sm">View</button></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ============ ACCOUNTS SCREEN ============ -->
+<div class="screen" id="screen-accounts">
+
+  <div class="inner-tabs">
+    <button class="itab active" onclick="switchInner3('feecollect',this)">Fee Collection <span class="i-badge" id="fee-badge">6</span></button>
+    <button class="itab" onclick="switchInner3('receipts',this)">Receipts</button>
+  </div>
+
+  <div id="inner3-feecollect">
+    <div class="pg-head">
+      <div><div class="pg-title">Fee Collection — Q3 2026</div><div class="pg-sub">Due: March 5, 2026 · 6 defaulters pending</div></div>
+      <div style="display:flex;gap:8px;">
+        <button class="btn btn-ghost btn-sm">Send All Reminders</button>
+        <button class="btn btn-primary btn-sm" onclick="openFeeModal()">+ Record Payment</button>
+      </div>
+    </div>
+
+    <div class="stats stats-4">
+      <div class="stat"><div class="stat-lbl">Total Due</div><div class="stat-val">₹18.4L</div><div class="stat-note">482 students</div></div>
+      <div class="stat"><div class="stat-lbl">Collected</div><div class="stat-val green">₹14.2L</div><div class="stat-note up">77% collected</div></div>
+      <div class="stat"><div class="stat-lbl">Pending</div><div class="stat-val amber">₹4.2L</div><div class="stat-note">76 students</div></div>
+      <div class="stat"><div class="stat-lbl">Overdue</div><div class="stat-val red">₹1.1L</div><div class="stat-note down">6 defaulters</div></div>
+    </div>
+
+    <div style="margin-top:20px;" class="tbl">
+      <div class="tbl-toolbar">
+        <span class="tbl-toolbar-title">Pending Fee — Priority List</span>
+        <button class="btn btn-secondary btn-sm">WhatsApp All</button>
+      </div>
+      <div class="tbl-head cols-fee">
+        <div class="th">Student</div><div class="th">Class</div><div class="th">Amount Due</div><div class="th">Due Since</div><div class="th">Status</div><div class="th">Action</div>
+      </div>
+      <div class="tbl-row cols-fee hl" onclick="openFeeModal()">
+        <div class="tc tc-name">Dev Sharma</div><div class="tc">Grade 8B</div><div class="tc tc-mono" style="color:var(--red);font-weight:500;">₹24,000</div><div class="tc tc-mono">Jan 5</div><div class="tc"><span class="bdg bdg-red"><span class="bdg-dot"></span>Overdue</span></div><div class="tc"><button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();openFeeModal()">Collect</button></div>
+      </div>
+      <div class="tbl-row cols-fee" onclick="openFeeModal()">
+        <div class="tc tc-name">Sara Thomas</div><div class="tc">Grade 2A</div><div class="tc tc-mono" style="color:var(--amber);font-weight:500;">₹12,000</div><div class="tc tc-mono">Feb 1</div><div class="tc"><span class="bdg bdg-amber"><span class="bdg-dot"></span>Partial</span></div><div class="tc"><button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();openFeeModal()">Collect</button></div>
+      </div>
+      <div class="tbl-row cols-fee">
+        <div class="tc tc-name">Rohan Gupta</div><div class="tc">Grade 10A</div><div class="tc tc-mono" style="color:var(--amber);font-weight:500;">₹36,000</div><div class="tc tc-mono">Feb 5</div><div class="tc"><span class="bdg bdg-amber"><span class="bdg-dot"></span>Pending</span></div><div class="tc"><button class="btn btn-ghost btn-sm">Remind</button></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="inner3-receipts" style="display:none;">
+    <div class="pg-head">
+      <div><div class="pg-title">Fee Receipts</div><div class="pg-sub">Auto-generated on every payment · printable & shareable</div></div>
+      <button class="btn btn-ghost btn-sm">↓ Download All</button>
+    </div>
+    <div class="tbl">
+      <div class="tbl-head" style="grid-template-columns:80px 160px 100px 100px 80px 1fr;">
+        <div class="th">Receipt #</div><div class="th">Student</div><div class="th">Amount</div><div class="th">Date</div><div class="th">Mode</div><div class="th">Action</div>
+      </div>
+      <div class="tbl-row" style="grid-template-columns:80px 160px 100px 100px 80px 1fr;">
+        <div class="tc tc-mono">#1092</div><div class="tc tc-name">Kavya Reddy</div><div class="tc" style="color:var(--accent);font-weight:500;">₹24,000</div><div class="tc tc-mono">Feb 20</div><div class="tc" style="font-size:12px;">UPI</div><div class="tc"><button class="btn btn-ghost btn-sm">PDF</button></div>
+      </div>
+      <div class="tbl-row" style="grid-template-columns:80px 160px 100px 100px 80px 1fr;">
+        <div class="tc tc-mono">#1091</div><div class="tc tc-name">Aryan Kumar</div><div class="tc" style="color:var(--accent);font-weight:500;">₹18,000</div><div class="tc tc-mono">Feb 19</div><div class="tc" style="font-size:12px;">Cash</div><div class="tc"><button class="btn btn-ghost btn-sm">PDF</button></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ============ PRINCIPAL SCREEN ============ -->
+<div class="screen" id="screen-principal">
+  <div class="pg-head">
+    <div><div class="pg-title">Good morning, Principal Sharma</div><div class="pg-sub">CF Andrews School · Feb 22, 2026</div></div>
+    <span class="bdg bdg-green" style="padding:6px 12px;font-size:11px;"><span class="bdg-dot"></span>Live</span>
+  </div>
+
+  <div class="stats stats-4" style="margin-bottom:20px;">
+    <div class="stat"><div class="stat-lbl">Total Students</div><div class="stat-val">482</div><div class="stat-note up">↑ 12 new this term</div></div>
+    <div class="stat"><div class="stat-lbl">Attendance Today</div><div class="stat-val green">91%</div><div class="stat-note up">↑ from 87% last week</div></div>
+    <div class="stat"><div class="stat-lbl">Fee Collected</div><div class="stat-val green">77%</div><div class="stat-note">₹14.2L of ₹18.4L</div></div>
+    <div class="stat"><div class="stat-lbl">Pending Admissions</div><div class="stat-val amber">4</div><div class="stat-note">Review needed</div></div>
+  </div>
+
+  <div class="two-col">
+    <div class="chart-card">
+      <div class="cc-title">Monthly Fee Collection</div>
+      <div class="cc-sub">₹ collected per month this academic year</div>
+      <div class="bar-chart">
+        <div class="bc"><div class="bf bf-green" style="height:55px;"></div><div class="bl">Jun</div></div>
+        <div class="bc"><div class="bf bf-green" style="height:70px;"></div><div class="bl">Jul</div></div>
+        <div class="bc"><div class="bf bf-green" style="height:45px;"></div><div class="bl">Aug</div></div>
+        <div class="bc"><div class="bf bf-green" style="height:65px;"></div><div class="bl">Sep</div></div>
+        <div class="bc"><div class="bf bf-green" style="height:50px;"></div><div class="bl">Oct</div></div>
+        <div class="bc"><div class="bf bf-dim"   style="height:40px;"></div><div class="bl">Nov</div></div>
+        <div class="bc"><div class="bf bf-green" style="height:75px;"></div><div class="bl">Dec</div></div>
+        <div class="bc"><div class="bf bf-green" style="height:60px;"></div><div class="bl">Jan</div></div>
+        <div class="bc"><div class="bf bf-amber" style="height:48px;"></div><div class="bl">Feb</div></div>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="cc-title">Class-wise Attendance</div>
+      <div class="cc-sub">Average this week</div>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-top:4px;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span style="font-size:12px;color:var(--ink3);width:70px;flex-shrink:0;">Grades 1–3</span>
+          <div style="flex:1;height:20px;background:var(--surface2);border-radius:4px;overflow:hidden;"><div style="height:100%;background:var(--accent);width:94%;display:flex;align-items:center;padding-left:8px;font-size:10px;font-family:'DM Mono',monospace;color:white;font-weight:500;">94%</div></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span style="font-size:12px;color:var(--ink3);width:70px;flex-shrink:0;">Grades 4–6</span>
+          <div style="flex:1;height:20px;background:var(--surface2);border-radius:4px;overflow:hidden;"><div style="height:100%;background:var(--accent);width:88%;display:flex;align-items:center;padding-left:8px;font-size:10px;font-family:'DM Mono',monospace;color:white;font-weight:500;">88%</div></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span style="font-size:12px;color:var(--ink3);width:70px;flex-shrink:0;">Grades 7–9</span>
+          <div style="flex:1;height:20px;background:var(--surface2);border-radius:4px;overflow:hidden;"><div style="height:100%;background:var(--amber);width:82%;display:flex;align-items:center;padding-left:8px;font-size:10px;font-family:'DM Mono',monospace;color:white;font-weight:500;">82%</div></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span style="font-size:12px;color:var(--ink3);width:70px;flex-shrink:0;">Grade 10</span>
+          <div style="flex:1;height:20px;background:var(--surface2);border-radius:4px;overflow:hidden;"><div style="height:100%;background:var(--accent);width:91%;display:flex;align-items:center;padding-left:8px;font-size:10px;font-family:'DM Mono',monospace;color:white;font-weight:500;">91%</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="cc-title">Staff Overview</div>
+    <div class="cc-sub">22 teaching + 8 non-teaching staff</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:4px;">
+      <div style="text-align:center;padding:14px;background:var(--surface2);border-radius:var(--r);border:1px solid var(--border);">
+        <div style="font-family:'Fraunces',serif;font-size:28px;font-weight:600;color:var(--accent);">22</div>
+        <div style="font-size:11px;color:var(--ink3);margin-top:4px;">Teaching Staff</div>
+      </div>
+      <div style="text-align:center;padding:14px;background:var(--surface2);border-radius:var(--r);border:1px solid var(--border);">
+        <div style="font-family:'Fraunces',serif;font-size:28px;font-weight:600;color:var(--blue);">96%</div>
+        <div style="font-size:11px;color:var(--ink3);margin-top:4px;">Staff Present Today</div>
+      </div>
+      <div style="text-align:center;padding:14px;background:var(--surface2);border-radius:var(--r);border:1px solid var(--border);">
+        <div style="font-family:'Fraunces',serif;font-size:28px;font-weight:600;color:var(--amber);">3</div>
+        <div style="font-size:11px;color:var(--ink3);margin-top:4px;">On Leave Today</div>
+      </div>
+      <div style="text-align:center;padding:14px;background:var(--surface2);border-radius:var(--r);border:1px solid var(--border);">
+        <div style="font-family:'Fraunces',serif;font-size:28px;font-weight:600;color:var(--accent);">100%</div>
+        <div style="font-size:11px;color:var(--ink3);margin-top:4px;">Salary Processed</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- end wrap -->
+
+<!-- ============ MODALS ============ -->
+
+<!-- ADMISSION MODAL -->
+<div class="overlay" id="adm-modal">
+  <div class="modal">
+    <div class="modal-hd">
+      <div><div class="modal-title">Review Application</div><div class="modal-sub">Arjun Mehta — Grade 3 Application</div></div>
+      <button class="modal-x" onclick="closeModal('adm-modal')">✕</button>
+    </div>
+    <div class="modal-bd">
+      <div class="frow">
+        <div class="fg"><label class="flbl">Student Name</label><input class="finp" value="Arjun Mehta" /></div>
+        <div class="fg"><label class="flbl">Class Applying</label><select class="fsel"><option selected>Grade 3</option><option>Grade 4</option><option>Grade 5</option></select></div>
+      </div>
+      <div class="frow">
+        <div class="fg"><label class="flbl">Parent Name</label><input class="finp" value="Suresh Mehta" /></div>
+        <div class="fg"><label class="flbl">Parent Phone</label><input class="finp" value="+91 98765 11111" /></div>
+      </div>
+      <div class="fg"><label class="flbl">Decision</label>
+        <select class="fsel" id="adm-decision">
+          <option value="confirm">✅ Confirm Admission</option>
+          <option value="waitlist">⏳ Move to Waitlist</option>
+          <option value="reject">❌ Decline</option>
+        </select>
+      </div>
+      <div class="fg"><label class="flbl">Note to Parent (optional)</label><input class="finp" placeholder="e.g. Please bring documents on Monday..." /></div>
+    </div>
+    <div class="modal-ft">
+      <button class="btn btn-ghost" onclick="closeModal('adm-modal')">Cancel</button>
+      <button class="btn btn-primary" onclick="confirmAdm()">Save & Notify Parent →</button>
+    </div>
+  </div>
+</div>
+
+<!-- FEE MODAL -->
+<div class="overlay" id="fee-modal">
+  <div class="modal">
+    <div class="modal-hd">
+      <div><div class="modal-title">Record Fee Payment</div><div class="modal-sub">Dev Sharma — Grade 8B</div></div>
+      <button class="modal-x" onclick="closeModal('fee-modal')">✕</button>
+    </div>
+    <div class="modal-bd">
+      <div class="frow">
+        <div class="fg"><label class="flbl">Student</label><input class="finp" value="Dev Sharma" readonly /></div>
+        <div class="fg"><label class="flbl">Amount Due</label><input class="finp" value="₹24,000" readonly /></div>
+      </div>
+      <div class="frow">
+        <div class="fg"><label class="flbl">Amount Paying</label><input class="finp" id="fee-amt" placeholder="₹24,000" /></div>
+        <div class="fg"><label class="flbl">Payment Mode</label>
+          <select class="fsel" id="fee-mode">
+            <option>UPI</option><option>Cash</option><option>Cheque</option><option>Bank Transfer</option>
+          </select>
+        </div>
+      </div>
+      <div class="fg"><label class="flbl">Reference / Transaction ID</label><input class="finp" placeholder="e.g. UPI ref or cheque number" /></div>
+      <div class="fg"><label class="flbl">Date of Payment</label><input class="finp" type="date" value="2026-02-22" /></div>
+    </div>
+    <div class="modal-ft">
+      <button class="btn btn-ghost" onclick="closeModal('fee-modal')">Cancel</button>
+      <button class="btn btn-primary" onclick="confirmFee()">Record & Generate Receipt →</button>
+    </div>
+  </div>
+</div>
+
+<!-- RECEIPT MODAL -->
+<div class="overlay" id="receipt-modal">
+  <div class="modal">
+    <div class="modal-hd">
+      <div><div class="modal-title">✅ Payment Recorded</div><div class="modal-sub">Receipt generated and sent to parent</div></div>
+      <button class="modal-x" onclick="closeModal('receipt-modal')">✕</button>
+    </div>
+    <div class="modal-bd">
+      <div class="confirm-card">
+        <div class="conf-row"><span class="ck">Student</span><span class="cv" id="rc-name">Dev Sharma</span></div>
+        <div class="conf-row"><span class="ck">Amount Paid</span><span class="cv" id="rc-amt">₹24,000</span></div>
+        <div class="conf-row"><span class="ck">Mode</span><span class="cv" id="rc-mode">UPI</span></div>
+        <div class="conf-row"><span class="ck">Date</span><span class="cv">Feb 22, 2026</span></div>
+        <div class="conf-row"><span class="ck">Receipt #</span><span class="cv ok">#1093</span></div>
+      </div>
+      <div class="receipt">
+        <div class="rcpt-hd"><div class="rcpt-dot"></div><div class="rcpt-lbl">WhatsApp Receipt — Sent to Parent</div></div>
+        <div class="rcpt-body" id="rcpt-body">
+          Dear Mr. Suresh Mehta,<br><br>
+          ✅ We have received fee payment from Dev Sharma (Grade 8B).<br><br>
+          <strong>Amount:</strong> ₹24,000<br>
+          <strong>Mode:</strong> UPI<br>
+          <strong>Receipt:</strong> #1093<br>
+          <strong>Date:</strong> Feb 22, 2026<br><br>
+          Thank you. — CF Andrews School Accounts
+        </div>
+        <div class="rcpt-time">Delivered · Just now</div>
+      </div>
+    </div>
+    <div class="modal-ft">
+      <button class="btn btn-ghost" onclick="closeModal('receipt-modal')">Close</button>
+      <button class="btn btn-primary" onclick="closeModal('receipt-modal')">Download PDF Receipt</button>
+    </div>
+  </div>
+</div>
+
+<!-- ATTENDANCE MODAL -->
+<div class="overlay" id="att-modal">
+  <div class="modal">
+    <div class="modal-hd">
+      <div><div class="modal-title">Mark Attendance</div><div class="modal-sub">Grade 5A · Feb 22, 2026</div></div>
+      <button class="modal-x" onclick="closeModal('att-modal')">✕</button>
+    </div>
+    <div class="modal-bd">
+      <div style="display:flex;gap:10px;margin-bottom:16px;">
+        <button class="btn btn-secondary" style="flex:1;" onclick="markAllPresent()">✅ Mark All Present</button>
+        <button class="btn btn-ghost" style="flex:1;" onclick="closeModal('att-modal')">Cancel</button>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;max-height:280px;overflow-y:auto;" id="att-list">
+        <!-- filled by JS -->
+      </div>
+    </div>
+    <div class="modal-ft">
+      <button class="btn btn-ghost" onclick="closeModal('att-modal')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveAttendance()">Save Attendance →</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast" style="display:none;">
+  <div class="t-icon" id="t-icon">✅</div>
+  <div><div class="t-title" id="t-title">Done</div><div class="t-sub" id="t-sub">Action complete.</div></div>
+</div>
+
+<script>
+// ===== ROLE / TAB SWITCH =====
+function switchRole(role, btn) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.role-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('screen-' + role).classList.add('active');
+  btn.classList.add('active');
+}
+function switchInner(tab, btn) {
+  ['admissions','students','comms'].forEach(t => {
+    const el = document.getElementById('inner-' + t);
+    if (el) el.style.display = t === tab ? 'block' : 'none';
+  });
+  document.querySelectorAll('#screen-admin .itab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+}
+function switchInner2(tab, btn) {
+  ['attendance','classlist'].forEach(t => {
+    const el = document.getElementById('inner2-' + t);
+    if (el) el.style.display = t === tab ? 'block' : 'none';
+  });
+  document.querySelectorAll('#screen-teacher .itab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+}
+function switchInner3(tab, btn) {
+  ['feecollect','receipts'].forEach(t => {
+    const el = document.getElementById('inner3-' + t);
+    if (el) el.style.display = t === tab ? 'block' : 'none';
+  });
+  document.querySelectorAll('#screen-accounts .itab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+// ===== MODALS =====
+function openAdmModal()  { openModal('adm-modal'); }
+function openFeeModal()  { openModal('fee-modal'); }
+function openAttModal()  { buildAttList(); openModal('att-modal'); }
+function openCommsModal(){ showToast('📢','Compose Notice','Opening message composer...'); }
+
+function openModal(id)  { document.getElementById(id).classList.add('open'); }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+document.querySelectorAll('.overlay').forEach(o => {
+  o.addEventListener('click', e => { if (e.target === o) o.classList.remove('open'); });
+});
+
+// ===== ADMISSION =====
+function confirmAdm() {
+  const dec = document.getElementById('adm-decision').value;
+  closeModal('adm-modal');
+  const badge = document.getElementById('adm-badge');
+  const curr = parseInt(badge.textContent);
+  if (curr > 0) badge.textContent = curr - 1;
+  if (dec === 'confirm') showToast('✅','Admission Confirmed','Arjun Mehta — Grade 3. Parent notified via WhatsApp.');
+  else if (dec === 'waitlist') showToast('⏳','Moved to Waitlist','Parent notified. Application kept active.');
+  else showToast('❌','Application Declined','Parent notified with reason.');
+}
+
+// ===== FEE =====
+function confirmFee() {
+  const amt  = document.getElementById('fee-amt').value || '₹24,000';
+  const mode = document.getElementById('fee-mode').value;
+  document.getElementById('rc-amt').textContent  = amt;
+  document.getElementById('rc-mode').textContent = mode;
+  document.getElementById('rcpt-body').innerHTML =
+    `Dear Mr. Suresh Mehta,<br><br>✅ We have received fee payment from Dev Sharma (Grade 8B).<br><br>` +
+    `<strong>Amount:</strong> ${amt}<br><strong>Mode:</strong> ${mode}<br>` +
+    `<strong>Receipt:</strong> #1093<br><strong>Date:</strong> Feb 22, 2026<br><br>` +
+    `Thank you. — CF Andrews School Accounts`;
+  const badge = document.getElementById('fee-badge');
+  const curr = parseInt(badge.textContent);
+  if (curr > 0) badge.textContent = curr - 1;
+  closeModal('fee-modal');
+  setTimeout(() => { openModal('receipt-modal'); showToast('🧾','Receipt Generated','Sent to parent via WhatsApp.'); }, 250);
+}
+
+// ===== ATTENDANCE CALENDAR =====
+const attStates = {}; // date -> 'present'|'absent'|'holiday'
+const holidays = [1,7,8,14,15,22]; // Sundays + holidays in Feb
+
+function buildCalendar() {
+  const grid = document.getElementById('att-grid');
+  grid.innerHTML = '';
+  for (let d = 1; d <= 28; d++) {
+    const isHoliday = holidays.includes(d);
+    const state = attStates[d] || (isHoliday ? 'holiday' : (d <= 21 ? 'present' : 'present'));
+    if (!attStates[d] && !isHoliday) attStates[d] = d <= 21 ? 'present' : 'present';
+    const div = document.createElement('div');
+    div.className = 'att-day';
+    div.innerHTML = `
+      <div class="att-dot ${attStates[d] || (isHoliday?'holiday':'present')}" id="aday-${d}" onclick="toggleAtt(${d})">${d}</div>
+      <span class="att-day-lbl">${['Mon','Tue','Wed','Thu','Fri','Sat','Sun'][(d+2)%7]}</span>
+    `;
+    grid.appendChild(div);
+  }
+}
+
+function toggleAtt(d) {
+  if (holidays.includes(d)) return;
+  attStates[d] = attStates[d] === 'present' ? 'absent' : 'present';
+  const dot = document.getElementById('aday-' + d);
+  dot.className = 'att-dot ' + attStates[d];
+  updateAttStats();
+}
+
+function updateAttStats() {
+  let present = 0, absent = 0;
+  const today = [22];
+  today.forEach(d => {
+    if (attStates[d] === 'present') present++;
+    else if (attStates[d] === 'absent') absent++;
+  });
+  // Just for today's view - use full class stats
+}
+
+// Attendance modal list
+const students = ['Aryan Kumar','Meena Joshi','Sai Patel','Riya Shah','Kiran Nair',
+  'Priya Das','Rahul Iyer','Ananya Singh','Dev Patel','Zara Khan'];
+const attStatus = {};
+students.forEach(s => attStatus[s] = true);
+
+function buildAttList() {
+  const list = document.getElementById('att-list');
+  list.innerHTML = '';
+  students.forEach(s => {
+    const div = document.createElement('div');
+    div.style.cssText = 'display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:var(--bg);border-radius:var(--r);border:1px solid var(--border);';
+    div.innerHTML = `
+      <span style="font-size:13px;font-weight:500;">${s}</span>
+      <div style="display:flex;gap:6px;">
+        <button onclick="setAtt('${s}',true,this)" style="font-size:11px;padding:4px 10px;border-radius:5px;border:1px solid;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.1s;background:${attStatus[s]?'var(--accent)':'var(--surface2)'};color:${attStatus[s]?'white':'var(--ink3)'};border-color:${attStatus[s]?'var(--accent)':'var(--border2)'};">Present</button>
+        <button onclick="setAtt('${s}',false,this)" style="font-size:11px;padding:4px 10px;border-radius:5px;border:1px solid;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.1s;background:${!attStatus[s]?'var(--red)':'var(--surface2)'};color:${!attStatus[s]?'white':'var(--ink3)'};border-color:${!attStatus[s]?'var(--red)':'var(--border2)'};">Absent</button>
+      </div>
+    `;
+    list.appendChild(div);
+  });
+}
+
+function setAtt(name, present, btn) {
+  attStatus[name] = present;
+  buildAttList(); // rebuild to refresh styles
+}
+
+function markAllPresent() {
+  students.forEach(s => attStatus[s] = true);
+  buildAttList();
+}
+
+function saveAttendance() {
+  const absent = students.filter(s => !attStatus[s]);
+  closeModal('att-modal');
+  showToast('✅','Attendance Saved', absent.length > 0 ? `${absent.length} absent. Parents notified.` : 'All students marked present.');
+  if (absent.length > 0) {
+    document.getElementById('att-absent').textContent = absent.length;
+    document.getElementById('att-present').textContent = students.length - absent.length;
+  }
+}
+
+// ===== TOAST =====
+let tTimer;
+function showToast(icon, title, sub) {
+  document.getElementById('t-icon').textContent  = icon;
+  document.getElementById('t-title').textContent = title;
+  document.getElementById('t-sub').textContent   = sub;
+  const t = document.getElementById('toast');
+  t.style.display = 'flex';
+  clearTimeout(tTimer);
+  tTimer = setTimeout(() => t.style.display = 'none', 3800);
+}
+
+function openCalendly() { showToast('📅','Book School Demo','Redirecting to calendly.com/cleanstacky...'); }
+
+// Init
+buildCalendar();
+</script>
+</body>
+</html>
