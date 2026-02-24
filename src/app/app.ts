@@ -4,6 +4,7 @@ import { NavbarComponent } from './shared/layout/navbar/navbar.component';
 import { FooterComponent } from './shared/layout/footer/footer.component';
 import { DemoModalComponent } from './shared/ui/demo-modal/demo-modal.component';
 import { SeoService } from './core/services/seo.service';
+import { SessionTimeoutService } from './core/services/session-timeout.service';
 import { filter } from 'rxjs/operators';
 
 @Component({
@@ -15,8 +16,10 @@ export class App {
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
   private readonly seo = inject(SeoService);
+  private readonly sessionTimeout = inject(SessionTimeoutService);
 
   constructor() {
+    this.sessionTimeout.init();
     this.router.events.pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd)).subscribe(() => {
       let active = this.route.firstChild;
       while (active?.firstChild) {

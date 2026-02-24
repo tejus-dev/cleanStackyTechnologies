@@ -8,6 +8,12 @@ import { TextileDemoComponent } from './pages/textile-demo/textile-demo.componen
 import { EcommerceAdminDemoComponent } from './pages/ecommerce-admin-demo/ecommerce-admin-demo.component';
 import { EcommerceDemoComponent } from './pages/ecommerce-demo/ecommerce-demo.component';
 import { B2cDemoComponent } from './pages/b2c-demo/b2c-demo.component';
+import { demoAuthGuard } from './core/guards/demo-auth.guard';
+import { adminAuthGuard } from './core/guards/admin-auth.guard';
+import { AdminPage } from './pages/admin/admin.page';
+import { LoginPage } from './pages/login/login.page';
+import { ProtectedDemoPage } from './pages/protected-demo/protected-demo.page';
+import { RequestAccessPage } from './pages/request-access/request-access.page';
 import { SchoolDemoComponent } from './pages/school-demo/school-demo.component';
 
 export const routes: Routes = [
@@ -186,8 +192,12 @@ export const routes: Routes = [
       path: '/contact',
     },
   },
+  { path: 'request-access', component: RequestAccessPage },
+  { path: 'login', component: LoginPage },
+  { path: 'admin', component: AdminPage, canActivate: [adminAuthGuard] },
   { path: 'calculator', component: CalculatorComponent },
-  { path: 'demo', component: DemoComponent },
+  { path: 'demo', component: ProtectedDemoPage, canActivate: [demoAuthGuard] },
+  { path: 'demo/clinic', component: DemoComponent },
   { path: 'demo/calculator', component: CalculatorComponent },
   { path: 'demo/school', component: SchoolDemoComponent },
   { path: 'demo/ecommerce', component: EcommerceDemoComponent },

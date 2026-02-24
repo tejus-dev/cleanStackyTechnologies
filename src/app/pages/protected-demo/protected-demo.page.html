@@ -1,0 +1,13 @@
+<section class="page-shell">
+  @if (loading()) {
+    <p>Loading...</p>
+  }
+
+  @if (!loading() && approved()) {
+    <app-demo-content></app-demo-content>
+  }
+
+  @if (!loading() && message()) {
+    <p class="message">{{ message() }}</p>
+  }
+</section>

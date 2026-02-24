@@ -1,0 +1,49 @@
+.card {
+  display: grid;
+  gap: 12px;
+  background: #fff;
+  border: 1px solid #e2e0d8;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+label {
+  display: grid;
+  gap: 6px;
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+input {
+  border: 1px solid #d0cec4;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font: inherit;
+}
+
+button {
+  border: none;
+  background: #1a5c38;
+  color: #fff;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button[disabled] {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.message {
+  margin: 0;
+  color: #6b6860;
+  font-size: 0.9rem;
+}
+
+.helper {
+  margin: 0;
+  font-size: 0.88rem;
+  color: #6b6860;
+}

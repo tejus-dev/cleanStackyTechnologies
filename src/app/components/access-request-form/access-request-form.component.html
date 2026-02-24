@@ -1,0 +1,52 @@
+<form class="card" (ngSubmit)="submit()">
+  <label>
+    Full Name
+    <input type="text" [(ngModel)]="form.fullName" name="fullName" placeholder="Your full name" required />
+  </label>
+
+  <label>
+    Email
+    <input type="email" [(ngModel)]="form.email" name="email" placeholder="you@company.com" required />
+  </label>
+
+  <label>
+    Password
+    <input
+      type="password"
+      [(ngModel)]="form.password"
+      name="password"
+      placeholder="Minimum 8 characters (for new users)"
+    />
+    <small>Required only if you do not already have an account.</small>
+  </label>
+
+  <label>
+    Company (optional)
+    <input type="text" [(ngModel)]="form.company" name="company" placeholder="Company name" />
+  </label>
+
+  <label>
+    Reason for access
+    <textarea
+      [(ngModel)]="form.reason"
+      name="reason"
+      rows="4"
+      placeholder="Tell us why you want access to the demo"
+      required
+    ></textarea>
+  </label>
+
+  <button type="submit" [disabled]="loading()">
+    {{ loading() ? 'Loading...' : 'Request Access' }}
+  </button>
+
+  @if (message()) {
+    <p class="message" [class.error]="messageType() === 'error'" [class.success]="messageType() === 'success'">
+      {{ message() }}
+    </p>
+  }
+
+  <p class="helper">
+    Already have an account? <a routerLink="/login">Login here</a>
+  </p>
+</form>

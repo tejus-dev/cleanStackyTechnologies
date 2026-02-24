@@ -1,0 +1,83 @@
+.table-card {
+  background: #fff;
+  border: 1px solid #e2e0d8;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 12px;
+}
+
+button {
+  border: 1px solid #1a5c38;
+  background: #fff;
+  color: #1a5c38;
+  border-radius: 8px;
+  padding: 7px 10px;
+  cursor: pointer;
+}
+
+button[disabled] {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.table-wrap {
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 880px;
+}
+
+th,
+td {
+  border-bottom: 1px solid #e2e0d8;
+  text-align: left;
+  padding: 10px;
+  vertical-align: top;
+}
+
+th {
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  color: #6b6860;
+}
+
+.status {
+  display: inline-flex;
+  border-radius: 999px;
+  padding: 3px 10px;
+  font-size: 0.8rem;
+  text-transform: capitalize;
+}
+
+.status.pending {
+  background: #fffbeb;
+  color: #b45309;
+}
+
+.status.approved {
+  background: #e8f5ee;
+  color: #166534;
+}
+
+.status.rejected {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.message {
+  margin: 0 0 10px;
+  color: #b91c1c;
+}

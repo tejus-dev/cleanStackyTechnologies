@@ -1,0 +1,41 @@
+<div class="table-card">
+  <div class="toolbar">
+    <button type="button" (click)="load()" [disabled]="loading()">
+      {{ loading() ? 'Loading...' : 'Refresh' }}
+    </button>
+  </div>
+
+  @if (message()) {
+    <p class="message">{{ message() }}</p>
+  }
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Company</th>
+          <th>Reason</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (row of rows(); track row.id) {
+          <tr>
+            <td>{{ row.full_name }}</td>
+            <td>{{ row.email }}</td>
+            <td>{{ row.company || '-' }}</td>
+            <td>{{ row.reason || '-' }}</td>
+            <td><span class="status" [class]="'status ' + row.status">{{ row.status }}</span></td>
+            <td class="actions">
+              <button type="button" (click)="updateStatus(row.id, 'approved')" [disabled]="loading()">Approve</button>
+              <button type="button" (click)="updateStatus(row.id, 'rejected')" [disabled]="loading()">Reject</button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

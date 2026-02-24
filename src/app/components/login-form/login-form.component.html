@@ -1,0 +1,23 @@
+<form class="card" (ngSubmit)="submit()">
+  <label>
+    Email
+    <input type="email" [(ngModel)]="form.email" name="email" required />
+  </label>
+
+  <label>
+    Password
+    <input type="password" [(ngModel)]="form.password" name="password" required />
+  </label>
+
+  <button type="submit" [disabled]="loading()">
+    {{ loading() ? 'Loading...' : 'Login' }}
+  </button>
+
+  @if (message()) {
+    <p class="message">{{ message() }}</p>
+  }
+
+  <p class="helper">
+    Need access first? <a routerLink="/request-access">Request access</a>
+  </p>
+</form>
