@@ -23,6 +23,7 @@ export class LoginFormComponent {
     email: '',
     password: '',
   };
+  private readonly draftStorageKey = 'pendingAccessRequestDraft';
 
   constructor() {
     if (isPlatformBrowser(this.platformId)) {
@@ -94,6 +95,58 @@ export class LoginFormComponent {
     return row.status;
   }
 
+  private async tryCreateRequestFromDraft(userId: string, email: string): Promise<void> {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+
+    const raw = localStorage.getItem(this.draftStorageKey);
+    if (!raw) {
+      return;
+    }
+
+    let draft: { email?: string; fullName?: string; company?: string; reason?: string } | null = null;
+    try {
+      draft = JSON.parse(raw) as { email?: string; fullName?: string; company?: string; reason?: string };
+    } catch {
+      localStorage.removeItem(this.draftStorageKey);
+      return;
+    }
+
+    const draftEmail = (draft?.email ?? '').toLowerCase().trim();
+    const loginEmail = email.toLowerCase().trim();
+    if (!draft || draftEmail !== loginEmail) {
+      return;
+    }
+
+    if (!draft.fullName?.trim() || !draft.reason?.trim()) {
+      localStorage.removeItem(this.draftStorageKey);
+      return;
+    }
+
+    const { error } = await supabase.from('access_requests').insert({
+      user_id: userId,
+      email: loginEmail,
+      full_name: draft.fullName.trim(),
+      company: draft.company?.trim() || null,
+      reason: draft.reason.trim(),
+      status: 'pending',
+    });
+
+    if (!error) {
+      localStorage.removeItem(this.draftStorageKey);
+      return;
+    }
+
+    if (error.code === '23505') {
+      // Duplicate row race; clear draft and continue.
+      localStorage.removeItem(this.draftStorageKey);
+      return;
+    }
+
+    throw error;
+  }
+
   protected async submit(): Promise<void> {
     this.loading.set(true);
     this.message.set('');
@@ -126,7 +179,11 @@ export class LoginFormComponent {
         return;
       }
 
-      const status = await this.fetchStatus(userId, authData.user?.email ?? this.form.email.trim());
+      let status = await this.fetchStatus(userId, authData.user?.email ?? this.form.email.trim());
+      if (!status) {
+        await this.tryCreateRequestFromDraft(userId, userEmail);
+        status = await this.fetchStatus(userId, authData.user?.email ?? this.form.email.trim());
+      }
 
       if (status === 'approved') {
         await this.router.navigateByUrl('/demo');

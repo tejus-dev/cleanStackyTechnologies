@@ -29,6 +29,8 @@ export class AccessRequestFormComponent {
     reason: '',
   };
 
+  private readonly draftStorageKey = 'pendingAccessRequestDraft';
+
   constructor() {
     if (isPlatformBrowser(this.platformId)) {
       void this.prefillFromSession();
@@ -123,8 +125,19 @@ export class AccessRequestFormComponent {
         }
 
         if (!signUpData.session) {
+          if (isPlatformBrowser(this.platformId)) {
+            localStorage.setItem(
+              this.draftStorageKey,
+              JSON.stringify({
+                email: this.form.email.trim().toLowerCase(),
+                fullName: this.form.fullName.trim(),
+                company: this.form.company.trim(),
+                reason: this.form.reason.trim(),
+              }),
+            );
+          }
           this.message.set(
-            'Please check your email to confirm your account, then come back to log in.',
+            'Please check your email to confirm your account, then log in. We will submit your request automatically after login.',
           );
           this.messageType.set('info');
           return;
