@@ -184,7 +184,7 @@ export class ContactComponent implements OnInit {
 
     messageLines.push('Looking forward to hearing from you!');
 
-    const url = `https://wa.me/919880099302?text=${encodeURIComponent(messageLines.join('\n'))}`;
+    const url = `https://wa.me/919538299302?text=${encodeURIComponent(messageLines.join('\n'))}`;
     window.open(url, '_blank', 'noopener,noreferrer');
 
     this.submissionSummary.set({
